@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D Cart Signup form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/signup.css">
+    <!-- <link rel="stylesheet" href="css/entryform.css"> -->
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- <img class="left_corner" src="images/ecomm_img.png" alt=""> -->
+        <h1>Welcome to D Cart</h1>
+        <img id="signup_img" src="images/ecomm_img.png" alt="">
+        <p>Please fill out this form to buy our products</p>
+
+        <form>
+            <table class="tab">
+                <tr>
+                    <td><label for="ucustomer">
+                            <input type="radio" name="usertype" id="ucustomer"> As a customer
+                        </label></td>
+                       
+                    <td><label for="useller">
+                            <input type="radio" name="usertype" id="useller"> As a seller
+                        </label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label for="userid" class="lab">Userid *</label>
+                        <input type="text" name="" id="userid" placeholder="userid*">
+                        <span id="r"></span> </td>
+                </tr>
+                <tr>
+                    <td><label for="ufname" class="lab">User name</label>
+                        <input type="text" name="" id="ufname" placeholder="First*">
+                    </td>
+                    <td>
+                        <input type="text" name="" id="ulname" placeholder="last*">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label for="uemail" class="lab">User email address *</label>
+                        <input type="email" name="" id="uemail" placeholder="email id*">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="mobno" class="lab">Mobile Number</label>
+                        <input type="text" name="" id="mobno" placeholder="mobile number*">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="upass" class="lab">Password</label>
+                        <input type="password" name="" id="upass" placeholder="password*">
+                    </td>
+                    <td>
+                        <label for="urpass" class="lab">Repeat Password</label>
+                        <input type="password" name="" id="urpass" placeholder="repeat password*">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="uagree">
+                            <input type="checkbox" name="" id="uagree"> are you agree to accept the <a>terms &
+                                conditions ?</a>
+                        </label> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="subbtn" type="button" value="Sign Up">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <p id="asigntext">already have an account? &nbsp; <a id="loginbtn">Log In</a></p>
+
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="scripts/validation.js"></script>
+    <script src="scripts/signup.js"></script>
+</body>
+
+</html>
