@@ -1,10 +1,10 @@
-let signupbtn = document.querySelector("#signupbtn");
-loginbtn.addEventListener("click", function () {
-    window.location.href = 'login.html';
-})
+$(document).ready(function () {
+    $('#logbtn').on('click', function (e) {
+        e.preventDefault();
+    });
 
-let logbtn = document.querySelector("#logbtn");
-logbtn.addEventListener("click", function (e) {
-    alert("Are you sure to login ?")
-    e.preventDefault();
+    $("#signupbtn").on("click", function () {
+        window.location.href = 'signup.html'
+    })
+
 })

@@ -113,9 +113,9 @@ input[type='submit']:hover{
     margin-top:-2rem;
 }
 
-#loginbtn{
+#signupbtn{
     cursor: pointer;
-    color: chocolate;
+    color: cornsilk;
 }
 
 .lb{
