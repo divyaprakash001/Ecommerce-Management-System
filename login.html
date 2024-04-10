@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D Cart Signup form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
+    <!-- <link rel="stylesheet" href="css/entryform.css"> -->
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Welcome to D Cart</h1>
+        <img id="signup_img" src="images/ecommer_signup_img.png" alt="">
+        <p>Please login this form to get some offers</p>
+
+        <form>
+            <table class="tab">
+               
+                <tr>
+                    <td colspan="2"><label for="userid" class="lab">Userid *</label>
+                        <input type="text" name="" id="userid" placeholder="userid / email*">
+                        <span id="r"></span> </td>
+                </tr>
+               
+                
+                    <td>
+                        <label for="upass" class="lab">Password</label>
+                        <input type="password" name="" id="upass" placeholder="password*">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="uagree">
+                            <input type="checkbox" name="" id="uagree"> are you agree to accept the <a>terms &
+                                conditions ?</a>
+                        </label> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="logbtn" type="submit" value="Login">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <p id="asigntext">Don't have an account? &nbsp; <a id="signupbtn">Sign Up</a></p>
+
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="scripts/login.js"></script>
+</body>
+
+</html>

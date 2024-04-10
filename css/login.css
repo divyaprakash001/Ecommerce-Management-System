@@ -12,11 +12,9 @@ html{
 }
 
 .container{
-    width: 50%;
-    /* height: 95vh; */
+    width: 30%;
     background-color: var(--main-color);
-    margin: 1rem auto;
-    margin-top: 1.5rem;
+    margin: 4rem auto;
     padding: 2rem;
     border: .5rem solid var(--main-color);
     border-radius: 1rem;
@@ -25,7 +23,7 @@ html{
 }
 
 .container h1{
-    font-size: 4rem;
+    font-size: 3rem;
     color: white;
     text-align: center;
 }
@@ -38,7 +36,7 @@ html{
 }
 
 .container p{
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     text-align: center;
 }
 
@@ -55,7 +53,7 @@ html{
 td {
     /* border: 2px solid rebeccapurple; */
     position: relative;
-    height: 7rem;
+    height: 6rem;
     width: 25%;
 }
 
@@ -65,8 +63,7 @@ td {
 }
 
 label{
-    font-size: 1.8rem;
-
+    font-size: 1.5rem;
 }
 
 input[type='text'],input[type='email'], input[type='password'] ,input[type='date'],select {
@@ -80,21 +77,15 @@ input[type='text'],input[type='email'], input[type='password'] ,input[type='date
 
 }
 
-#ufname, #upass, #uemail{
-    width: 95%;
-}
 
-.emailbox{
-    width: 95%;
-}
 
 input:focus{
     outline: none;
 }
 
 input[type='checkbox']{
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1rem;
+    height: 1rem;
 }
 
 
@@ -104,7 +95,7 @@ input[type='submit']{
     top: 10%;
     background-color: transparent;
     color: white;
-    padding: 1.5rem 2.5rem;
+    padding: .8rem 1.5rem;
     font-size: 2rem;
     border: 2px solid white;
     border-radius: 1rem;
@@ -141,7 +132,7 @@ input[type='submit']:hover{
 @media screen and (max-width:768px) {
 
     html{
-        font-size: 55%;
+        font-size: 44%;
     }
     td {
         display: block;
@@ -149,10 +140,6 @@ input[type='submit']:hover{
         height: 6rem;
     }
      #ufname, #upass{
-        width: 100%;
-     }
-
-     #uemail{
         width: 100%;
      }
 
