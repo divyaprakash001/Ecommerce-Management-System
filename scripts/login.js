@@ -6,5 +6,5 @@ $(document).ready(function () {
     $("#signupbtn").on("click", function () {
         window.location.href = 'signup.html'
     })
-
+ 
 })

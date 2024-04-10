@@ -14,7 +14,7 @@ html{
 .container{
     width: 30%;
     background-color: var(--main-color);
-    margin: 4rem auto;
+    margin: 6rem auto;
     padding: 2rem;
     border: .5rem solid var(--main-color);
     border-radius: 1rem;

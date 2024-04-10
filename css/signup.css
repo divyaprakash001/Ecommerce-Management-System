@@ -124,8 +124,13 @@ input[type='submit']:hover{
 
 #loginbtn{
     cursor: pointer;
-    color: chocolate;
+    color: blue;
 }
+
+/* #sbtd{
+    display: flex;
+    justify-content: center;
+} */
 
 .lb{
     font-size: 1.4rem;
