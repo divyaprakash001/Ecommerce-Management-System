@@ -16,45 +16,52 @@
 
 <body>
 
-    <div class="container">
-        <h1>Welcome to D Cart</h1>
-        <img id="signup_img" src="images/ecommer_signup_img.png" alt="">
-        <p>Please login this form to get some offers</p>
+    <div class="main_container">
+        <div class="left_container">
+            <h1>Welcome to Crazy Home</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum atque tenetur veniam eveniet nihil explicabo?</p>
+           <img src="images/ecommer_signup_img.png" style="width: 100%;" alt="">
+        </div>
+        <div class="container">
+            <h1>Login</h1>
+            <img id="signup_img" src="images/ecommer_signup_img.png" alt="">
+            <p>Please login this form to get some offers</p>
 
-        <form>
-            <table class="tab">
+            <form>
+                <table class="tab">
 
-                <tr>
-                    <td colspan="2"><label for="userid" class="lab">Userid *</label>
-                        <input type="text" name="" id="userid" placeholder="userid / email*">
-                        <span id="r"></span>
+                    <tr>
+                        <td colspan="2"><label for="userid" class="lab">Userid/email id*</label>
+                            <input type="email" name="" id="userid">
+                            <span id="r"></span>
+                        </td>
+                    </tr>
+
+
+                    <td>
+                        <label for="upass" class="lab">Password*</label>
+                        <input type="password" name="" id="upass">
                     </td>
-                </tr>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="agree"><input type="checkbox" name="" id="uagree">
+                                <label for="uagree">keep me login</a></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input id="logbtn" type="submit" value="Login">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+            <p id="asigntext">New to Interodec? &nbsp; <a id="signupbtn">Create an account</a></p>
 
 
-                <td>
-                    <label for="upass" class="lab">Password</label>
-                    <input type="password" name="" id="upass" placeholder="password*">
-                </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <div class="agree"><input type="checkbox" name="" id="uagree">
-                            <label for="uagree">are you agree to accept the <a>terms & conditions ?</a></label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input id="logbtn" type="submit" value="Login">
-                    </td>
-                </tr>
-            </table>
-        </form>
-
-        <p id="asigntext">New to Interodec? &nbsp; <a id="signupbtn">Create an account</a></p>
-
-
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

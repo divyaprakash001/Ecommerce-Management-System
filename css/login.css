@@ -1,5 +1,7 @@
 :root{
-    --main-color:rgb(126, 169, 219);
+    /* --main-color:rgb(212, 173, 84); */
+    /* --main-color:rgb(51, 62, 185); */
+    --main-color:rgb(35, 50, 223);
 }
 *{
     margin: 0;
@@ -11,22 +13,70 @@ html{
     font-size: 10px;
 }
 
-.container{
-    width: 30%;
-    background-color: var(--main-color);
+.main_container{
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
     margin: 6rem auto;
-    padding: 2rem;
-    border: .5rem solid var(--main-color);
+    /* border: 1px solid red; */
     border-radius: 1rem;
-    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    border: .2rem solid var(--main-color);
+}
+
+.left_container{
+    width: 50%;
+    /* border-radius: 1rem; */
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border: 1px solid blue;
+    background-color: var(--main-color);
+    background-image: url("C:\xampp\htdocs\Interodec\images\eco_raw.jpg");
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.left_container h1{
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+}
+
+.left_container p{
+    font-size: 1.5rem;
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+    color: gainsboro;
+    margin-top: 1.5rem;
+}
+
+
+
+.container{
+    width: 50%;
+    background-color: var(--main-color);
+    background-color: white;
+    /* background-color: rgb(244, 244, 242); */
+    /* margin: 6rem auto; */
+    padding: 2rem;
+    /* border: .2rem solid var(--main-color); */
+    /* border-radius: 1rem; */
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px; */
     padding-bottom: 4rem;
+    /* border-top-left-radius: none; */
 }
 
 .container h1{
     font-size: 3rem;
-    color: white;
+    /* color: white; */
     text-align: center;
+    color: var(--main-color);
 }
 
 .container img{
@@ -58,9 +108,15 @@ td {
     width: 25%;
 }
 
-.lab {
+
+.tab td .lab{
+    position: absolute;
+    top: 2.1rem;
     font-size: 1.5rem;
-    display: none;
+    /* background-color: white; */
+    left: 1.1rem;
+    transition: .5s;
+    z-index:999;
 }
 
 label{
@@ -74,8 +130,7 @@ input[type='text'],input[type='email'], input[type='password'] ,input[type='date
     height: 4rem;
     padding-left: 1rem;
     border-radius: 1rem;
-    border: none;
-
+    border: 2px solid var(--main-color);
 }
 
 
@@ -101,17 +156,18 @@ input[type='submit']{
     left: 38%;
     top: 10%;
     background-color: transparent;
-    color: white;
+    color: var(--main-color);
     padding: .8rem 1.5rem;
     font-size: 2rem;
-    border: 2px solid white;
+    border: 2px solid var(--main-color);
     border-radius: 1rem;
     cursor: pointer;
 }
 
 input[type='submit']:hover{
-    background-color: white;
-    color: var(--main-color);
+    background-color: var(--main-color);
+    color: white;
+    transition: 0.5s;
 }
 
 
@@ -122,7 +178,7 @@ input[type='submit']:hover{
 
 #signupbtn{
     cursor: pointer;
-    color: cornsilk;
+    color: var(--main-color);
 }
 
 .lb{
@@ -141,6 +197,11 @@ input[type='submit']:hover{
     html{
         font-size: 44%;
     }
+
+    .main_container{
+        display: block;
+    }
+
     td {
         display: block;
         width: 100%;

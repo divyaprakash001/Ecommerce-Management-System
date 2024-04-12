@@ -8,3 +8,15 @@ $(document).ready(function () {
     })
  
 })
+
+$(function(){
+    // $('input[type="text"]').click(function(){
+    //     $(this).siblings('.lab').css({'top':'0rem'})
+    // })
+    $('input[type="email"]').click(function(){
+        $(this).siblings('.lab').css({'top':'-1rem'})
+    })
+    $('input[type="password"]').click(function(){
+        $(this).siblings('.lab').css({'top':'-1rem'})
+    })
+})

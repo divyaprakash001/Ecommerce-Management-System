@@ -16,80 +16,86 @@
 
 <body>
 
-    <div class="container">
-        <!-- <img class="left_corner" src="images/ecomm_img.png" alt=""> -->
-        <h1>Welcome to Crazy Home</h1>
-        <img id="signup_img" src="images/ecommer_signup_img.png" alt="">
-        <p>Please fill out this form to buy our products</p>
+    <div class="main_container">
+        <div class="container">
+            <h1>Register to Crazy Home</h1>
+            <img id="signup_img" src="images/ecommer_signup_img.png" alt="">
+            <p>Please fill out this form to buy our products</p>
 
-        <form>
-            <table class="tab">
-                <tr>
-                    <td>
-                        <div class="agree"> <input type="radio" name="usertype" id="ucustomer">
-                            <label for="ucustomer">As a customer</label>
-                        </div>
-                    </td>
+            <form>
+                <table class="tab">
+                    <tr>
+                        <td>
+                            <div class="agree"> <input type="radio" name="usertype" id="ucustomer">
+                                <label for="ucustomer">As a customer</label>
+                            </div>
+                        </td>
 
-                    <td>
-                        <div class="agree">
-                            <input type="radio" name="usertype" id="useller">
-                            <label for="useller">As a seller</label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"><label for="userid" class="lab">Userid *</label>
-                        <input type="text" name="" id="userid" placeholder="userid*">
-                        <span id="r"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="ufname" class="lab">User name</label>
-                        <input type="text" name="" id="ufname" placeholder="First*">
-                    </td>
-                    <td>
-                        <input type="text" name="" id="ulname" placeholder="last*">
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="uemail" class="lab">User email address *</label>
-                        <input type="email" name="" class="emailbox" id="uemail" placeholder="email id*">
-                    </td>
-                    <td>
-                        <label for="mobno" class="lab">Mobile Number</label>
-                        <input type="text" name="" id="mobno" placeholder="mobile number*">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="upass" class="lab">Password</label>
-                        <input type="password" name="" id="upass" placeholder="password*">
-                    </td>
-                    <td>
-                        <label for="urpass" class="lab">Repeat Password</label>
-                        <input type="password" name="" id="urpass" placeholder="repeat password*">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <div class="agree"> <input type="checkbox" name="" id="uagree">
-                            <label for="uagree"> are you agree to accept the <a>terms &
-                                    conditions ?</a></label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" id="sbtd">
-                        <input id="subbtn" type="submit" value="Sign Up">
-                    </td>
-                </tr>
-            </table>
-        </form>
+                        <td>
+                            <div class="agree">
+                                <input type="radio" name="usertype" id="useller">
+                                <label for="useller">As a seller</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><label for="userid" class="lab">Userid *</label>
+                            <input type="text" name="" id="userid">
+                            <span id="r"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="ufname" class="lab">first name*</label>
+                            <input type="text" name="" id="ufname">
+                        </td>
+                        <td>
+                            <label for="ufname" class="lab">last name*</label>
+                            <input type="text" name="" id="ulname">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="uemail" class="lab">User email address *</label>
+                            <input type="email" name="" class="emailbox" id="uemail">
+                        </td>
+                        <td>
+                            <label for="mobno" class="lab">Mobile Number*</label>
+                            <input type="text" name="" id="mobno">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="upass" class="lab">Password*</label>
+                            <input type="password" name="" id="upass">
+                        </td>
+                        <td>
+                            <label for="urpass" class="lab">Repeat Password*</label>
+                            <input type="password" name="" id="urpass">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="agree"> <input type="checkbox" name="" id="uagree">
+                                <label for="uagree"> are you agree to accept the <a>terms &
+                                        conditions ?</a></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="sbtd">
+                            <input id="subbtn" type="submit" value="Sign Up">
+                        </td>
+                    </tr>
+                </table>
+            </form>
 
-        <p id="asigntext">already an Interodec user? &nbsp; <a id="loginbtn">Log In</a></p>
-
-
+            <p id="asigntext">already an Interodec user? &nbsp; <a id="loginbtn">Log In</a></p>
+        </div>
+        <div class="right_container">
+            <h1>Welcome to Crazy Home</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum atque tenetur veniam eveniet nihil explicabo?</p>
+           <img src="images/ecommer_signup_img.png" style="width: 100%;" alt="">
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
