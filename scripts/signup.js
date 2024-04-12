@@ -23,21 +23,24 @@ $(function () {
         // alert(userid)
         $.ajax({
             method: 'post',
-            data: {
-                userid1: userid,
-                ufname1: ufname,
-                ulname1: ulname,
-                useremail1: useremail,
-                mobno1: mobno,
-                upass1: upass,
-                urpass1: urpass,
-                uagree1: uagree,
-            },
-            url: 'pythonf/signup.py',
-            success: function (data) {
-                // alert(data)
-                console.log(data);
-                console.log(typeof data);
+
+            // data: JSON.stringify({
+            //     userid1: userid,
+            //     ufname1: ufname,
+            //     ulname1: ulname,
+            //     useremail1: useremail,
+            //     mobno1: mobno,
+            //     upass1: upass,
+            //     urpass1: urpass,
+            //     uagree1: uagree,
+            // }),
+            url: 'pythonf/signup1.py',
+            datatype: "data",
+            success: function (data1) {
+                console.log(data1);
+                console.log(data1.message);
+                console.log(data1.keys);
+                console.log(data1.data);
             }
         });
     });

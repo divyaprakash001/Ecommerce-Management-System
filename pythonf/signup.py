@@ -1,6 +1,7 @@
 #! C:\Users\divya\AppData\Local\Programs\Python\Python312\python.exe
 print ("Content-Type: text/html\r\n\r\n")
 import cgi
+import DBHelper 
 f = cgi.FieldStorage()
 try:
     userid2 = f.getvalue("userid1")
@@ -19,6 +20,8 @@ try:
     print(f"User pass :: {upass2}")
     print(f"User repeat pass :: {urpass2}")
     print(f"User agree :: {uagree2}")
-except:
-    print("something went wrong")
+except Exception as e:
+    print("something went wrong " + e)
+
+
 

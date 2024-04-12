@@ -16,67 +16,91 @@
         <form action="">
             <table class="tab">
                 <tr>
-                    <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="userid">
+                    <td><label for="userid">Userid</label>
+                        <input type="text" name="" id="userid" class="a">
                     </td>
-                    <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="username">
+                    <td><label for="username" class="lab">Username</label>
+                        <input type="text" name="" id="username" class="a">
                     </td>
-                    <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="email id">
+                    <td><label for="email" class="lab">Email id</label>
+                        <input type="text" name="" id="email">
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="mob no">
+                    <td><label for="mobno" class="lab">Mobile No.</label>
+                        <input type="text" name="" id="mobno">
                     </td>
                     <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="gender">
+                        <!-- <label for="marryStatus" class="lab"></label> -->
+                        <select name="" id="marryStatus">
+                            <option value="married">Married</option>
+                            <option value="married">Unmarried</option>
+                            <option value="married">Divorce</option>
+                            <option value="married">Single parent</option>
+                        </select>
                     </td>
                     <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="marital status">
+                        <div class="agree">
+                            Gender : <input type="radio" name="gen" id="male"><label for="male">Male</label>
+                            <input type="radio" name="gen" id="male"><label for="male">Female</label>
+                            <input type="radio" name="gen" id="male"><label for="male">Other</label>
+                        </div>
                     </td>
+                    
                 </tr>
                 <tr>
                     <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="blood group">
+                        <!-- <label class="lab" for="bgroup">Blood Group</label> -->
+                        <select name="" id="">
+                            <option value="">select your blood group</option>
+                            <option value="a+">A+</option>
+                            <option value="a+">A-</option>
+                            <option value="a+">B+</option>
+                            <option value="a+">B-</option>
+                            <option value="a+">O+</option>
+                            <option value="a+">O-</option>
+                            <option value="a+">AB+</option>
+                            <option value="a+">AB-</option>
+                        </select>
                     </td>
                     <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="designation">
+                        <!-- <label class="lab" for="bgroup">Blood Group</label> -->
+                        <select name="" id="">
+                            <option value="">select your designation</option>
+                            <option value="a+">Admin</option>
+                            <option value="a+">Seller</option>
+                            <option value="a+">Customer</option>
+                            <option value="a+">Staff</option>
+                        </select>
                     </td>
-                    <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="reg date">
+                    <td rowspan="3">
+                        <label class="lab" for="photo">Photo</label>
+                        <div class="forimg" >
+                            <img src="images/eco_raw.jpg" alt="">
+                            <input type="file">
+                        </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="last login">
+                    <td><label class="lab" for="userid">reg date</label>
+                        <input type="text" name="" id="userid">
                     </td>
-                    <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="address">
+                    <td><label class="lab" for="userid">last login</label>
+                        <input type="text" name="" id="userid">
                     </td>
-                    <td>
-                        <label class="lab" for="userid">Userid</label>
-                        <input type="text" name="" id="userid" placeholder="photo">
+                </tr>
+                <tr>
+                    <td colspan="2"><label class="lab" for="userid">message</label>
+                        <textarea name="" id="" cols="100" rows="6"></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="text" name="" id="" placeholder="status">
+                        <label for="" class="lab">status</label>
+                        <input type="text" name="" id="">
                     </td>
                     <td>
-                        <input type="button" value="update">
+                        <button>Update</button>
                     </td>
                 </tr>
             </table>
@@ -85,6 +109,8 @@
 
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="scripts/profile.js"></script>
 </body>
 
 </html>
