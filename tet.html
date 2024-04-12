@@ -8,17 +8,18 @@
         </form>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
-            $(function(){
-                $('#b1').click(function(){
-                     $.ajax({
-                        method:'post',
-                        url:'pythonf/test.py',
-                        success:function(data){
-                            alert(data)
-                        }
-                     });
-                });
-            });
+           
+$(function(){
+    $('#subbtn').click(function(){
+         $.ajax({
+            method:'post',
+            url:'pythonf/test.py',
+            success:function(data){
+                alert(data)
+            }
+         });
+    });
+});
         </script>
     </body>
 </html>

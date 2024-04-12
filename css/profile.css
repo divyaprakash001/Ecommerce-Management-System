@@ -13,8 +13,8 @@ html {
 }
 
 .container {
-    width: 40%;
-    /* height: 95vh; */
+    width: 95%;
+    height: 95vh;
     background-color: var(--main-color);
     margin: 1rem auto;
     margin-top: 1.5rem;
@@ -48,7 +48,7 @@ html {
 
 
 .tab {
-    /* border: 2px solid black; */
+    border: 2px solid black;
     width: 100%;
     height: 40%;
     margin: 3rem auto;
@@ -56,7 +56,7 @@ html {
 }
 
 td {
-    /* border: 2px solid rebeccapurple; */
+    border: 2px solid rebeccapurple;
     position: relative;
     height: 7rem;
     width: 25%;
@@ -79,10 +79,10 @@ input[type='date'],
 select {
     position: absolute;
     top: 15%;
-    width: 100%;
+    width: 95%;
     height: 4rem;
     padding-left: 1rem;
-    border-radius: 1rem;
+    /* border-radius: 1rem; */
     border: none;
 
 }
@@ -138,60 +138,3 @@ input[type='submit']:hover {
     color: var(--main-color);
 }
 
-
-
-
-#asigntext {
-    margin-top: -3rem;
-}
-
-#loginbtn {
-    cursor: pointer;
-    color: blue;
-}
-
-/* #sbtd{
-    display: flex;
-    justify-content: center;
-} */
-
-.lb {
-    font-size: 1.4rem;
-    background-color: white;
-    position: absolute;
-    top: 0rem;
-    left: 10rem;
-    z-index: 99;
-    color: rgb(54, 53, 53);
-}
-
-
-@media screen and (max-width:768px) {
-
-    html {
-        font-size: 55%;
-    }
-
-    td {
-        display: block;
-        width: 100%;
-        height: 6rem;
-    }
-
-    #ufname,
-    #upass {
-        width: 100%;
-    }
-
-    #uemail {
-        width: 100%;
-    }
-
-    input[type='submit'] {
-        padding: 1rem 2rem;
-        top: -1.5rem;
-        left: 0;
-    }
-
-
-}

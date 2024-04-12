@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D Cart Signup form</title>
+    <title>Interodec Signup form</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -25,13 +25,18 @@
         <form>
             <table class="tab">
                 <tr>
-                    <td><label for="ucustomer">
-                            <input type="radio" name="usertype" id="ucustomer"> As a customer
-                        </label></td>
+                    <td>
+                        <div class="agree"> <input type="radio" name="usertype" id="ucustomer">
+                            <label for="ucustomer">As a customer</label>
+                        </div>
+                    </td>
 
-                    <td><label for="useller">
-                            <input type="radio" name="usertype" id="useller"> As a seller
-                        </label></td>
+                    <td>
+                        <div class="agree">
+                            <input type="radio" name="usertype" id="useller">
+                            <label for="useller">As a seller</label>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2"><label for="userid" class="lab">Userid *</label>
@@ -68,10 +73,10 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <label for="uagree">
-                            <input type="checkbox" name="" id="uagree"> are you agree to accept the <a>terms &
-                                conditions ?</a>
-                        </label>
+                        <div class="agree"> <input type="checkbox" name="" id="uagree">
+                            <label for="uagree"> are you agree to accept the <a>terms &
+                                    conditions ?</a></label>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -82,13 +87,13 @@
             </table>
         </form>
 
-        <p id="asigntext">already have an account? &nbsp; <a id="loginbtn">Log In</a></p>
+        <p id="asigntext">already an Interodec user? &nbsp; <a id="loginbtn">Log In</a></p>
 
 
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="scripts/validation.js"></script>
+    <!-- <script src="scripts/validation.js"></script> -->
     <script src="scripts/signup.js"></script>
 </body>
 
