@@ -225,6 +225,27 @@ input[type='submit']:hover {
     color: rgb(54, 53, 53);
 }
 
+div.msg_box{
+    width: 20rem;
+    height: 10rem;
+    background-color: antiquewhite;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    z-index: 19999;
+    display: none;
+}
+
+.msg_box .msg{
+    font-size: 2rem;
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+
+    /* display: none; */
+}
+
 
 @media screen and (max-width:768px) {
 

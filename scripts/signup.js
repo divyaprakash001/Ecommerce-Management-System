@@ -16,6 +16,10 @@ $(function () {
     $('input[type="password"]').click(function () {
         $(this).siblings('.lab').css({ 'top': '-.6rem' })
     });
+
+    $(".msg_box").click(function(){
+        $(this).css("display","none")
+    })
 });
 
 
@@ -34,7 +38,7 @@ $(function () {
 
         if ($('#uagree').not(':checked').length) {
             uagree1 = "off"
-        }else{
+        } else {
             uagree1 = "on"
         }
         $.ajax({
@@ -49,10 +53,21 @@ $(function () {
                 uagree: uagree1,
             },
             url: 'pythonf/signup.py',
-            success: function (data,status) {
+            success: function (data, status, jqxhr) {
                 console.log(data);
                 console.log(status);
-            }
+                console.log(jqxhr);
+
+                if(data.includes("inserted")){
+                    $('.msg').html("Success entry")
+                    $('.msg_box').css({"display":"block","color":'green'})
+                }
+
+                if(data.includes("Duplicate entry")){
+                    $('.msg').html("Duplicate entry")
+                    $('.msg_box').css({"display":"block","color":"red"})
+                }
+            },
         });
     });
 });

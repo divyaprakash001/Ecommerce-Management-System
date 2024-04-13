@@ -10,6 +10,7 @@ cur = con.cursor()
 f = cgi.FieldStorage()
 
 try:
+    flag = False
     usertype = f.getvalue("usertype")
     userid = f.getvalue("userid")
     username = f.getvalue("username")
@@ -23,8 +24,8 @@ try:
     insertQuery = f"insert into user_info(userid, username, email, phone_number,password) values('{userid}','{username}','{useremail}','{mobno}','{upass}')"
     if(uagree == 'on'):
         cur.execute(insertQuery)
-        con.commit()
-        print('successfully record inserted')
+        con.commit()  
+        print('inserted')
     else:
         raise Exception("please agree the term and conditions")
 except Exception as e:
