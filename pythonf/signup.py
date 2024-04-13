@@ -6,7 +6,7 @@ import mysql.connector as connector
 con = connector.connect(host="localhost",user="introdec",passwd="data73063", database="infotech")
 cur = con.cursor()
 
-qry = 'insert into regdetails values(%s,%s,%s,%s,%s,%s,%s,%s)'
+# qry = 'insert into regdetails values(%s,%s,%s,%s,%s,%s,%s,%s)'
 f = cgi.FieldStorage()
 
 try:

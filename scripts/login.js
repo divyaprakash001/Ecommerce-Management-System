@@ -14,9 +14,9 @@ $(function(){
     //     $(this).siblings('.lab').css({'top':'0rem'})
     // })
     $('input[type="email"]').click(function(){
-        $(this).siblings('.lab').css({'top':'-1rem'})
+        $(this).siblings('.lab').css({'top':'-.6rem'})
     })
     $('input[type="password"]').click(function(){
-        $(this).siblings('.lab').css({'top':'-1rem'})
+        $(this).siblings('.lab').css({'top':'-.6rem'})
     })
 })

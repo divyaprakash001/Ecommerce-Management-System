@@ -1,7 +1,7 @@
 :root {
     /* --main-color: rgb(212, 173, 84); */
     /* --main-color:rgb(51, 62, 185); */
-    --main-color:rgb(35, 50, 223);
+    --main-color: rgb(35, 50, 223);
 }
 
 * {
@@ -13,18 +13,18 @@
 html {
     font-size: 10px;
 }
-body{
+
+body {
     /* background-color: var(--main-color); */
+    /* font-family: 'Montserrat', sans-serif; */
 }
 
-.main_container{
+.main_container {
     display: flex;
     width: 70%;
     flex-wrap: wrap;
     margin: 6rem auto;
-    /* border: 1px solid red; */
     border-radius: 1rem;
-    /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px; */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
     border: .2rem solid var(--main-color);
     overflow: hidden;
@@ -57,7 +57,7 @@ body{
     text-align: center;
 }
 
-.right_container{
+.right_container {
     width: 50%;
     background-color: var(--main-color);
     display: flex;
@@ -65,14 +65,14 @@ body{
     justify-content: center;
 }
 
-.right_container h1{
+.right_container h1 {
     text-align: center;
     font-size: 3rem;
-    
+
     color: white;
 }
 
-.right_container p{
+.right_container p {
     font-size: 1.5rem;
     width: 80%;
     text-align: center;
@@ -97,17 +97,17 @@ td {
     width: 25%;
 }
 
-.tab td .lab{
+.tab td .lab {
     position: absolute;
     top: 2.1rem;
     font-size: 1.5rem;
     /* background-color: white; */
     left: 1.1rem;
     transition: .5s;
-    z-index:999;
+    z-index: 999;
 }
 
-label{
+label {
     font-size: 1.8rem;
 }
 
@@ -134,15 +134,20 @@ input[type='radio'] {
     margin-right: .5rem;
 }
 
+/* 
 #ufname,
 #upass,
 #uemail {
+    width: 100%;
+} */
+
+
+#userid,
+#uemail,
+#upass {
     width: 95%;
 }
 
-.emailbox {
-    width: 95%;
-}
 
 input:focus {
     outline: none;
@@ -160,11 +165,14 @@ div.agree {
     align-items: center;
 }
 
+.belowAgree {
+    margin-top: -2.5rem;
+}
 
 input[type='submit'] {
     position: absolute;
     left: 38%;
-    top: 10%;
+    top: -10%;
     background-color: transparent;
     color: var(--main-color);
     padding: .8rem 2rem;
@@ -184,12 +192,22 @@ input[type='submit']:hover {
 
 
 #asigntext {
-    margin-top: -3rem;
+    margin-top: -4rem;
 }
 
 #loginbtn {
     cursor: pointer;
     color: blue;
+}
+
+#r {
+    position: absolute;
+    /* top: 10rem; */
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-left: .8rem;
+    z-index: 9999999;
+    color: red;
 }
 
 /* #sbtd{
@@ -214,25 +232,52 @@ input[type='submit']:hover {
         font-size: 55%;
     }
 
+    .main_container {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
+
+    .container, .right_container {
+        width: 100%;
+    }
+
+    .right_container{
+        display: none;
+    }
+
     td {
         display: block;
         width: 100%;
-        height: 6rem;
+        height: 8rem;
     }
 
-    #ufname,
-    #upass {
+    #userid,
+    #upass, #uemail {
         width: 100%;
     }
 
-    #uemail {
-        width: 100%;
+    .belowAgree{
+        margin-top: 0;
     }
+
+    #r{
+        position: absolute;
+        top: 48%;
+        font-size: 1.3rem;
+        /* margin-top: 5.5rem; */
+        margin-left: .8rem;
+        z-index: 9999999;
+        color: red;
+    }    
 
     input[type='submit'] {
         padding: 1rem 2rem;
         top: -1.5rem;
         left: 0;
+        width: 100%;
+        background-color: var(--main-color);
+        color: white;
     }
 
 

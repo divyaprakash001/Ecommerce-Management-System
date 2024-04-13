@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interodec Signup form</title>
+    <title>Crazy Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/signup.css">
-    <!-- <link rel="stylesheet" href="css/entryform.css"> -->
 </head>
 
 <body>
@@ -20,62 +18,70 @@
         <div class="container">
             <h1>Register to Crazy Home</h1>
             <img id="signup_img" src="images/ecommer_signup_img.png" alt="">
-            <p>Please fill out this form to buy our products</p>
+            <p>Please fill out this form to get the best deals</p>
 
             <form>
                 <table class="tab">
                     <tr>
                         <td>
-                            <div class="agree"> <input type="radio" name="usertype" id="ucustomer">
+                            <div class="agree">
+                                <input type="radio" name="usertype" id="ucustomer" value="customer">
                                 <label for="ucustomer">As a customer</label>
                             </div>
                         </td>
 
                         <td>
                             <div class="agree">
-                                <input type="radio" name="usertype" id="useller">
+                                <input type="radio" name="usertype" id="useller" value="seller">
                                 <label for="useller">As a seller</label>
                             </div>
                         </td>
                     </tr>
+
                     <tr>
-                        <td colspan="2"><label for="userid" class="lab">Userid *</label>
+                        <td>
+                            <label for="userid" class="lab">Userid *</label>
                             <input type="text" name="" id="userid">
-                            <span id="r"></span>
+                            <span id="r">not allowed</span>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
-                            <label for="ufname" class="lab">first name*</label>
+                            <label for="ufname" class="lab">Full Name*</label>
                             <input type="text" name="" id="ufname">
-                        </td>
-                        <td>
-                            <label for="ufname" class="lab">last name*</label>
-                            <input type="text" name="" id="ulname">
+                            <span id="r">not allowed</span>
                         </td>
                     </tr>
+
                     <tr>
+
                         <td><label for="uemail" class="lab">User email address *</label>
                             <input type="email" name="" class="emailbox" id="uemail">
+                            <span id="r">not allowed</span>
                         </td>
                         <td>
                             <label for="mobno" class="lab">Mobile Number*</label>
                             <input type="text" name="" id="mobno">
+                            <span id="r">not allowed</span>
                         </td>
+                    </tr>
+                    <tr>
+
+
                     </tr>
                     <tr>
                         <td>
                             <label for="upass" class="lab">Password*</label>
                             <input type="password" name="" id="upass">
+                            <span id="r">not allowed</span>
                         </td>
                         <td>
                             <label for="urpass" class="lab">Repeat Password*</label>
                             <input type="password" name="" id="urpass">
+                            <span id="r">not allowed</span>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <div class="agree"> <input type="checkbox" name="" id="uagree">
+                            <div class="agree belowAgree"> <input type="checkbox" name="" id="uagree">
                                 <label for="uagree"> are you agree to accept the <a>terms &
                                         conditions ?</a></label>
                             </div>
@@ -93,8 +99,9 @@
         </div>
         <div class="right_container">
             <h1>Welcome to Crazy Home</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum atque tenetur veniam eveniet nihil explicabo?</p>
-           <img src="images/ecommer_signup_img.png" style="width: 100%;" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum atque tenetur veniam eveniet nihil
+                explicabo?</p>
+            <img src="images/ecommer_signup_img.png" style="width: 100%;" alt="">
         </div>
     </div>
 
