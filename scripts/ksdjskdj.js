@@ -31,16 +31,11 @@ $(function () {
         mobno1 = $('#mobno').val();
         upass1 = $('#upass').val();
         uagree1 = $('#uagree').val();
-
-        if ($('#uagree').not(':checked').length) {
-            uagree1 = "off"
-        }else{
-            uagree1 = "on"
-        }
+        // alert(userid)
         $.ajax({
             method: 'post',
             data: {
-                usertype: $('#ucustomer').val(),
+                usertype: usertype1,
                 userid: userid1,
                 username: username1,
                 useremail: useremail1,

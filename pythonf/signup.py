@@ -10,19 +10,23 @@ cur = con.cursor()
 f = cgi.FieldStorage()
 
 try:
-    userid2 = f.getvalue("userid1")
-    ufname2 = f.getvalue("ufname1")
-    ulname2 = f.getvalue("ulname1")
-    useremail2 = f.getvalue("useremail1")
-    mobno2 = f.getvalue("mobno1")
-    upass2 = f.getvalue("upass1")
-    urpass2 = f.getvalue("urpass1")
-    uagree2 = f.getvalue("uagree1")
+    usertype = f.getvalue("usertype")
+    userid = f.getvalue("userid")
+    username = f.getvalue("username")
+    useremail = f.getvalue("useremail")
+    mobno = f.getvalue("mobno")
+    upass = f.getvalue("upass")
+    uagree = f.getvalue("uagree")
     
-    query = f"insert into user(userId, userName, phone) values({userid2},'{ufname2}','{ulname2}')"
-    cur.execute(qry,(userid2,ufname2,ulname2,useremail2,mobno2,upass2,urpass2,uagree2))
-    con.commit()
-    print('successfully record inserted')
+    print(uagree)
+    # cur.execute(query,(userid2,ufname2,ulname2,useremail2,mobno2,upass2,urpass2,uagree2))
+    insertQuery = f"insert into user_info(userid, username, email, phone_number,password) values('{userid}','{username}','{useremail}','{mobno}','{upass}')"
+    if(uagree == 'on'):
+        cur.execute(insertQuery)
+        con.commit()
+        print('successfully record inserted')
+    else:
+        raise Exception("please agree the term and conditions")
 except Exception as e:
-    print("something went wrong " + e)
+    print("something went wrong " , e)
 
