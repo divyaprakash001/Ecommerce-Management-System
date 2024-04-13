@@ -17,8 +17,8 @@ $(function () {
         $(this).siblings('.lab').css({ 'top': '-.6rem' })
     });
 
-    $(".msg_box").click(function(){
-        $(this).css("display","none")
+    $(".fa-xmark").click(function(){
+        $('.msg_box').css("display","none")
     })
 });
 
@@ -41,6 +41,8 @@ $(function () {
         } else {
             uagree1 = "on"
         }
+
+        
         $.ajax({
             method: 'post',
             data: {
@@ -52,7 +54,7 @@ $(function () {
                 upass: upass1,
                 uagree: uagree1,
             },
-            url: 'pythonf/signup.py',
+            url: 'pythonf/signup2.py',
             success: function (data, status, jqxhr) {
                 console.log(data);
                 console.log(status);
@@ -65,6 +67,11 @@ $(function () {
 
                 if(data.includes("Duplicate entry")){
                     $('.msg').html("Duplicate entry")
+                    $('.msg_box').css({"display":"block","color":"red"})
+                }
+
+                if(uagree1 == 'off'){
+                    $('.msg').html("Accept terms & conditions")
                     $('.msg_box').css({"display":"block","color":"red"})
                 }
             },
