@@ -9,16 +9,8 @@ $(function(){
         $(this).siblings('.lab').css({'top':'-.6rem'});
     })
 
-   
-
     $('#loginbtn').on("click",function(){
-        window.location.href = "login.html";
+        window.location.href = "login.html"
     })
 
-})
-
-$(function(){
-    $('#getotp').on("click",function(){
-        window.location.href = "updatepassword.html";
-    })
 })

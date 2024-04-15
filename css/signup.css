@@ -17,40 +17,30 @@ html {
 body {
     /* background-color: var(--main-color); */
     /* font-family: 'Montserrat', sans-serif; */
+    background-color: beige;
 }
 
-.main_container {
-    display: flex;
-    width: 70%;
-    flex-wrap: wrap;
-    margin: 6rem auto;
-    border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-    border: .2rem solid var(--main-color);
-    overflow: hidden;
-}
+
 
 .container {
-    width: 50%;
+    width: 30%;
     /* height: 95vh; */
     background-color: white;
     padding: 2rem;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     padding-bottom: 4rem;
+    margin: 6rem auto;
+    /* border: 1px solid gray; */
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 
 .container h1 {
     font-size: 4rem;
     color: var(--main-color);
     text-align: center;
+    margin-bottom: 2rem;
 }
 
-.container img {
-    width: 40%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-}
 
 .container p {
     font-size: 1.8rem;
@@ -124,7 +114,7 @@ select {
     height: 4rem;
     padding-left: 1rem;
     border-radius: 1rem;
-    border: 2px solid var(--main-color);
+    border: 1px solid var(--main-color);
     /* background-color: rgb(230, 224, 224); */
 }
 
@@ -151,6 +141,7 @@ input[type='radio'] {
 
 input:focus {
     outline: none;
+    border: 2px solid var(--main-color);
 }
 
 input[type='checkbox'] {
@@ -171,10 +162,11 @@ div.agree {
 
 input[type='submit'] {
     position: absolute;
-    left: 38%;
+    /* left: 38%; */
     top: -10%;
-    background-color: transparent;
-    color: var(--main-color);
+    width: 100%;
+    background-color: var(--main-color);
+    color: white;
     padding: .8rem 2rem;
     font-size: 1.8rem;
     border: 2px solid var(--main-color);
@@ -186,6 +178,7 @@ input[type='submit']:hover {
     background-color: var(--main-color);
     color: white;
     transition: 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 
@@ -232,7 +225,7 @@ div.msg_box{
     position: absolute;
     top: 50%;
     left: 40%;
-    z-index: 19999;
+    z-index: 99999999;
     display: none;
     border: 2px solid gainsboro;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
