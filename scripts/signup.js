@@ -22,13 +22,14 @@ $(function () {
     })
 });
 
-
+// let usertype_var = docu
 
 // using ajax to send data to the python file
 $(function () {
     $('#subbtn').click(function (e) {
         e.preventDefault()
-        usertype1 = $('#ucustomer').val();
+        // usertype1 = $('#ucustomer').val();
+        usertype1 = 'customer';
         userid1 = $('#userid').val();
         username1 = $("#username").val();
         useremail1 = $('#uemail').val();
@@ -42,17 +43,21 @@ $(function () {
             uagree1 = "on"
         }
 
+
+        // alert("Userid is",userid1);
+
         
         $.ajax({
             method: 'post',
             data: {
-                usertype: $('#ucustomer').val(),
+                usertype: usertype1,
                 userid: userid1,
                 username: username1,
                 useremail: useremail1,
                 mobno: mobno1,
                 upass: upass1,
                 uagree: uagree1,
+                Uflag : 'False',
             },
             url: 'pythonf/signup2.py',
             success: function (data, status, jqxhr) {
@@ -74,6 +79,12 @@ $(function () {
                     $('.msg').html("Accept terms & conditions")
                     $('.msg_box').css({"display":"block","color":"red"})
                 }
+
+                if(data.includes("Error !!! One of the field is empty")){
+                    $('.msg').html("empty field")
+                    $('.msg_box').css({"display":"block","color":"red"})
+                }
+
             },
         });
     });

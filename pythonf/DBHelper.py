@@ -11,8 +11,8 @@ class DBHelper:
         # print('table created if not exist')
     
     # insert data
-    def insert_data(self,userId, userName,userEmail, phone, upass,registration_date):
-        query = f"insert into user_info(userid, username,email, phone_number, password,registration_date) values('{userId}','{userName}','{userEmail}','{phone}','{upass}','{registration_date}')"
+    def insert_data(self,userId, userName,userEmail, phone, upass,registration_date,last_login,role):
+        query = f"insert into user_info(userid, username,email, phone_number, password,registration_date,last_login,role) values('{userId}','{userName}','{userEmail}','{phone}','{upass}','{registration_date}','{last_login}','{role}')"
         print(query)
         cur = self.conn.cursor()
         cur.execute(query)

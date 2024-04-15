@@ -4,7 +4,11 @@ $(document).ready(function () {
     });
 
     $("#signupbtn").on("click", function () {
-        window.location.href = 'signup.html'
+        window.location.href = 'signup.html';
+    })
+
+    $('#forgetpass').on("click",function(){
+        window.location.href = 'forgetpassword.html';
     })
  
 })
@@ -14,9 +18,9 @@ $(function(){
     //     $(this).siblings('.lab').css({'top':'0rem'})
     // })
     $('input[type="email"]').click(function(){
-        $(this).siblings('.lab').css({'top':'-.6rem'})
+        $(this).siblings('.lab').css({'top':'-.6rem'});
     })
     $('input[type="password"]').click(function(){
-        $(this).siblings('.lab').css({'top':'-.6rem'})
+        $(this).siblings('.lab').css({'top':'-.6rem'});
     })
 })
