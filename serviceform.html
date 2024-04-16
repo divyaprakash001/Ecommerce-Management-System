@@ -1,19 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>service form</title>
+    <style>
+        form{
+            /* display: inline-block; */
+            text-align: center;
+            margin: 30px auto;
+        }
+       
+        #tab {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+            visibility: hidden;
+        }
+td{
+    width: 30%;
+}
+        #tab,th,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
+
 <body>
 
     <form action="">
-        <select name="" id="">
-            <option value="">register</option>
-            <option value=""></option>
-            <option value=""></option>
-        </select>
+            <select name="" id="mySelect">
+                <option value="">---select your registratration number---</option>
+            </select>
+            <input type="text" name="" id="username" placeholder="username">
+            <input type="button" id="search" value="search">
     </form>
-    
+    <br><br>
+    <table id="tab">
+        <tr>
+            <th>user id</th>
+            <th>user name</th>
+            <th>user email</th>
+            <th>phone email</th>
+        </tr>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="scripts/serviceform.js"></script>
 </body>
+
 </html>

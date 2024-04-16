@@ -14,9 +14,6 @@ $(document).ready(function () {
 })
 
 $(function(){
-    // $('input[type="text"]').click(function(){
-    //     $(this).siblings('.lab').css({'top':'0rem'})
-    // })
     $('input[type="email"]').click(function(){
         $(this).siblings('.lab').css({'top':'-.6rem'});
     })
@@ -24,3 +21,4 @@ $(function(){
         $(this).siblings('.lab').css({'top':'-.6rem'});
     })
 })
+

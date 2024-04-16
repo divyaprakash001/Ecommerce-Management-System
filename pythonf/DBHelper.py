@@ -59,3 +59,16 @@ class DBHelper:
         cur.execute(query)
         self.conn.commit()
         print("updated")
+
+
+    # fetch all data
+    def fetch_by_id_name(self,userid,username):
+        query = f"select * from user_info where userid='{userid}' and username = '{username}'"
+        cur=self.conn.cursor()
+        cur.execute(query)
+        for row in cur:
+            print(row)
+            print('User Id ::',row[0])
+            print('User Name ::',row[1])
+            print('User Phone ::',row[2])
+            print('---------------')

@@ -36,6 +36,7 @@ $(function () {
         mobno1 = $('#mobno').val();
         upass1 = $('#upass').val();
         uagree1 = $('#uagree').val();
+        d = "insert"
 
         if ($('#uagree').not(':checked').length) {
             uagree1 = "off"
@@ -44,11 +45,10 @@ $(function () {
         }
 
 
-        // alert("Userid is",userid1);
-
         
         $.ajax({
             method: 'post',
+            url: 'pythonf/signup2.py',
             data: {
                 usertype: usertype1,
                 userid: userid1,
@@ -57,9 +57,8 @@ $(function () {
                 mobno: mobno1,
                 upass: upass1,
                 uagree: uagree1,
-                Uflag : 'False',
+                what : d
             },
-            url: 'pythonf/signup2.py',
             success: function (data, status, jqxhr) {
                 console.log(data);
                 console.log(status);
