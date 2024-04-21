@@ -16,7 +16,7 @@ $(document).ready(function () {
 });
 
 
-
+// code for display incoming data after executing query
 $(document).ready(function () {
     $('#search').on('click', function () {
         // alert("searching")
@@ -35,14 +35,24 @@ $(document).ready(function () {
             },
             success: function (data) {
                 console.log(data);
-               
-                // alert(username)
-                $('#tab').css({ "visibility": "visible" })
-                $('#tab').append(data)
+
+                localStorage.removeItem("sdata")
+
+                if (data.includes("please enter remaining field")) {
+                    // alert("aa rha hai")
+                    $(".msg").text("please fill all inputs")
+                    $(".msg").css({"color":"red"})
+                }else if(data != " "){
+                    $(".msg").css({"display":"none"})
+                    $('#tab').css({ "visibility": "visible" })
+                    $('#tab').append(data)
+                }
             },
         });
     })
 })
+
+
 
 
 

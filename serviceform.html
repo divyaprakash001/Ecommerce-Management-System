@@ -6,38 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>service form</title>
     <style>
-        form{
+        form {
             /* display: inline-block; */
             text-align: center;
             margin: 30px auto;
         }
-       
+
         #tab {
             width: 90%;
             margin: 0 auto;
             text-align: center;
             visibility: hidden;
         }
-td{
-    width: 30%;
-}
-        #tab,th,td{
+
+        td {
+            width: 30%;
+        }
+
+        #tab,
+        th,
+        td {
             border: 1px solid black;
             border-collapse: collapse;
+        }
+
+        .msg {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
         }
     </style>
 </head>
 
 <body>
 
+    <div id="nav_placeholder">
+
+    </div>
     <form action="">
-            <select name="" id="mySelect">
-                <option value="">---select your registratration number---</option>
-            </select>
-            <input type="text" name="" id="username" placeholder="username">
-            <input type="button" id="search" value="search">
+        <select name="" id="mySelect">
+            <option value="">---select your registratration number---</option>
+        </select>
+        <input type="text" name="" id="username" placeholder="username">
+        <input type="button" id="search" value="search">
     </form>
     <br><br>
+    <div class="msg"></div>
     <table id="tab">
         <tr>
             <th>user id</th>
@@ -49,6 +63,12 @@ td{
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="scripts/serviceform.js"></script>
+    <script>
+        $(function(){
+            $("#nav_placeholder").load("nav.html")
+        })
+    </script>
+   
 </body>
 
 </html>

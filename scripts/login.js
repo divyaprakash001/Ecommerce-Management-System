@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+    // loading navbar on all pages
+    $("#nav_placeholder").load("nav.html")
+
     $('#logbtn').on('click', function (e) {
         e.preventDefault();
     });
