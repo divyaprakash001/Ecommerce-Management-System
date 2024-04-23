@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+body{
+    font-size: 1.8rem;
+}
+form {
+    /* display: inline-block; */
+    text-align: center;
+    margin: 30px auto;
+}
+
+#tab {
+    width: 90%;
+    margin: 0 auto;
+    text-align: left;
+    /* visibility: hidden; */
+    /* border-collapse: collapse; */
+}
+
+#tab td,
+th {
+    width: 22%;
+}
+
+#tab,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#table_container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.msg {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.update {
+    background-color: lightgreen;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.del {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.nodatatable{
+    color: red;
+    margin: 0 auto;
+    font-size: 26px;
+}
+.nodatatable,.nodatatable td{
+    border: none;
+}

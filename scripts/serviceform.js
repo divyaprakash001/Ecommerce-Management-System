@@ -12,7 +12,6 @@ $(document).ready(function () {
             $('#mySelect').append(data)
         },
     });
-
 });
 
 
@@ -39,18 +38,69 @@ $(document).ready(function () {
                 localStorage.removeItem("sdata")
 
                 if (data.includes("please enter remaining field")) {
-                    // alert("aa rha hai")
                     $(".msg").text("please fill all inputs")
-                    $(".msg").css({"color":"red"})
-                }else if(data != " "){
-                    $(".msg").css({"display":"none"})
+                    $(".msg").css({ "color": "red" })
+                } else if (data != []) {
+                    $(".msg").css({ "display": "none" })
                     $('#tab').css({ "visibility": "visible" })
-                    $('#tab').append(data)
+                    $('#table_container').html(data)
+                } else if (data.includes("no data available")) {
+                    alert('empty result set')
+                    $(".msg").text("no data is comming")
+                    $(".msg").css({ "color": "red" })
                 }
             },
         });
     })
 })
+
+
+
+
+// all records code for display incoming data after executing query
+$(document).ready(function () {
+    $('#all_records_btn').on('click', function () {
+
+        $.ajax({
+            method: 'post',
+            url: 'pythonf/signup2.py',
+            data: {
+                what: "fetch_all",
+            },
+            success: function (data) {
+                console.log(data);
+
+                // localStorage.removeItem("sdata")
+
+                if (data != []) {
+                    $(".msg").css({ "display": "none" })
+                    $('#tab').css({ "visibility": "visible" })
+                    $('#table_container').html(data)
+
+                } else if (data.includes("no data available")) {
+                    alert('empty result set')
+                    $(".msg").text("no data is comming")
+                    $(".msg").css({ "color": "red" })
+                }
+            },
+        });
+    })
+
+
+})
+
+$(document).ready(function () {
+    $(".del").on("click", function () {
+        alert("deletion")
+    })
+})
+
+
+
+
+
+
+
 
 
 

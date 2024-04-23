@@ -85,19 +85,67 @@ elif(d=="fetch_by_id_name"):
             # print(fetch_query)
             cur=x.conn.cursor()
             cur.execute(fetch_query)
-            if cur != None:
-                for row in cur:
+            srr = cur.fetchall()
+            # ye puchna hai ki fetchall() use krne ke bad cursor se data clear ho jata hai
+            if srr != []:
+                # print("<br>yes")
+                for row in srr:
                     # print(row)
+                    print("<table id='tab'>")
+                    print("<tr>")
+                    print("<th>user id</th>")
+                    print("<th>user name</th>")
+                    print("<th>user email</th>")
+                    print("<th>phone</th>")
+                    print("<th colspan='2'>action</th>")
+                    print("</tr>")
                     print("<tr>")
                     print(f'<td>{row[0]}</td>')
                     print(f'<td>{row[1]}</td>')
                     print(f'<td>{row[2]}</td>')
                     print(f'<td>{row[4]}</td>')
+                    print(f"<td><input type='button' class='update' value='update'><input type='button' class='del' value='delete'></td>")
                     print("</tr>")
+                    print("</table>")
             else:
-                print("no data available")
+                # print("no")
+                print("<table class='nodatatable'><tr><td>no data available</td></tr></table>")
         else:
             raise Exception("please enter remaining field")
+    except Exception as e:
+        print(e)
+
+# code for fetching all records from the database
+elif(d=="fetch_all"):
+    # print(d)
+    try:
+        fetch_all_query = f"select * from user_info"
+        print(fetch_all_query)
+        cur=x.conn.cursor()
+        cur.execute(fetch_all_query)
+        srr  = cur.fetchall()
+        if srr != []:
+            print("<table id='tab'>")
+            print("<tr>")
+            print("<th>User Id</th>")
+            print("<th>User Name</th>")
+            print("<th>User email</th>")
+            print("<th>phone number</th>")
+            print("<th class='action_th' colspan='2'>action</th>")
+            print("<tr>")
+            for row in srr:
+                # print(row)
+                print("<tr>")
+                print(f'<td>{row[0]}</td>')
+                print(f'<td>{row[1]}</td>')
+                print(f'<td>{row[2]}</td>')
+                print(f'<td>{row[4]}</td>')
+                print(f"<td><button type='button' class='update' value='update'>update</button><button type='button' class='del' value='delete'>delete</button></td>")
+                print("</tr>")
+                # print("</tr>")
+            print("</table>")
+        else:
+            print("<table><tr><td>no data available</td></tD></table>")
     except Exception as e:
         print(e)
 
