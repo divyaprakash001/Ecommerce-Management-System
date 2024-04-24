@@ -49,6 +49,34 @@ $(document).ready(function () {
                     $(".msg").text("no data is comming")
                     $(".msg").css({ "color": "red" })
                 }
+
+
+                $(".del").on("click", function () {
+                    d = "delete"
+                    let uid = $(this).closest('tr').children('td:first-child').text();
+                    console.log(uid);
+
+                    $.ajax({
+                        method: 'post',
+                        url: 'pythonf/signup2.py',
+                        data: {
+                            what: d,
+                            userid: uid
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data.includes("data deleted successfully")) {
+                                console.log("ho gyaa dlete");
+                            }
+                        },
+                    });
+                    $(this).closest('tr').remove();
+                    
+
+                    // let v = $(this).closest('tr').remove();
+                    // console.log(v);
+                })
+
             },
         });
     })
@@ -56,7 +84,7 @@ $(document).ready(function () {
 
 
 
-
+let odata = '';
 // all records code for display incoming data after executing query
 $(document).ready(function () {
     $('#all_records_btn').on('click', function () {
@@ -69,6 +97,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 console.log(data);
+                odata = data;
 
                 // localStorage.removeItem("sdata")
 
@@ -82,18 +111,44 @@ $(document).ready(function () {
                     $(".msg").text("no data is comming")
                     $(".msg").css({ "color": "red" })
                 }
+
+                $(".del").on("click", function () {
+                    d = "delete"
+                    let uid = $(this).closest('tr').children('td:first-child').text();
+                    console.log(uid);
+
+                    $.ajax({
+                        method: 'post',
+                        url: 'pythonf/signup2.py',
+                        data: {
+                            what: d,
+                            userid: uid
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data.includes("data deleted successfully")) {
+                                console.log("ho gyaa dlete");
+                            }
+                        },
+                    });
+                    $(this).closest('tr').remove();
+                    
+
+                    // let v = $(this).closest('tr').remove();
+                    // console.log(v);
+                })
+
+
             },
         });
     })
 
 
+
+
+
 })
 
-$(document).ready(function () {
-    $(".del").on("click", function () {
-        alert("deletion")
-    })
-})
 
 
 

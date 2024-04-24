@@ -67,10 +67,12 @@ elif (d=="fetchuserid"):
         cur.execute("select distinct userid from user_info")
         res = cur.fetchall()
         # lst = set()
-        for row in res:
-            # print(row[0])
-            print(f"<option value='{row[0]}'>{row[0]}</option>")
-        # print(lst)
+        if res != []:
+            for row in res:
+                # print(row[0])
+                print(f"<option value='{row[0]}'>{row[0]}</option>")
+        else:
+            print()
     except Exception as e:
         print("some error",e)
 
@@ -86,7 +88,6 @@ elif(d=="fetch_by_id_name"):
             cur=x.conn.cursor()
             cur.execute(fetch_query)
             srr = cur.fetchall()
-            # ye puchna hai ki fetchall() use krne ke bad cursor se data clear ho jata hai
             if srr != []:
                 # print("<br>yes")
                 for row in srr:
@@ -120,7 +121,7 @@ elif(d=="fetch_all"):
     # print(d)
     try:
         fetch_all_query = f"select * from user_info"
-        print(fetch_all_query)
+        # print(fetch_all_query)
         cur=x.conn.cursor()
         cur.execute(fetch_all_query)
         srr  = cur.fetchall()
@@ -145,8 +146,22 @@ elif(d=="fetch_all"):
                 # print("</tr>")
             print("</table>")
         else:
-            print("<table><tr><td>no data available</td></tD></table>")
+            print("<table><tr><td>no data available</td></td></table>")
     except Exception as e:
         print(e)
 
-     
+elif(d == "delete"):
+    # print(d)
+    try:
+        userid = f.getvalue("userid")
+        # print(userid + " have gotten")
+        delete_query = f"delete from user_info where userid = '{userid}'"
+        # print(delete_query)
+        cur=x.conn.cursor()
+        cur.execute(delete_query)
+        x.conn.commit()
+        print("data deleted successfully")
+    except Exception as e:
+        print(e)
+
+
