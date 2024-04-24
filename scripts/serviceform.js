@@ -22,8 +22,6 @@ $(document).ready(function () {
         userid = $('#mySelect').val()
         username = $('#username').val()
 
-        // alert(userid)
-
         $.ajax({
             method: 'post',
             url: 'pythonf/signup2.py',
@@ -35,8 +33,6 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
 
-                localStorage.removeItem("sdata")
-
                 if (data.includes("please enter remaining field")) {
                     $(".msg").text("please fill all inputs")
                     $(".msg").css({ "color": "red" })
@@ -45,12 +41,13 @@ $(document).ready(function () {
                     $('#tab').css({ "visibility": "visible" })
                     $('#table_container').html(data)
                 } else if (data.includes("no data available")) {
-                    alert('empty result set')
+                    // alert('empty result set')
                     $(".msg").text("no data is comming")
                     $(".msg").css({ "color": "red" })
                 }
 
 
+                // if user click on delete button
                 $(".del").on("click", function () {
                     d = "delete"
                     let uid = $(this).closest('tr').children('td:first-child').text();
@@ -77,10 +74,76 @@ $(document).ready(function () {
                     // console.log(v);
                 })
 
+                // code for update the data when use click on update button
+                $(".update").on("click", function () {
+                    d = "fetchForUpdate"
+                    let uid = $(this).closest('tr').children('td:first-child').text();
+                    // console.log(uid);
+
+                    $.ajax({
+                        method: 'post',
+                        url: 'pythonf/signup2.py',
+                        data: {
+                            what: d,
+                            userid: uid
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data.includes("data fetching successfully")) {
+                                $("#table_container").css({ "display": "none" })
+                                $("#myform").css({ "display": "none" })
+                                $(".form_placeholder").html(data)
+                            }
+
+                            // code for saving the updated the data when use click on update button
+                            $("#save").on("click", function () {
+                                d = "savetheupdate"
+                                uid1 = $("#uid").val();
+                                uname1 = $("#uname").val();
+                                uemail1 = $("#uemail").val();
+                                umob1 = $("#umob").val();
+
+                                $.ajax({
+                                    method: 'post',
+                                    url: 'pythonf/signup2.py',
+                                    data: {
+                                        what: d,
+                                        uid: uid1,
+                                        uname: uname1,
+                                        uemail: uemail1,
+                                        umob: umob1
+                                    },
+                                    success: function (data) {
+                                        // window.location.href = 'showData.html'
+                                        console.log(data);
+
+                                        if (data.includes("successfully saved")) {
+                                            if (data.includes("successfully saved")) {
+                                                $(".msg").css({ "display": "block", "color": "green" });
+                                                $(".msg").text("data updated successfully");
+                                            } else {
+                                                $(".msg").css({ "display": "block", "color": "red" });
+                                                $(".msg").text("data updation failed. Some error occured.");
+                                            }
+                                        }
+                                    },
+                                });
+                            })
+                        },
+                    });
+                })
             },
         });
     })
 })
+
+
+
+
+
+// ----------------********************************-------------------
+
+
 
 
 
@@ -97,7 +160,6 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
 
-                // localStorage.removeItem("sdata")
 
                 if (data != []) {
                     $(".msg").css({ "display": "none" })
@@ -126,7 +188,11 @@ $(document).ready(function () {
                         success: function (data) {
                             console.log(data);
                             if (data.includes("data deleted successfully")) {
-                                console.log("ho gyaa dlete");
+                                $(".msg").css({ "display": "block", "color": "green" });
+                                $(".msg").text("data deleted successfully");
+                            } else {
+                                $(".msg").css({ "display": "block", "color": "red" });
+                                $(".msg").text("data deletion failed. Some error occured.");
                             }
                         },
                     });
@@ -163,10 +229,7 @@ $(document).ready(function () {
                                 uemail1 = $("#uemail").val();
                                 umob1 = $("#umob").val();
 
-                                // alert(uid1)
-                                // alert(uname1)
-                                // alert(uemail1)
-                                // alert(umob1)
+
 
                                 $.ajax({
                                     method: 'post',
@@ -182,29 +245,22 @@ $(document).ready(function () {
                                         // window.location.href = 'showData.html'
                                         console.log(data);
 
-
-
-
+                                        if (data.includes("successfully saved")) {
+                                            $(".msg").css({ "display": "block", "color": "green" });
+                                            $(".msg").text("data updated successfully");
+                                        } else {
+                                            $(".msg").css({ "display": "block", "color": "red" });
+                                            $(".msg").text("data updation failed. Some error occured.");
+                                        }
                                     },
                                 });
                             })
-
-
-
                         },
                     });
                 })
-
-
-
             },
         });
     })
-
-
-
-
-
 })
 
 

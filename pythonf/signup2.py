@@ -105,7 +105,7 @@ elif(d=="fetch_by_id_name"):
                     print(f'<td>{row[1]}</td>')
                     print(f'<td>{row[2]}</td>')
                     print(f'<td>{row[4]}</td>')
-                    print(f"<td><input type='button' class='update' value='update'><input type='button' class='del' value='delete'></td>")
+                    print(f"<td><button type='button' class='update' value='update'>update</button><button type='button' class='del' value='delete'>delete</button></td>")
                     print("</tr>")
                     print("</table>")
             else:
@@ -171,19 +171,19 @@ elif(d == "fetchForUpdate"):
         # print(userid + " have gotten")
         if(userid != None):
             fetch_query_one = f"select * from user_info where userid='{userid}'"
-            print(fetch_query_one)
+            # print(fetch_query_one)
             cur=x.conn.cursor()
             cur.execute(fetch_query_one)
             res = cur.fetchall()
             if res != []:
-                print("data fetching successfully")
+                print("<div style='display:none;'>data fetching successfully</div>")
                 # print(res)
                 print("<form>")
                 for row in res:
-                    print(f"<input id='uid' type='text' value='{row[0]}' disabled><br>")
-                    print(f"<input id='uname' type='text' value='{row[1]}'><br>")
-                    print(f"<input id='uemail' type='text' value='{row[2]}'><br>")
-                    print(f"<input id='umob' type='text' value='{row[4]}'><br>")                    
+                    print(f"<label for='uid'>User Id </label><input id='uid' type='text' value='{row[0]}' disabled><br>")
+                    print(f"<label for='uname'>User Name </label><input id='uname' type='text' value='{row[1]}'><br>")
+                    print(f"<label for='uemail'>Email Id </label><input id='uemail' type='text' value='{row[2]}'><br>")
+                    print(f"<label for='umob'>Phone No Id </label><input id='umob' type='text' value='{row[4]}'><br>")                    
                     print(f"<input id='save' type='button' value='save'><br>")                    
                 print("</form>")
             else:
@@ -193,25 +193,21 @@ elif(d == "fetchForUpdate"):
 
 
 elif(d == "savetheupdate"):
-    print(d)
+    # print(d)
     try:
         userid = f.getvalue("uid")
         username = f.getvalue("uname")
         useremail = f.getvalue("uemail")
         mobno = f.getvalue("umob")
-        print(userid)
-        print(username)
-        print(useremail)
-        print(mobno)
-        # print(userid + " have gotten")
+        
         if(userid != None and username != None and useremail != None and mobno != None):
-            print("yaha aa gya hu")
-            saveTheUpdate_query = f"update user_info SET username = '{username}', useremail='{useremail}, mobno='{mobno}' where userid = '{userid}'"
-            print(saveTheUpdate_query)
+            # print("yaha aa gya hu")
+            saveTheUpdate_query = f"update user_info SET username = '{username}', email = '{useremail}', phone_number = '{mobno}' where userid = '{userid}'"
+            # print(saveTheUpdate_query)
             cur=x.conn.cursor()
-            print("cursor ban gya")
+            # print("cursor ban gya")
             cur.execute(saveTheUpdate_query)
-            print("execute ho gya")
+            # print("execute ho gya")
             x.conn.commit()
             print("successfully saved")
         else:
