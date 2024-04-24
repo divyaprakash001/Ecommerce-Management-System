@@ -164,4 +164,59 @@ elif(d == "delete"):
     except Exception as e:
         print(e)
 
+elif(d == "fetchForUpdate"):
+    # print(d)
+    try:
+        userid = f.getvalue("userid")
+        # print(userid + " have gotten")
+        if(userid != None):
+            fetch_query_one = f"select * from user_info where userid='{userid}'"
+            print(fetch_query_one)
+            cur=x.conn.cursor()
+            cur.execute(fetch_query_one)
+            res = cur.fetchall()
+            if res != []:
+                print("data fetching successfully")
+                # print(res)
+                print("<form>")
+                for row in res:
+                    print(f"<input id='uid' type='text' value='{row[0]}' disabled><br>")
+                    print(f"<input id='uname' type='text' value='{row[1]}'><br>")
+                    print(f"<input id='uemail' type='text' value='{row[2]}'><br>")
+                    print(f"<input id='umob' type='text' value='{row[4]}'><br>")                    
+                    print(f"<input id='save' type='button' value='save'><br>")                    
+                print("</form>")
+            else:
+                print("no data available")
+    except Exception as e:
+        print(e)
+
+
+elif(d == "savetheupdate"):
+    print(d)
+    try:
+        userid = f.getvalue("uid")
+        username = f.getvalue("uname")
+        useremail = f.getvalue("uemail")
+        mobno = f.getvalue("umob")
+        print(userid)
+        print(username)
+        print(useremail)
+        print(mobno)
+        # print(userid + " have gotten")
+        if(userid != None and username != None and useremail != None and mobno != None):
+            print("yaha aa gya hu")
+            saveTheUpdate_query = f"update user_info SET username = '{username}', useremail='{useremail}, mobno='{mobno}' where userid = '{userid}'"
+            print(saveTheUpdate_query)
+            cur=x.conn.cursor()
+            print("cursor ban gya")
+            cur.execute(saveTheUpdate_query)
+            print("execute ho gya")
+            x.conn.commit()
+            print("successfully saved")
+        else:
+            print("no field should be empty")
+    except Exception as e:
+        print(e)
+
 
