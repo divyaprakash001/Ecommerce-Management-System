@@ -4,6 +4,7 @@ import cgi
 import mysql.connector as connector
 from DBHelper import *
 from datetime import datetime
+import json
 
 
 
@@ -19,6 +20,8 @@ f = cgi.FieldStorage()
 
 # getting the value from signup.js to what to do
 d = f.getvalue("what")
+
+items=[]
 
 # code for signup page into database
 if(d=="insert"):
@@ -143,6 +146,24 @@ elif(d=="fetch_all"):
                 print(f'<td>{row[4]}</td>')
                 print(f"<td><button type='button' class='update' value='update'>update</button><button type='button' class='del' value='delete'>delete</button></td>")
                 print("</tr>")
+
+                # Creating JSON data
+                data = {
+                    "userid": row[0],
+                    "username": row[1],
+                    "email": row[2],
+                    "phone_number":row[4],
+                }
+
+                items.append(data)
+
+            # Write the JSON string to a file
+            file_name = 'C:\\xampp\\htdocs\\Crazyhomes\\datas\\data.js'
+            with open(file_name, 'w') as js_file:
+                js_file.write('const userData = ')
+                json.dump(items, js_file, indent=4)
+                js_file.write(';\n')
+
                 # print("</tr>")
             print("</table>")
         else:
@@ -183,8 +204,26 @@ elif(d == "fetchForUpdate"):
                     print(f"<label for='uid'>User Id </label><input id='uid' type='text' value='{row[0]}' disabled><br>")
                     print(f"<label for='uname'>User Name </label><input id='uname' type='text' value='{row[1]}'><br>")
                     print(f"<label for='uemail'>Email Id </label><input id='uemail' type='text' value='{row[2]}'><br>")
-                    print(f"<label for='umob'>Phone No Id </label><input id='umob' type='text' value='{row[4]}'><br>")                    
-                    print(f"<input id='save' type='button' value='save'><br>")                    
+                    print(f"<label for='umob'>Phone No </label><input id='umob' type='text' value='{row[4]}'><br>")                    
+                    print(f"<input id='save' type='button' value='save'><br>")  
+
+                    # Creating JSON data
+                    data = {
+                        "userid": row[0],
+                        "username": row[1],
+                        "email": row[2],
+                        "phone_number":row[4],
+                    }
+
+                    items.append(data)
+
+                # Serialize the data to a JSON formatted string
+                json_data = json.dumps(data, indent=4)  # 'indent' parameter for pretty printing
+
+                # Write the JSON string to a file
+                with open('data.json', 'w') as json_file:
+                    json_file.write(json_data)                
+
                 print("</form>")
             else:
                 print("no data available")
@@ -193,7 +232,6 @@ elif(d == "fetchForUpdate"):
 
 
 elif(d == "savetheupdate"):
-    # print(d)
     try:
         userid = f.getvalue("uid")
         username = f.getvalue("uname")
@@ -201,13 +239,9 @@ elif(d == "savetheupdate"):
         mobno = f.getvalue("umob")
         
         if(userid != None and username != None and useremail != None and mobno != None):
-            # print("yaha aa gya hu")
             saveTheUpdate_query = f"update user_info SET username = '{username}', email = '{useremail}', phone_number = '{mobno}' where userid = '{userid}'"
-            # print(saveTheUpdate_query)
             cur=x.conn.cursor()
-            # print("cursor ban gya")
             cur.execute(saveTheUpdate_query)
-            # print("execute ho gya")
             x.conn.commit()
             print("successfully saved")
         else:
