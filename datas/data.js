@@ -3,7 +3,7 @@ const userData = [
         "userid": " bittu01",
         "username": "Bittu Kumar",
         "email": "bittu@gmail.com",
-        "phone_number": "9471998007"
+        "phone_number": "9471111007"
     },
     {
         "userid": "divya01",
@@ -14,7 +14,7 @@ const userData = [
     {
         "userid": "jay01",
         "username": "Jay Prakash",
-        "email": "jaypr@gmail.com",
-        "phone_number": "9507575088"
+        "email": "pjayjh937@gmail.com",
+        "phone_number": "9970720382"
     }
 ];

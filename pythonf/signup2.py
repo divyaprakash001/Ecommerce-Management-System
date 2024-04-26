@@ -208,21 +208,21 @@ elif(d == "fetchForUpdate"):
                     print(f"<input id='save' type='button' value='save'><br>")  
 
                     # Creating JSON data
-                    data = {
-                        "userid": row[0],
-                        "username": row[1],
-                        "email": row[2],
-                        "phone_number":row[4],
-                    }
+                    # data = {
+                    #     "userid": row[0],
+                    #     "username": row[1],
+                    #     "email": row[2],
+                    #     "phone_number":row[4],
+                    # }
 
-                    items.append(data)
+                    # items.append(data)
 
                 # Serialize the data to a JSON formatted string
-                json_data = json.dumps(data, indent=4)  # 'indent' parameter for pretty printing
+                # json_data = json.dumps(data, indent=4)  # 'indent' parameter for pretty printing
 
                 # Write the JSON string to a file
-                with open('data.json', 'w') as json_file:
-                    json_file.write(json_data)                
+                # with open('data.json', 'w') as json_file:
+                    # json_file.write(json_data)                
 
                 print("</form>")
             else:
