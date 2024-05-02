@@ -108,6 +108,7 @@ elif(d=="fetch_by_id_name"):
                     print(f'<td>{row[1]}</td>')
                     print(f'<td>{row[2]}</td>')
                     print(f'<td>{row[4]}</td>')
+                    print(f'<td>{row[12]}</td>')
                     print(f"<td><button type='button' class='update' value='update'>update</button><button type='button' class='del' value='delete'>delete</button></td>")
                     print("</tr>")
                     print("</table>")
@@ -135,6 +136,8 @@ elif(d=="fetch_all"):
             print("<th>User Name</th>")
             print("<th>User email</th>")
             print("<th>phone number</th>")
+            print("<th>reg date</th>")
+            print("<th>role</th>")
             print("<th class='action_th' colspan='2'>action</th>")
             print("<tr>")
             for row in srr:
@@ -144,6 +147,8 @@ elif(d=="fetch_all"):
                 print(f'<td>{row[1]}</td>')
                 print(f'<td>{row[2]}</td>')
                 print(f'<td>{row[4]}</td>')
+                print(f'<td>{row[10]}</td>')
+                print(f'<td>{row[12]}</td>')
                 print(f"<td><button type='button' class='update' value='update'>update</button><button type='button' class='del' value='delete'>delete</button></td>")
                 print("</tr>")
 
