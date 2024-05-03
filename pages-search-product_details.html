@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Product Caterogy Entry Form / Accordion - NiceAdmin Bootstrap Template</title>
+  <title>Search Product Caterogy</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -30,7 +30,10 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/prod_details.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/prod_details_search.css">
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -220,8 +223,8 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>Divya Prakash</h6>
+              <span>Web Developer</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -389,93 +392,97 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Product Details Page</h1>
+      <h1>Search Product Category Page</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Product Details</li>
+          <li class="breadcrumb-item active">Product Category</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
       <div class="card">
-        <span>Product </span>
-        <input type="button" class="search_btn" value="search">
+        <span>Search Product Category</span>
+        <input type="button" class="add_btn" value="add">
+        <div class="form_container">
+          <form action="">
+            <span class="form_group">
+              <label for="">Product Category Id*</label>
+              <select name="" id="">
+                <option value="">-----select product category id-------</option>
+                <option value="">p001</option>
+                <option value="">p002</option>
+              </select>
 
-        <form action="">
-          <table>
-            <tr>
-              <td>
-                <label class="lab" for="prod_id">Product Id</label>
-                <input type="text" name="" id="prod_id">
-              </td>
-              <td>
-                <label class="lab" for="prod_id">Product Name</label>
-                <input type="text" name="" id="prod_id">
-              </td>
-              <td>
-                <!-- <label  for="prod_id">Category Id</label> -->
-                <select name="" id="">
-                  <option value="">--select product category--</option>
-                  <option value="">cat001</option>
-                  <option value="">cat002</option>
-                  <option value="">cat003</option>
-                </select>
-              </td>
+              <label for="">Product Category Name*</label>
+              <input type="text" name="" id="">
 
-            </tr>
-            <tr>
-              <td>
-                <label class="lab" for="prod_id">Stock Quantity</label>
-                <input type="text" name="" id="prod_id">
-              </td>
-              <td>
-                <label class="lab" for="prod_id">Original Price</label>
-                <input type="text" name="" id="prod_id">
-              </td>
-              <td>
-                <label class="lab" for="prod_id">Discounted Price</label>
-                <input type="text" name="" id="prod_id">
-              </td>
-
-            </tr>
-
-            <tr>
-              <td>
-                <label class="lab" for="prod_id">product dimension</label>
-                <input type="text" name="" id="prod_id">
-              </td>
-              <td>
-                <!-- <label  for="prod_id">image 1</label> -->
-                <input type="file" name="" id="prod_id">
-              </td>
-              <td>
-                <!-- <label  for="prod_id">image 2</label> -->
-                <input type="file" name="" id="prod_id">
-              </td>
-
-            </tr>
-            <tr>
-              <td>
-                <!-- <label  for="prod_id">image 3</label> -->
-                <input type="file" name="" id="prod_id">
-              </td>
-              <td colspan="2">
-                <label class="lab" for="prod_id">product description</label>
-                <textarea name="" id="" cols="95" style="resize: none;"></textarea>
-              </td>
-            </tr>
-            <tr>
-              <td class="btn_td" colspan="3"><button class="sub_btn">submit</button> <button class="res_btn">reset</button></td>
-            </tr>
-          </table>
-        </form>
-
-
+              <span class="btn_group">
+                <input class="sub_btn" type="button" value="Search">
+                <input class="sub_btn res_btn" type="button" value="Refresh">
+              </span>
+            </span>
+          </form>
+        </div>
       </div>
     </section>
+
+    <section class="section">
+      <div class="card">
+        <span>Product Category Details</span>
+        <div class="table_container">
+          <table class="tab">
+            <tr>
+              <th>Product Category Id</th>
+              <th>Product Category Name</th>
+              <th>Product Category Desc...</th>
+              <th colspan="2">Action</th>
+            </tr>
+            <tr>
+              <td>cat001</td>
+              <td>Toys</td>
+              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
+              <td><button>update</button></td>
+              <td> <button>delete</button></td>
+            </tr>
+            <tr>
+              <td>cat001</td>
+              <td>Toys</td>
+              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
+              <td><button>update</button></td>
+              <td> <button>delete</button></td>
+            </tr>
+            <tr>
+              <td>cat001</td>
+              <td>Toys</td>
+              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
+              <td><button>update</button></td>
+              <td> <button>delete</button></td>
+            </tr>
+            <tr>
+              <td>cat001</td>
+              <td>Toys</td>
+              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
+              <td><button>update</button></td>
+              <td> <button>delete</button></td>
+            </tr>
+            <tr>
+              <td>cat001</td>
+              <td>Toys</td>
+              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
+              <td><button>update</button></td>
+              <td> <button>delete</button></td>
+            </tr>
+          </table>
+        </div>
+
+        </span>
+      </div>
+    </section>
+
+
 
   </main><!-- End #main -->
 
@@ -509,23 +516,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-  <script>
-    $(document).ready(function () {
-      // animation on label or placeholder of input field
-      $('input[type="text"]').click(function () {
-        $(this).siblings('.lab').css({ 'top': '-.4rem' })
-      });
-      $('textarea').click(function () {
-        $(this).siblings('.lab').css({ 'top': '-.5rem' })
-      });
-
-      $(".search_btn").on("click",function(){
-        window.location.href = "pages-search-product_details.html"
-      })
-
-    })
-  </script>
+  <script src="scripts/product_category.js"></script>
 
 </body>
 
