@@ -325,7 +325,7 @@
         </ul>
       </li><!-- End Product Nav -->
 
-     
+
 
 
 
@@ -403,52 +403,89 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="card">
-        <span>Search Product Category</span>
+      <div class="card upper_card">
+        <span>Search Product Details</span>
         <input type="button" class="add_btn" value="add">
-        <div class="form_container">
           <form action="">
-            <span class="form_group">
-              <label for="">Product Category Id*</label>
-              <select name="" id="">
-                <option value="">-----select product category id-------</option>
-                <option value="">p001</option>
-                <option value="">p002</option>
-              </select>
+            <table class="search_tab">
+              <tr>
+                <td>
+                    <!-- <label for="">Product Id*</label> -->
+                    <select name="" id="">
+                      <option value="">-----select product id-------</option>
+                      <option value="">p001</option>
+                      <option value="">p002</option>
+                    </select></td>
+                <td>
+                  <label class="lab" for="">Product Name*</label>
+                  <input type="text" name="" id="">
+                </td>
+                <td>
 
-              <label for="">Product Category Name*</label>
-              <input type="text" name="" id="">
+                  <label class="lab" for="">Product Name*</label>
+                  <input type="text" name="" id="">
+                </td>
+              </tr>
+              <tr>
+                <td><span class="form_group">
+                    <!-- <label class="lab" for="">Category Id*</label> -->
+                    <select name="" id="">
+                      <option value="">-----select category id-------</option>
+                      <option value="">cat001</option>
+                      <option value="">cat002</option>
+                    </select></td>
+                <td>
+                  <label class="lab" for="">Stock Quantity</label>
+                  <input type="text" name="" id="">
+                </td>
+                <td>
 
-              <span class="btn_group">
-                <input class="sub_btn" type="button" value="Search">
-                <input class="sub_btn res_btn" type="button" value="Refresh">
-              </span>
+                  <label class="lab" for="">Price Range</label>
+                  <input type="text" name="" id="">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3"><span class="btn_group">
+                    <input class="sub_btn" type="button" value="Search">
+                    <input class="sub_btn res_btn" type="button" value="Refresh">
+                  </span></td>
+              </tr>
+
+            </table>
+
+
+
+
+
             </span>
           </form>
-        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="card">
-        <span>Product Category Details</span>
+        <span>Product Details</span>
         <div class="table_container">
           <table class="tab">
             <tr>
-              <th>Product Category Id</th>
-              <th>Product Category Name</th>
-              <th>Product Category Desc...</th>
+              <th>Product Id</th>
+              <th>Product Name</th>
+              <th>category Id</th>
+              <th>Stock Quantity Id</th>
+              <th>Original Price</th>
+              <th>Disoounted Price</th>
+              <th>Image Url</th>
+              <th>Product description Url</th>
+
               <th colspan="2">Action</th>
             </tr>
             <tr>
               <td>cat001</td>
               <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-            <tr>
-              <td>cat001</td>
+              <td>Toys</td>
+              <td>Toys</td>
+              <td>Toys</td>
+              <td>Toys</td>
               <td>Toys</td>
               <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
               <td><button>update</button></td>
@@ -457,12 +494,10 @@
             <tr>
               <td>cat001</td>
               <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-            <tr>
-              <td>cat001</td>
+              <td>Toys</td>
+              <td>Toys</td>
+              <td>Toys</td>
+              <td>Toys</td>
               <td>Toys</td>
               <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
               <td><button>update</button></td>
@@ -471,10 +506,16 @@
             <tr>
               <td>cat001</td>
               <td>Toys</td>
+              <td>Toys</td>
+              <td>Toys</td>
+              <td>Toys</td>
+              <td>Toys</td>
+              <td>Toys</td>
               <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
               <td><button>update</button></td>
               <td> <button>delete</button></td>
             </tr>
+
           </table>
         </div>
 
@@ -516,7 +557,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="scripts/product_category.js"></script>
+  <script src="scripts/product_details.js"></script>
 
 </body>
 

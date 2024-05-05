@@ -325,7 +325,7 @@
         </ul>
       </li><!-- End Product Nav -->
 
-     
+
 
 
 
@@ -403,34 +403,38 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="card">
+      <div class="card upper_card">
         <span>Search Product Category</span>
         <input type="button" class="add_btn" value="add">
-        <div class="form_container">
-          <form action="">
-            <span class="form_group">
-              <label for="">Product Category Id*</label>
-              <select name="" id="">
-                <option value="">-----select product category id-------</option>
-                <option value="">p001</option>
-                <option value="">p002</option>
-              </select>
-
-              <label for="">Product Category Name*</label>
-              <input type="text" name="" id="">
-
-              <span class="btn_group">
-                <input class="sub_btn" type="button" value="Search">
-                <input class="sub_btn res_btn" type="button" value="Refresh">
-              </span>
-            </span>
-          </form>
-        </div>
+        <!-- <div class="form_container"> -->
+        <form action="">
+          <table class="search_tab">
+            <tr>
+              <td>
+                <!-- <label for="">Product Id*</label> -->
+                <select name="" id="mySelect">
+                  <option value="select_product_id">-----select product id-------</option>
+                </select>
+              </td>
+              <td>
+                <label class="lab" for="">Product Name</label>
+                <input type="text" name="" id="pro_cat_name">
+              </td>
+              <td>
+                <span class="btn_group">
+                  <input class="sub_btn" id="search_sub_btn" type="button" value="Search">
+                  <input class="sub_btn res_btn" type="button" value="Refresh">
+                </span>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- </div> -->
       </div>
     </section>
 
     <section class="section">
-      <div class="card">
+      <div class="card below_card">
         <span>Product Category Details</span>
         <div class="table_container">
           <table class="tab">
@@ -516,7 +520,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="scripts/product_category.js"></script>
+  <script src="scripts/search_product_category.js"></script>
 
 </body>
 

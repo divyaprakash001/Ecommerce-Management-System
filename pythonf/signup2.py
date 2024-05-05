@@ -254,4 +254,36 @@ elif(d == "savetheupdate"):
     except Exception as e:
         print(e)
 
+elif (d=="insert_pro_cat"):
+    print("product category")
+    try:
+        pro_cat_id = f.getvalue("pro_cat_id")
+        pro_cat_name =f.getvalue("pro_cat_name")
+        pro_cat_desc =f.getvalue("pro_cat_desc")
 
+        if(pro_cat_id != None and pro_cat_name !=None and pro_cat_desc != None):
+            insert_pro_cat_query = f"insert into product_category(prodcat_id, prodcat_name, prodcat_desc)  values('{pro_cat_id}','{pro_cat_name}','{pro_cat_desc}')"
+            cur = x.conn.cursor()
+            cur.execute(insert_pro_cat_query)
+            x.conn.commit()
+            print("product category inserted")
+        else:
+            raise Exception("Error !!! One of the field is empty")
+
+    except Exception as e:
+        print(e)
+# code for fetching product cat id into option from database   
+elif (d=="fetchcatid"):
+    try:
+        cur = x.conn.cursor()
+        cur.execute("select distinct prodcat_id from product_category")
+        res = cur.fetchall()
+        # lst = set()
+        if res != []:
+            for row in res:
+                # print(row[0])
+                print(f"<option value='{row[0]}'>{row[0]}</option>")
+        else:
+            print()
+    except Exception as e:
+        print("some error",e)
