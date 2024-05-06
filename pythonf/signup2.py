@@ -287,3 +287,48 @@ elif (d=="fetchcatid"):
             print()
     except Exception as e:
         print("some error",e)
+# fetching data on click of search button or searching single data
+elif(d=="fetch_by_catid_catname"):
+    # print(d)
+    try:
+        pro_cat_id = f.getvalue("pro_cat_id")
+        pro_cat_name = f.getvalue("pro_cat_name")
+        fetch_cat_query = f""
+        if(pro_cat_id != "---select product id---" and pro_cat_name != None):
+            fetch_cat_query = f"select * from product_category where prodcat_id='{pro_cat_id}' and prodcat_name = '{pro_cat_name}'"
+        elif(pro_cat_id == "---select product id---" and pro_cat_name != None):
+            fetch_cat_query = f"select * from product_category where prodcat_name = '{pro_cat_name}'"
+        elif(pro_cat_id != "---select product id---" and pro_cat_name == None):
+            fetch_cat_query = f"select * from product_category where prodcat_id='{pro_cat_id}'"
+        else:
+            print("please select one field")
+
+        # print(fetch_cat_query)
+        cur=x.conn.cursor()
+        cur.execute(fetch_cat_query)
+        srr = cur.fetchall()
+        if srr != []:
+            # print("<br>yes")
+            print("<table class='tab'>")
+            print("<tr>")
+            print("<th>Product Category Id</th>")
+            print("<th>Product Category Name</th>")
+            print("<th>Product Category Desc</th>")
+            print("<th colspan='2' style='text-align:center;'>action</th>")
+            print("</tr>")
+            for row in srr:
+                # print(row)
+                print("<tr>")
+                print(f'<td>{row[0]}</td>')
+                print(f'<td>{row[1]}</td>')
+                print(f'<td>{row[2]}</td>')
+                print(f"<td><i class='fa-solid fa-pen-to-square fa-xl update'></i></td>")
+                print(f"<td><i class='fa-solid fa-trash-can fa-xl del'></i></td>")
+                print("</tr>")
+            print("</table>")
+            print("<p style='display:none;'>product category fetched successfully</p>")
+        else:
+            # print("no")
+            print("<table class='nodatatable'><tr><td>no data available</td></tr></table>")
+    except Exception as e:
+        print(e)

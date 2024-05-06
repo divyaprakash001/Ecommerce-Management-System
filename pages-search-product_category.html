@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
   <link rel="stylesheet" href="css/prod_cat_search.css">
 
   <!-- =======================================================
@@ -404,8 +405,8 @@
 
     <section class="section">
       <div class="card upper_card">
-        <span>Search Product Category</span>
-        <input type="button" class="add_btn" value="add">
+        <span>Search Product Category <input type="button" class="add_btn" value="add"></span>
+        
         <!-- <div class="form_container"> -->
         <form action="">
           <table class="search_tab">
@@ -413,7 +414,7 @@
               <td>
                 <!-- <label for="">Product Id*</label> -->
                 <select name="" id="mySelect">
-                  <option value="select_product_id">-----select product id-------</option>
+                  <option>---select product id---</option>
                 </select>
               </td>
               <td>
@@ -428,58 +429,19 @@
               </td>
             </tr>
           </table>
+          <div class="msg"></div>
         </form>
         <!-- </div> -->
+
+        
       </div>
     </section>
 
     <section class="section">
       <div class="card below_card">
-        <span>Product Category Details</span>
+        <div id="below_span">Product Category Details</div>
         <div class="table_container">
-          <table class="tab">
-            <tr>
-              <th>Product Category Id</th>
-              <th>Product Category Name</th>
-              <th>Product Category Desc...</th>
-              <th colspan="2">Action</th>
-            </tr>
-            <tr>
-              <td>cat001</td>
-              <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-            <tr>
-              <td>cat001</td>
-              <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-            <tr>
-              <td>cat001</td>
-              <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-            <tr>
-              <td>cat001</td>
-              <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-            <tr>
-              <td>cat001</td>
-              <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-          </table>
+          
         </div>
 
         </span>

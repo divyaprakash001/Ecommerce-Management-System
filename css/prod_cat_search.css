@@ -34,6 +34,13 @@ html {
     border-radius: 1rem;
 }
 
+.msg{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
 .below_card{
     font-size: 1.5rem;
     margin: 5rem auto;
@@ -41,12 +48,16 @@ html {
     position: relative;
     padding-top:4rem;
     padding-bottom: 5rem;
+    display: none;
 }
 
-.below_card>span{
+
+
+.below_card>#below_span{
     font-size: 2rem;
     font-weight: 600;
     /* margin-bottom: 1rem; */
+    width: 100%;
     padding: 1rem 0;
     background-color: #0D6EFD;
     color: white;
@@ -55,6 +66,9 @@ html {
     border-radius: 1rem;
 }
 
+.below_card th, .below_card td{
+    padding-left: 1rem;
+}
 
 .search_btn,
 .add_btn {
