@@ -287,7 +287,10 @@ elif (d=="fetchcatid"):
             print()
     except Exception as e:
         print("some error",e)
-# fetching data on click of search button or searching single data
+
+
+
+# fetching data on click of search button or searching data
 elif(d=="fetch_by_catid_catname"):
     # print(d)
     try:
@@ -300,7 +303,7 @@ elif(d=="fetch_by_catid_catname"):
             fetch_cat_query = f"select * from product_category where prodcat_name = '{pro_cat_name}'"
         elif(pro_cat_id != "---select product id---" and pro_cat_name == None):
             fetch_cat_query = f"select * from product_category where prodcat_id='{pro_cat_id}'"
-        else:
+        elif(pro_cat_id == "---select product id---" and pro_cat_name == None):
             print("please select one field")
 
         # print(fetch_cat_query)
@@ -329,6 +332,67 @@ elif(d=="fetch_by_catid_catname"):
             print("<p style='display:none;'>product category fetched successfully</p>")
         else:
             # print("no")
-            print("<table class='nodatatable'><tr><td>no data available</td></tr></table>")
+            print("no data available")
     except Exception as e:
         print(e)
+
+# deleting product category on click of delete button
+elif(d == "deletecat"):
+    try:
+        pro_cat_id = f.getvalue("pro_cat_id")
+        print(pro_cat_id + " have gotten")
+        delete_cat_query = f"delete from product_category where prodcat_id = '{pro_cat_id}'"
+        print(delete_cat_query)
+        cur=x.conn.cursor()
+        cur.execute(delete_cat_query)
+        x.conn.commit()
+        print("data deleted successfully")
+    except Exception as e:
+        print(e)
+elif(d == "fetchForcatUpdate"):
+    # print(d)
+    try:
+        pro_cat_id = f.getvalue("pro_cat_id")
+        # print(userid + " have gotten")
+        if(pro_cat_id != None):
+            fetch_query_cat_one = f"select * from product_category where prodcat_id='{pro_cat_id}'"
+            # print(fetch_query_cat_one)
+            cur=x.conn.cursor()
+            cur.execute(fetch_query_cat_one)
+            res = cur.fetchall()
+            if res != []:
+                print("<div style='display:none;'>data fetching successfully</div>")
+                # print(res)
+                print("<span><i class='fa-solid fa-xmark fa-2xl'></i></span>")
+                print("<form class='catupform'>")
+                for row in res:
+                    print(f"<label for='pcid'>Product Category Id </label><input id='pcid' type='text' value='{row[0]}' disabled><br>")
+                    print(f"<label for='pcname'>Product Category Name </label><input id='pcname' type='text' value='{row[1]}'><br>")
+                    print(f"<label for='pcdesc'>Product Category Desc </label><input id='pcdesc' type='text' value='{row[2]}'><br>")
+                    print(f"<input id='save' type='button' value='save'><br>")  
+              
+                print("</form>")
+            else:
+                print("no data available")
+    except Exception as e:
+        print(e)
+
+
+elif(d == "savethecatupdate"):
+    try:
+        pro_cat_id = f.getvalue("pro_cat_id")
+        pro_cat_name = f.getvalue("pro_cat_name")
+        pro_cat_desc = f.getvalue("pro_cat_desc")
+        
+        if(pro_cat_id != None and pro_cat_name != None and pro_cat_desc != None):
+            saveCatUpdate_query = f"update product_category SET prodcat_name = '{pro_cat_name}', prodcat_desc = '{pro_cat_desc}' where prodcat_id = '{pro_cat_id}'"
+            cur=x.conn.cursor()
+            cur.execute(saveCatUpdate_query)
+            x.conn.commit()
+            print("successfully saved")
+        else:
+            print("no field should be empty")
+    except Exception as e:
+        print(e)
+
+

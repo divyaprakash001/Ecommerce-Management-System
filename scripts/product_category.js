@@ -42,7 +42,7 @@ $(document).ready(function () {
 
         if (response.includes("product category inserted")) {
           swal({
-            title: "Good job!",
+            title: "Yeah!",
             text: "Data Inserted Successfully!",
             icon: "success",
           });
