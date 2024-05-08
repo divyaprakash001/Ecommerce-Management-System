@@ -401,39 +401,39 @@
 
     <section class="section">
       <div class="card">
-        <span>Product </span>
-        <input type="button" class="search_btn" value="search">
+        <span>Product <input type="button" class="search_btn" value="search"></span>
+        
 
-        <form action="">
-          <table>
+        <form>
+          <table class="search_tab">
             <tr>
               <td>
-                <label class="lab" for="prod_id">Product Id</label>
+                <label class="lab" for="prod_id">Product Id*</label>
                 <input type="text" name="" id="prod_id">
               </td>
               <td>
-                <label class="lab" for="prod_id">Product Name</label>
+                <label class="lab" for="prod_name">Product Name*</label>
                 <input type="text" name="" id="prod_name">
               </td>
               <td>
                 <!-- <label  for="prod_id">Category Id</label> -->
-                <select name="" id="mySelect">
-                  <option value="">---select product category---</option>
+                <select name="" id="prod_cat_id">
+                  <option value="">---select product category*---</option>
                 </select>
               </td>
 
             </tr>
             <tr>
               <td>
-                <label class="lab" for="prod_id">Stock Quantity</label>
+                <label class="lab" for="prod_stock">Stock Quantity*</label>
                 <input type="text" name="" id="prod_stock">
               </td>
               <td>
-                <label class="lab" for="prod_id">Original Price</label>
+                <label class="lab" for="prod_ori_price">Original Price*</label>
                 <input type="text" name="" id="prod_ori_price">
               </td>
               <td>
-                <label class="lab" for="prod_id">Discounted Price</label>
+                <label class="lab" for="prod_dis_price">Discounted Price</label>
                 <input type="text" name="" id="prod_dis_price">
               </td>
 
@@ -441,31 +441,45 @@
 
             <tr>
               <td>
-                <label class="lab" for="prod_id">product dimension</label>
-                <input type="text" name="" id="prod_dimen">
+                <label class="lab" for="prod_width">produt width</label>
+                <input type="text" name="" class="dimen" id="prod_width"> <span>x</span>
+                <label class="lab prod_height" for="prod_height">product height</label>
+                <input type="text" name="" class="dimen" id="prod_height"> 
               </td>
               <td>
                 <!-- <label  for="prod_id">image 1</label> -->
-                <input type="file" name="" id="prod_id">
+                <select name="" id="prod_size">
+                  <option value="">---select product size if applicable---</option>
+                  <option value="">S</option>
+                  <option value="">M</option>
+                  <option value="">L</option>
+                  <option value="">XL</option>
+                  <option value="">XXL</option>
+                  <option value="">XXXL</option>
+                </select>
               </td>
               <td>
                 <!-- <label  for="prod_id">image 2</label> -->
-                <input type="file" name="" id="prod_id">
+                <input type="file" name="" id="prod_file1" accept="image/*">
               </td>
 
             </tr>
             <tr>
               <td>
                 <!-- <label  for="prod_id">image 3</label> -->
-                <input type="file" name="" id="prod_id">
+                <input type="file" name="" id="prod_file2" accept="image/*">
               </td>
-              <td colspan="2">
-                <label class="lab" for="prod_id">product description</label>
-                <textarea name="" id="" cols="95" style="resize: none;"></textarea>
+              <td>
+                <!-- <label  for="prod_id">image 2</label> -->
+                <input type="file" name="" id="prod_file3" accept="image/*">
+              </td>
+              <td>
+                <label class="lab" for="prod_desc">product description</label>
+                <textarea name="" id="prod_desc" cols="95" style="resize: none;"></textarea>
               </td>
             </tr>
             <tr>
-              <td class="btn_td" colspan="3"><button class="sub_btn">submit</button> <button
+              <td class="btn_td" colspan="3"><button class="sub_btn" id="sub_btn">submit</button> <button
                   class="res_btn">reset</button></td>
             </tr>
           </table>
@@ -508,6 +522,8 @@
   <script src="assets/js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="scripts/product_details.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
   </script>
 

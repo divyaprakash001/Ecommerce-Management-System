@@ -5,6 +5,7 @@ import mysql.connector as connector
 from DBHelper import *
 from datetime import datetime
 import json
+import os
 
 
 
@@ -395,4 +396,36 @@ elif(d == "savethecatupdate"):
     except Exception as e:
         print(e)
 
+# inserting product details into database
+elif (d=="insert_product"):
+    print(d)
+    try:
+        prod_id = f.getvalue("prod_id")
+        prod_name = f.getvalue("prod_name")
+        prod_cat_id = f.getvalue("prod_cat_id")
+        prod_stock =f.getvalue("prod_stock")
+        prod_ori_price = f.getvalue("prod_ori_price")
+        prod_dis_price = f.getvalue("prod_dis_price")
+        prod_width = f.getvalue("prod_width")
+        prod_height = f.getvalue("prod_height")
+        prod_size = f.getvalue("prod_size")
+        prod_image1 = f.getvalue("prod_file1")
+        prod_image2 = f.getvalue("prod_file2")
+        prod_image3 = f.getvalue("prod_file3")
+        prod_desc = f.getvalue("prod_desc")
 
+        prod_dimension = f"{prod_width} x {prod_height}"
+        print(prod_dimension)
+
+        if(prod_id != None and prod_name !=None and prod_cat_id != None and prod_stock !=None and prod_ori_price != None and prod_image1 !=None and prod_image2 != None and prod_image3 !=None and prod_desc != None):
+            insert_prod_query = f"insert into product(product_id, product_name, category_id, stock_quant, original_price, discount_price, dimension, size, image_url1, image_url2, image_url3, product_desc) values('{prod_id}','{prod_name}','{prod_cat_id}','{prod_stock}','{prod_ori_price}','{prod_dis_price}','{prod_dimension}','{prod_size}','{prod_image1}','{prod_image2}','{prod_image3}','{prod_desc}')"
+            print(insert_prod_query)
+            cur = x.conn.cursor()
+            cur.execute(insert_prod_query)
+            x.conn.commit()
+            print("product inserted")
+        else:
+            raise Exception("Error !!! One of the field is empty")
+
+    except Exception as e:
+        print(e)
