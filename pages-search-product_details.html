@@ -34,6 +34,8 @@
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/prod_details_search.css">
+  <link rel="stylesheet" href="css/prod_details_update.css">
+  <!-- <link rel="stylesheet" href="css/prod_details.css"> -->
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -411,56 +413,55 @@
               <tr>
                 <td>
                     <!-- <label for="">Product Id*</label> -->
-                    <select name="" id="">
+                    <select name="" id="prod_id">
                       <option value="">-----select product id-------</option>
-                      <option value="">p001</option>
-                      <option value="">p002</option>
                     </select></td>
                 <td>
                   <label class="lab" for="">Product Name</label>
-                  <input type="text" name="" id="">
+                  <input type="text" name="" id="prod_name">
                 </td>
                 <td>
 
-                  <label class="lab" for="">Product Name</label>
-                  <input type="text" name="" id="">
+                  <label class="lab" for="">Category Name</label>
+                  <input type="text" name="" id="prod_cat_name">
                 </td>
               </tr>
               <tr>
-                <td><span class="form_group">
+                <td>
                     <!-- <label class="lab" for="">Category Id*</label> -->
-                    <select name="" id="">
+                    <select name="" id="pro_cat_id">
                       <option value="">-----select category id-------</option>
-                      <option value="">cat001</option>
-                      <option value="">cat002</option>
-                    </select></td>
+                    </select>
+                  </td>
                 <td>
                   <label class="lab" for="">Stock Quantity</label>
-                  <input type="text" name="" id="">
+                  <input type="text" name="" id="prod_stock">
                 </td>
                 <td>
 
                   <label class="lab" for="">Price Range</label>
-                  <input type="text" name="" id="">
+                  <input type="text" name="" id="prod_price_range">
                 </td>
               </tr>
               <tr>
                 <td>
                   <!-- <label  for="prod_id">image 1</label> -->
-                  <select name="" id="mySelect">
-                    <option value="">---product size---</option>
-                    <option value="">S</option>
-                    <option value="">M</option>
-                    <option value="">L</option>
-                    <option value="">XL</option>
-                    <option value="">XXL</option>
-                    <option value="">XXXL</option>
+                  <select name="" id="prod_size">
+                    <option>---product size---</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                    <option value="xxl">XXL</option>
+                    <option value="xxxl">XXXL</option>
                   </select>
                 </td>
-                <td colspan="2"><span class="btn_group">
-                    <input class="sub_btn" type="button" value="Search">
-                    <input id="refresh" class="sub_btn res_btn" type="button" value="Refresh">
-                  </span></td>
+                <td colspan="2">
+                  <span class="btn_group">
+                    <input class="search_sub_btn" id="search_btn" type="button" value="Search">
+                    <input id="refresh" class="search_sub_btn res_btn" type="button" value="Refresh">
+                  </span>
+                </td>
               </tr>
 
             </table>
@@ -474,67 +475,21 @@
       </div>
     </section>
 
+
     <section class="section">
-      <div class="card">
-        <span>Product Details</span>
+      <div class="card below_card">
+        <div id="below_span">Product Category Details</div>
         <div class="table_container">
-          <table class="tab">
-            <tr>
-              <th>Product Id</th>
-              <th>Product Name</th>
-              <th>category Id</th>
-              <th>Stock Quantity Id</th>
-              <th>Original Price</th>
-              <th>Disoounted Price</th>
-              <th>Image Url</th>
-              <th>Product description Url</th>
-
-              <th colspan="2">Action</th>
-            </tr>
-            <tr>
-              <td>cat001</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-            <tr>
-              <td>cat001</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-            <tr>
-              <td>cat001</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Toys</td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eum.</td>
-              <td><button>update</button></td>
-              <td> <button>delete</button></td>
-            </tr>
-
-          </table>
+          
         </div>
 
         </span>
       </div>
     </section>
 
+    <div class="form_placeholder">
+      
+    </div>
 
 
   </main><!-- End #main -->
@@ -569,7 +524,8 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="scripts/product_details.js"></script>
+  <script src="scripts/search_product_details.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 

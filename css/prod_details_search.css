@@ -121,7 +121,7 @@ select:focus {
     margin-right: .8rem;
 }
 
-.sub_btn {
+.search_sub_btn {
     background-color: #0D6EFD;
     color: white;
     padding: .5rem 1.8rem;
@@ -151,3 +151,69 @@ select:focus {
 .tab td {
     border: 1px solid black;
 }
+
+.below_card{
+    font-size: 1.5rem;
+    margin: 5rem auto;
+    padding: 2rem;
+    position: relative;
+    padding-top:4rem;
+    padding-bottom: 5rem;
+    display: none;
+}
+
+
+
+.below_card>#below_span{
+    font-size: 2rem;
+    font-weight: 600;
+    /* margin-bottom: 1rem; */
+    width: 100%;
+    padding: 1rem 0;
+    background-color: #0D6EFD;
+    color: white;
+    margin-bottom: 2rem;
+    padding-left: 1.8rem;
+    border-radius: 1rem;
+}
+
+.below_card th, .below_card td{
+    padding-left: 1rem;
+}
+
+.form_placeholder {
+    width: 70%;
+    background-color: white;
+    /* border: 2px solid red; */
+    display: none;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    position: fixed;
+    bottom: 0%;
+    right: 0%;
+    z-index: 999;
+    padding: 4rem;
+    border-radius: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.catupform {
+    font-size: 1.5rem;
+}
+
+.catupform input[type='text'] {
+    margin-bottom: 1rem;
+}
+
+#save {
+    margin-top: 1rem;
+}
+
+.form_placeholder .fa-xmark {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+}
+
+/* ----------------------- */

@@ -106,7 +106,6 @@ $(document).ready(function () {
 
 
 
-
     $.ajax({
       method: 'post',
       url: 'pythonf/signup2.py',
