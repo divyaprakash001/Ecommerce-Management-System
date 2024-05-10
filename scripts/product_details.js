@@ -105,7 +105,6 @@ $(document).ready(function () {
     
 
 
-
     $.ajax({
       method: 'post',
       url: 'pythonf/signup2.py',
@@ -149,7 +148,7 @@ $(document).ready(function () {
           $("#prod_file3").val("");
           $("#prod_desc").val("");
         } else if (response.includes("Error !!! One of the field is empty")) {
-          alert("Error !!! One of the field is empty")
+          // alert("Error !!! One of the field is empty")
           swal({
             title: "Failed!",
             text: "One of the field is empty!",

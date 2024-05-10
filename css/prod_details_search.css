@@ -182,7 +182,7 @@ select:focus {
 }
 
 .form_placeholder {
-    width: 70%;
+    width: 60%;
     background-color: white;
     /* border: 2px solid red; */
     display: none;
@@ -191,7 +191,7 @@ select:focus {
     /* justify-content: center; */
     position: fixed;
     bottom: 0%;
-    right: 0%;
+    right: 10%;
     z-index: 999;
     padding: 4rem;
     border-radius: 1rem;

@@ -1,13 +1,22 @@
 #! C:\Users\divya\AppData\Local\Programs\Python\Python312\python.exe
 print ("Content-Type: text/html\r\n\r\n")
+print()
 import cgi
+import cgitb
 import mysql.connector as connector
 from DBHelper import *
 from datetime import datetime
 import json
 import os
+from io import BytesIO
+from PIL import Image
+import base64
+from PIL import Image
+import io
 
 
+cgitb.enable()  #activates a special exception handler that tell to browser
+# cgitb.enable(display=0, logdir="/path/to/logdir")
 
 
  
@@ -419,6 +428,8 @@ elif (d=="insert_product"):
         prod_image2 = f.getvalue("prod_file2")
         prod_image3 = f.getvalue("prod_file3")
         prod_desc = f.getvalue("prod_desc")
+        
+        
 
         prod_dimension = f"{prod_width} x {prod_height}"
         print(prod_dimension)
@@ -553,7 +564,6 @@ elif(d == "fetchForProdUpdate"):
         # print(userid + " have gotten")
         if(prod_id != None):
             fetch_query_prod_one = f"select * from product where product_id='{prod_id}'"
-            # print(fetch_query_prod_one)
             cur=x.conn.cursor()
             cur.execute(fetch_query_prod_one)
             res = cur.fetchall()
@@ -569,6 +579,9 @@ elif(d == "fetchForProdUpdate"):
                 print("<div style='display:none;'>data fetching successfully</div>")
                 # print(res)
                 print("<span><i class='fa-solid fa-xmark fa-2xl'></i></span>")
+
+
+
                 # print("<form class='catupform'>")
                 for row in res:
                     print(f'''<section class='section'>"
@@ -628,7 +641,7 @@ elif(d == "fetchForProdUpdate"):
                     </td>
                     <td>
                         <label  for='prod_id'>image 1</label>
-                        <input type='file' name='' id='prod_file1' value='{row[8]}' accept='image/*'>
+                        <input type='file' name='' id='prod_file1'  accept='image/*'>
                     </td>
 
                     </tr>
@@ -652,7 +665,7 @@ elif(d == "fetchForProdUpdate"):
                     </tr>
                     </table>
                     </form>
-
+                        <div style='width:200px; height:200px;'><img src='pythonf/{file_name}' alt='images here'></div>
 
                     </div>
                     </section>''')
