@@ -387,7 +387,7 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-
+    <!-- <img src="images/ecommer_signup_img.png" alt="" class="imgload"> -->
     <div class="pagetitle">
       <h1>Product Details Page</h1>
       <nav>
@@ -504,7 +504,6 @@
       Designed by <a href="#">Divya Prakash</a>
     </div>
   </footer><!-- End Footer -->
-
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
@@ -526,7 +525,12 @@
 
 
   </script>
-
+<script>
+  $.get('pythonf/signup2.py',function(response){
+    $('.imgload').attr('src',response)
+    console.log(response)
+  })
+</script>
 </body>
 
 </html>

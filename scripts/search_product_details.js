@@ -93,7 +93,7 @@ $(document).ready(function () {
           });
         }
 
-        $(".table_container").html(data)
+        // $(".table_container").html(data)
 
         // if user click on delete button
         $(".del").on("click", function () {
@@ -143,6 +143,8 @@ $(document).ready(function () {
 
         })
 
+
+        // update code
         // code for update the data when use click on update button
         $(".update").on("click", function () {
           d = "fetchForProdUpdate"
@@ -159,8 +161,6 @@ $(document).ready(function () {
             success: function (data) {
               console.log(data);
               if (data.includes("data fetching successfully")) {
-                $("#table_container").css({ "display": "none" })
-                $("#myform").css({ "display": "none" })
                 $(".form_placeholder").css({ "display": "block" })
                 $(".form_placeholder").html(data)
               }
@@ -169,21 +169,103 @@ $(document).ready(function () {
                 $(".form_placeholder").css({ "display": "none" });
               })
 
+
+
+              // on clicking of submit button on product entry form 
+              let imageDataUrl1 = ""
+              let imageDataUrl2 = ""
+              let imageDataUrl3 = ""
+
+              // image data url for image 1
+              $("#prod_file1").on("change", function (event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+                  imageDataUrl1 = event.target.result;
+                  // console.log("Image data URL:", imageDataUrl1);
+                  // You can perform further actions with the image data URL here
+                };
+
+                if (file) {
+                  reader.readAsDataURL(file);
+                } else {
+                  console.error("No file selected.");
+                }
+              });
+
+
+              // image data url for image 2
+              $("#prod_file2").on("change", function (event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+                  imageDataUrl2 = event.target.result;
+                  // console.log("Image data URL:", imageDataUrl2);
+                  // You can perform further actions with the image data URL here
+                };
+
+                if (file) {
+                  reader.readAsDataURL(file);
+                } else {
+                  console.error("No file selected.");
+                }
+              });
+
+
+
+              // image data url for image 3
+              $("#prod_file3").on("change", function (event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+                  imageDataUrl3 = event.target.result;
+                  // console.log("Image data URL:", imageDataUrl3);
+                  // You can perform further actions with the image data URL here
+                };
+
+                if (file) {
+                  reader.readAsDataURL(file);
+                } else {
+                  console.error("No file selected.");
+                }
+              });
+
               // code for saving the updated the data when use click on update button
               $("#save").on("click", function () {
-                d = "savethecatupdate"
-                pcid = $("#pcid").val();
-                pcname = $("#pcname").val();
-                pcdesc = $("#pcdesc").val();
+                d = "savetheprodupdate"
+                alert($("#prod_id").val())
+                alert($("#prod_name").val())
+                alert($("#prod_cat_id").val())
+                alert($("#prod_stock").val())
+                alert($("#prod_ori_price").val())
+                alert($("#prod_dis_price").val())
+                alert($("#upd_prod_width").val())
+                alert($("#prod_size").val())
+                alert($("#prod_desc").val())
+                
+
 
                 $.ajax({
                   method: 'post',
                   url: 'pythonf/signup2.py',
                   data: {
                     what: d,
-                    pro_cat_id: pcid,
-                    pro_cat_name: pcname,
-                    pro_cat_desc: pcdesc,
+                    prod_id: $("#prod_id").val(),
+                    prod_name: $("#prod_name").val(),
+                    prod_cat_id: $("#prod_cat_id").val(),
+                    prod_stock: $("#prod_stock").val(),
+                    prod_ori_price: $("#prod_ori_price").val(),
+                    prod_dis_price: $("#prod_dis_price").val(),
+                    upd_prod_width: $("#upd_prod_width").val(),
+                    prod_height: $("#prod_height").val(),
+                    prod_size: $("#prod_size").val(),
+                    prod_file1: imageDataUrl1,
+                    prod_file2: imageDataUrl2,
+                    prod_file3: imageDataUrl3,
+                    prod_desc: $("#prod_desc").val(),
                   },
                   success: function (data) {
                     // window.location.href = 'showData.html'

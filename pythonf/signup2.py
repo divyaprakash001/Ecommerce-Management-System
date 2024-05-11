@@ -21,10 +21,8 @@ cgitb.enable()  #activates a special exception handler that tell to browser
 
  
 
-# con = connector.connect(host="localhost",user="introdec",passwd="data73063", database="infotech")
-# creating object of DBHelper which contain connection data
-x = DBHelper()
-# print(x)
+conn = connector.connect(host='localhost',user='introdec',password='data73063',database='infotech')
+cur = conn.cursor()
 
 f = cgi.FieldStorage()
 
@@ -59,9 +57,8 @@ if(d=="insert"):
         if(uagree == 'on'):
             if(usertype != None and userid != None and username != None and useremail != None and mobno != None and upass != None and registration_date != None and last_login != None):
                 insert_query = f"insert into user_info(userid, username,email, phone_number, password,registration_date,last_login,role) values('{userid}','{username}','{useremail}','{mobno}','{upass}','{registration_date}','{last_login}','{usertype}')"
-                cur= x.conn.cursor()
                 cur.execute(insert_query)
-                x.conn.commit()
+                conn.commit()
                 print(insert_query)
                 # x.insert_data(userid,username,useremail,mobno,upass,registration_date,last_login,usertype)  
                 print('inserted')
@@ -76,7 +73,6 @@ if(d=="insert"):
 # code for fetching regno into option from database   
 elif (d=="fetchuserid"):
     try:
-        cur = x.conn.cursor()
         cur.execute("select distinct userid from user_info")
         res = cur.fetchall()
         # lst = set()
@@ -98,7 +94,6 @@ elif(d=="fetch_by_id_name"):
         if(userid != None and username != None):
             fetch_query = f"select * from user_info where userid='{userid}' and username = '{username}'"
             # print(fetch_query)
-            cur=x.conn.cursor()
             cur.execute(fetch_query)
             srr = cur.fetchall()
             if srr != []:
@@ -136,7 +131,6 @@ elif(d=="fetch_all"):
     try:
         fetch_all_query = f"select * from user_info"
         # print(fetch_all_query)
-        cur=x.conn.cursor()
         cur.execute(fetch_all_query)
         srr  = cur.fetchall()
         if srr != []:
@@ -163,21 +157,21 @@ elif(d=="fetch_all"):
                 print("</tr>")
 
                 # Creating JSON data
-                data = {
-                    "userid": row[0],
-                    "username": row[1],
-                    "email": row[2],
-                    "phone_number":row[4],
-                }
+                # data = {
+                #     "userid": row[0],
+                #     "username": row[1],
+                #     "email": row[2],
+                #     "phone_number":row[4],
+                # }
 
-                items.append(data)
+                # items.append(data)
 
             # Write the JSON string to a file
-            file_name = 'C:\\xampp\\htdocs\\Crazyhomes\\datas\\data.js'
-            with open(file_name, 'w') as js_file:
-                js_file.write('const userData = ')
-                json.dump(items, js_file, indent=4)
-                js_file.write(';\n')
+            # file_name = 'C:\\xampp\\htdocs\\Crazyhomes\\datas\\data.js'
+            # with open(file_name, 'w') as js_file:
+            #     js_file.write('const userData = ')
+            #     json.dump(items, js_file, indent=4)
+            #     js_file.write(';\n')
 
                 # print("</tr>")
             print("</table>")
@@ -193,9 +187,8 @@ elif(d == "delete"):
         # print(userid + " have gotten")
         delete_query = f"delete from user_info where userid = '{userid}'"
         # print(delete_query)
-        cur=x.conn.cursor()
         cur.execute(delete_query)
-        x.conn.commit()
+        conn.commit()
         print("data deleted successfully")
     except Exception as e:
         print(e)
@@ -208,7 +201,6 @@ elif(d == "fetchForUpdate"):
         if(userid != None):
             fetch_query_one = f"select * from user_info where userid='{userid}'"
             # print(fetch_query_one)
-            cur=x.conn.cursor()
             cur.execute(fetch_query_one)
             res = cur.fetchall()
             if res != []:
@@ -255,9 +247,8 @@ elif(d == "savetheupdate"):
         
         if(userid != None and username != None and useremail != None and mobno != None):
             saveTheUpdate_query = f"update user_info SET username = '{username}', email = '{useremail}', phone_number = '{mobno}' where userid = '{userid}'"
-            cur=x.conn.cursor()
             cur.execute(saveTheUpdate_query)
-            x.conn.commit()
+            conn.commit()
             print("successfully saved")
         else:
             print("no field should be empty")
@@ -273,9 +264,8 @@ elif (d=="insert_pro_cat"):
 
         if(pro_cat_id != None and pro_cat_name !=None and pro_cat_desc != None):
             insert_pro_cat_query = f"insert into product_category(prodcat_id, prodcat_name, prodcat_desc)  values('{pro_cat_id}','{pro_cat_name}','{pro_cat_desc}')"
-            cur = x.conn.cursor()
             cur.execute(insert_pro_cat_query)
-            x.conn.commit()
+            conn.commit()
             print("product category inserted")
         else:
             raise Exception("Error !!! One of the field is empty")
@@ -285,7 +275,6 @@ elif (d=="insert_pro_cat"):
 # code for fetching product cat id into option from database   
 elif (d=="fetchcatid"):
     try:
-        cur = x.conn.cursor()
         cur.execute("select distinct prodcat_id from product_category")
         res = cur.fetchall()
         # lst = set()
@@ -323,7 +312,6 @@ elif(d=="fetch_by_catid_catname"):
         print(fetch_cat_query)
 
         # print(fetch_cat_query)
-        cur=x.conn.cursor()
         cur.execute(fetch_cat_query)
         srr = cur.fetchall()
         if srr != []:
@@ -359,12 +347,12 @@ elif(d == "deletecat"):
         print(pro_cat_id + " have gotten")
         delete_cat_query = f"delete from product_category where prodcat_id = '{pro_cat_id}'"
         print(delete_cat_query)
-        cur=x.conn.cursor()
         cur.execute(delete_cat_query)
-        x.conn.commit()
+        conn.commit()
         print("data deleted successfully")
     except Exception as e:
         print(e)
+
 elif(d == "fetchForcatUpdate"):
     # print(d)
     try:
@@ -373,7 +361,6 @@ elif(d == "fetchForcatUpdate"):
         if(pro_cat_id != None):
             fetch_query_cat_one = f"select * from product_category where prodcat_id='{pro_cat_id}'"
             # print(fetch_query_cat_one)
-            cur=x.conn.cursor()
             cur.execute(fetch_query_cat_one)
             res = cur.fetchall()
             if res != []:
@@ -402,9 +389,8 @@ elif(d == "savethecatupdate"):
         
         if(pro_cat_id != None and pro_cat_name != None and pro_cat_desc != None):
             saveCatUpdate_query = f"update product_category SET prodcat_name = '{pro_cat_name}', prodcat_desc = '{pro_cat_desc}' where prodcat_id = '{pro_cat_id}'"
-            cur=x.conn.cursor()
             cur.execute(saveCatUpdate_query)
-            x.conn.commit()
+            conn.commit()
             print("successfully saved")
         else:
             print("no field should be empty")
@@ -437,9 +423,8 @@ elif (d=="insert_product"):
         if(prod_id != None and prod_name !=None and prod_cat_id != None and prod_stock !=None and prod_ori_price != None and prod_image1 !=None and prod_image2 != None and prod_image3 !=None and prod_desc != None):
             insert_prod_query = f"insert into product(product_id, product_name, category_id, stock_quant, original_price, discount_price, dimension, size, image_url1, image_url2, image_url3, product_desc) values('{prod_id}','{prod_name}','{prod_cat_id}','{prod_stock}','{prod_ori_price}','{prod_dis_price}','{prod_dimension}','{prod_size}','{prod_image1}','{prod_image2}','{prod_image3}','{prod_desc}')"
             print(insert_prod_query)
-            cur = x.conn.cursor()
             cur.execute(insert_prod_query)
-            x.conn.commit()
+            conn.commit()
             print("product inserted")
         else:
             raise Exception("Error !!! One of the field is empty")
@@ -451,7 +436,6 @@ elif (d=="insert_product"):
 # code for fetching product cat id into option from database   
 elif (d=="fetchprodid"):
     try:
-        cur = x.conn.cursor()
         cur.execute("select distinct product_id from product")
         res = cur.fetchall()
         # lst = set()
@@ -468,7 +452,7 @@ elif (d=="fetchprodid"):
 
 # fetching data on click of search button or searching data
 elif(d=="fetch_prod_details_conditions"):
-    print(d)
+    # print(d)
     try:
         prod_id = f.getvalue("pro_id")
         prod_name = f.getvalue("prod_name")
@@ -502,7 +486,6 @@ elif(d=="fetch_prod_details_conditions"):
         # print(fetch_prod_query)
 
 
-        cur=x.conn.cursor()
         cur.execute(fetch_prod_query)
         srr = cur.fetchall()
         if srr != []:
@@ -512,11 +495,12 @@ elif(d=="fetch_prod_details_conditions"):
             print("<th>Product Id</th>")
             print("<th>Product Name</th>")
             print("<th>Category Id</th>")
-            print("<th>Stock Quantity</th>")
-            print("<th>Original Price</th>")
-            print("<th>Discount Price</th>")
+            print("<th>Stock</th>")
+            print("<th>MRP</th>")
+            print("<th>Discount</th>")
             print("<th>Dimension</th>")
             print("<th>Size</th>")
+            print("<th>images</th>")
             # print("<th>Size</th>")
             print("<th colspan='2' style='text-align:center;'>action</th>")
             print("</tr>")
@@ -531,6 +515,7 @@ elif(d=="fetch_prod_details_conditions"):
                 print(f'<td>{row[5]}</td>')
                 print(f'<td>{row[6]}</td>')
                 print(f'<td>{row[7]}</td>')
+                print(f'<td><a href=''>view</a></td>')
                 print(f"<td><i class='fa-solid fa-pen-to-square fa-xl update'></i></td>")
                 print(f"<td><i class='fa-solid fa-trash-can fa-xl del'></i></td>")
                 print("</tr>")
@@ -549,9 +534,8 @@ elif(d == "deleteprod"):
         # print(prod_id + " have gotten")
         delete_prod_query = f"delete from product where product_id = '{prod_id}'"
         # print(delete_prod_query)
-        cur=x.conn.cursor()
         cur.execute(delete_prod_query)
-        x.conn.commit()
+        conn.commit()
         print("data deleted successfully")
     except Exception as e:
         print(e)
@@ -564,16 +548,9 @@ elif(d == "fetchForProdUpdate"):
         # print(userid + " have gotten")
         if(prod_id != None):
             fetch_query_prod_one = f"select * from product where product_id='{prod_id}'"
-            cur=x.conn.cursor()
             cur.execute(fetch_query_prod_one)
             res = cur.fetchall()
 
-            # redirectURL = "http://localhost/Crazyhomes/pages-product_update.html"
-            # print('<html>')
-            # print('  <head>')
-            # print('    <meta http-equiv="refresh" content="0;url='+str(redirectURL)+'" />') 
-            # print('  </head>')
-            # print('</html>')
 
             if res != []:
                 print("<div style='display:none;'>data fetching successfully</div>")
@@ -584,110 +561,137 @@ elif(d == "fetchForProdUpdate"):
 
                 # print("<form class='catupform'>")
                 for row in res:
-                    print(f'''<section class='section'>"
-                    <div class='updcard'>
-                    <span>Update Product Details</span>
-                    <form>
-                    <table class='upd_tab'>
-                    <tr>
-                    <td>
-                    <label  for='prod_id'>Product Id*</label>
-                    <input type='text' value='{row[0]}'  id='prod_id' disable>
-                    </td>
-                    <td>
-                    <label  for='prod_name'>Product Name*</label>
-                    <input type='text' id='prod_name' value='{row[1]}'>
-                    </td>
-                    <td>
-                    <label  for='prod_id'>Category Id</label>
-                    <select id='prod_cat_id'>
-                    <option value='{row[2]}'>{row[2]}</option>
-                    </select>
-                    </td>
+                    # print(row[8].decode())
+                    print(f"<section class='section'>")
+                    print(f"<div class='updcard'>")
+                    print(f"<span>Update Product Details</span>")
+                    print(f"<form>")
+                    print(f"<table class='upd_tab'>")
+                    print(f"<tr>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_id'>Product Id*</label>")
+                    print(f"<input type='text' value='{row[0]}'  id='prod_id' disable>")
+                    print(f"</td>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_name'>Product Name*</label>")
+                    print(f"<input type='text' id='prod_name' value='{row[1]}'>")
+                    print(f"</td>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_id'>Category Id</label>")
+                    print(f"<select id='prod_cat_id'>")
+                    print(f"<option value='{row[2]}'>{row[2]}</option>")
+                    print(f"</select>")
+                    print(f"</td>")
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_stock'>Stock Quantity*</label>")
+                    print(f"<input type='text' name='' id='prod_stock' value='{row[3]}'>")
+                    print(f"</td>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_ori_price'>Original Price*</label>")
+                    print(f"<input type='text' name='' id='prod_ori_price' value='{row[4]}'>")
+                    print(f"</td>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_dis_price'>Discounted Price</label>")
+                    print(f"<input type='text' name='' id='prod_dis_price' value='{row[5]}'>")
+                    print(f"</td>")
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_width'>produt width</label>")
+                    print(f"<input type='text' name='' class='dimen' id='upd_prod_width' value='{row[6]}'>") 
+                    print(f"</td>")
+                    print(f"<td>")
+                    print(f"<label>Product Size</label>")
+                    print(f"<select name='' id='prod_size'>")
+                    print(f"<option value='{row[7]}'>{row[7]}</option>")
+                    print(f"<option value='s'>S</option>")
+                    print(f"<option value='m'>M</option>")
+                    print(f"<option value='l'>L</option>")
+                    print(f"<option value='xl'>XL</option>")
+                    print(f"<option value='xxl'>XXL</option>")
+                    print(f"<option value='xxxl'>XXXL</option>")
+                    print(f"</select>")
+                    print(f"</td>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_desc'>product description</label>")
+                    print(f"    <input type='text' id='prod_desc' value='{row[11]}'>")
+                    print(f"</td>")
+                   
 
-                    </tr>
-                    <tr>
-                    <td>
-                    <label  for='prod_stock'>Stock Quantity*</label>
-                    <input type='text' name='' id='prod_stock' value='{row[3]}'>
-                    </td>
-                    <td>
-                    <label  for='prod_ori_price'>Original Price*</label>
-                    <input type='text' name='' id='prod_ori_price' value='{row[4]}'>
-                    </td>
-                    <td>
-                    <label  for='prod_dis_price'>Discounted Price</label>
-                    <input type='text' name='' id='prod_dis_price' value='{row[5]}'>
-                    </td>
-
-                    </tr>
-
-                    <tr>
-                    <td>
-                    <label  for='prod_width'>produt width</label>
-                    <input type='text' name='' class='dimen' id='upd_prod_width' value='{row[6]}'> 
-                    </td>
-                    <td>
-                    <label>Product Size</label>
-                    <select name='' id='prod_size'>
-                    <option value='{row[7]}'>{row[7]}</option>
-                    <option value='s'>S</option>
-                    <option value='m'>M</option>
-                    <option value='l'>L</option>
-                    <option value='xl'>XL</option>
-                    <option value='xxl'>XXL</option>
-                    <option value='xxxl'>XXXL</option>
-                    </select>
-                    </td>
-                    <td>
-                        <label  for='prod_id'>image 1</label>
-                        <input type='file' name='' id='prod_file1'  accept='image/*'>
-                    </td>
-
-                    </tr>
-                    <tr>
-                    <td>
-                        <label  for='prod_id'>image 2</label>
-                        <input type='file' name='' id='prod_file2' accept='image/*'>
-                    </td>
-                    <td>
-                        <label  for='prod_id'>image 3</label>
-                        <input type='file' name='' id='prod_file3' accept='image/*'>
-                    </td>
-                    <td>
-                        <label  for='prod_desc'>product description</label>
-                        <input type='text' id='prod_desc' value='{row[11]}'>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td class='btn_td' colspan='3'><button class='sub_btn' id='save'>Save</button> <button
-                        class='res_btn'>reset</button></td>
-                    </tr>
-                    </table>
-                    </form>
-                        <div style='width:200px; height:200px;'><img src='pythonf/{file_name}' alt='images here'></div>
-
-                    </div>
-                    </section>''')
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_id'>image 1</label>")
+                    print(f"<div class='img_file_container'>")
+                    print(f"<img src='{row[8].decode()}' height=200, width=200>")
+                    print(f"<input type='file' name='' id='prod_file1' value='{row[8].decode()}'  accept='image/*'>")
+                    print(f"</div>")
+                    print(f"</td>")
+                    print(f"<td>)")
+                    print(f"<label  for='prod_id'>image 2</label>")
+                    print(f"<div class='img_file_container'>")
+                    print(f"<img src='{row[9].decode()}' height=200, width=200>")
+                    print(f"<input type='file' name='' id='prod_file2' accept='image/*'>")
+                    print(f"</div>")
+                    print(f"</td>")
+                    print(f"<td>")
+                    print(f"<label  for='prod_id'>image 3</label>")
+                    print(f"<div class='img_file_container'>")
+                    print(f"<img src='{row[10].decode()}' height=200, width=200>")
+                    print(f"<input type='file' name='' id='prod_file3' value='{row[8].decode()}' accept='image/*'>")
+                    print(f"</div>")
+                    print(f" </td>")
+                    f
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"<td class='btn_td' colspan='3'><button class='sub_btn' id='save'>Save</button> <button class='res_btn'>reset</button></td>")
+                    print(f"</tr>")
+                    print(f"</table>")
+                    print(f"</form>")
+                     
+                    print(f"</section>")
             else:
                 print("no data available")
     except Exception as e:
         print(e)
 
 
-elif(d == "savethecatupdate"):
+elif(d == "savetheprodupdate"):
     try:
-        pro_cat_id = f.getvalue("pro_cat_id")
-        pro_cat_name = f.getvalue("pro_cat_name")
-        pro_cat_desc = f.getvalue("pro_cat_desc")
+        prod_id = f.getvalue("prod_id")
+        prod_name = f.getvalue("prod_name")
+        prod_cat_id = f.getvalue("prod_cat_id")
+        prod_stock =f.getvalue("prod_stock")
+        prod_ori_price = f.getvalue("prod_ori_price")
+        prod_dis_price = f.getvalue("prod_dis_price")
+        upd_prod_width = f.getvalue("upd_prod_width")
+        prod_height = f.getvalue("prod_height")
+        prod_size = f.getvalue("prod_size")
+        prod_image1 = f.getvalue("prod_file1")
+        prod_image2 = f.getvalue("prod_file2")
+        prod_image3 = f.getvalue("prod_file3")
+        prod_desc = f.getvalue("prod_desc")
         
-        if(pro_cat_id != None and pro_cat_name != None and pro_cat_desc != None):
-            saveCatUpdate_query = f"update product_category SET prodcat_name = '{pro_cat_name}', prodcat_desc = '{pro_cat_desc}' where prodcat_id = '{pro_cat_id}'"
-            cur=x.conn.cursor()
-            cur.execute(saveCatUpdate_query)
-            x.conn.commit()
+        
+
+        # prod_dimension = f"{prod_width} x {prod_height}"
+        # print(prod_dimension)
+        
+        if(prod_id != None and prod_name !=None and prod_cat_id != None and prod_stock !=None and prod_ori_price != None and  prod_desc != None):
+            saveProdUpdate_query = f"update product SET product_name = '{prod_name}', category_id = '{prod_cat_id}',stock_quant = '{prod_stock}',original_price = '{prod_ori_price}',discount_price = '{prod_dis_price}',dimension = '{upd_prod_width}',size = '{prod_size}',image_url1 = '{prod_image1}',image_url2 = '{prod_image2}', image_url3 = '{prod_image3}', where product_id = '{prod_id}'"
+            print(saveProdUpdate_query)
+            cur.execute(saveProdUpdate_query)
+            conn.commit()
             print("successfully saved")
         else:
             print("no field should be empty")
     except Exception as e:
         print(e)
+else:
+    try:
+        cur.execute('select image_url1 from product order by product_id limit 1')
+        print(cur.fetchall()[0][0].decode())
+    except Exception as e:
+        print(str(e))

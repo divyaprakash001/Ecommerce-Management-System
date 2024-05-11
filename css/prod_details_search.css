@@ -70,6 +70,7 @@ html {
 }
 
 .search_tab td {
+    /* border: 1px solid black; */
     position: relative;
     height: 9rem;
     width: 25%;
@@ -141,24 +142,16 @@ select:focus {
     background-color: rgb(154, 6, 6);
 }
 
-.tab {
-    width: 90%;
-    margin: 0 auto;
-}
-
-.tab,
-.tab th,
-.tab td {
-    border: 1px solid black;
-}
+/* styling below card */
 
 .below_card{
     font-size: 1.5rem;
     margin: 5rem auto;
     padding: 2rem;
-    position: relative;
+    /* position: relative; */
     padding-top:4rem;
     padding-bottom: 5rem;
+    background-color: aliceblue;
     display: none;
 }
 
@@ -177,25 +170,46 @@ select:focus {
     border-radius: 1rem;
 }
 
-.below_card th, .below_card td{
+.tab {
+    position: relative;
+    width: 95%;
+    margin: 0rem auto;
+    border-collapse: collapse;
+}
+.tab td{
+   
+    margin-left: .5rem;
+    position: relative;
+    height: 4rem;
+    width: 15%;
+    margin-left: .5rem;
+}
+
+.tab th:nth-child((5)){
+    text-align: center;
+}
+
+.tab,
+.tab th,
+.tab td {
+    border: 1px solid black;border-radius: 1px;
+    /* border-radius: 1px; */
     padding-left: 1rem;
 }
 
+
 .form_placeholder {
-    width: 60%;
+    width: 100%;
     background-color: white;
     /* border: 2px solid red; */
-    display: none;
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
-    position: fixed;
-    bottom: 0%;
-    right: 10%;
+    position: sticky;
+    top: 0;
+    left: 0;
     z-index: 999;
     padding: 4rem;
     border-radius: 1rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: none;
 }
 
 .catupform {
@@ -212,8 +226,19 @@ select:focus {
 
 .form_placeholder .fa-xmark {
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 2.5%;
+    top: 4%;
+    z-index: 999;
 }
 
 /* ----------------------- */
+
+.tab th{
+    background-color: #0D6EFD;
+    color: white;
+}
+
+
+.del, .update{
+    margin-right: 10px;
+}

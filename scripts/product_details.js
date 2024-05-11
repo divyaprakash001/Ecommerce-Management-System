@@ -97,14 +97,12 @@ $(document).ready(function () {
     }
   });
 
+  // doing insertion when click on submit button on product entry page
   $("#sub_btn").on("click", function (e) {
     e.preventDefault();
 
     d = "insert_product";
     // alert(d)
-    
-
-
     $.ajax({
       method: 'post',
       url: 'pythonf/signup2.py',
@@ -125,8 +123,6 @@ $(document).ready(function () {
         what: d
       }, success: function (response) {
         console.log(response);
-
-
 
         if (response.includes("product inserted")) {
           swal({
