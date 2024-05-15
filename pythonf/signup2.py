@@ -1,18 +1,15 @@
 #! C:\Users\divya\AppData\Local\Programs\Python\Python312\python.exe
 print ("Content-Type: text/html\r\n\r\n")
-print()
+# print()
 import cgi
 import cgitb
 import mysql.connector as connector
 from DBHelper import *
 from datetime import datetime
-import json
-import os
-from io import BytesIO
-from PIL import Image
-import base64
-from PIL import Image
-import io
+# import json
+# import os
+# from io import BytesIO
+
 
 
 cgitb.enable()  #activates a special exception handler that tell to browser
@@ -516,11 +513,11 @@ elif(d=="fetch_prod_details_conditions"):
                 print(f'<td>{row[6]}</td>')
                 print(f'<td>{row[7]}</td>')
                 print(f'<td><a href=''>view</a></td>')
-                print(f"<td><i class='fa-solid fa-pen-to-square fa-xl update'></i></td>")
+                print(f"<td><i class='fa-solid fa-pen-to-square fa-xl edit'  id=\"edit\" ></i></td>")
                 print(f"<td><i class='fa-solid fa-trash-can fa-xl del'></i></td>")
                 print("</tr>")
             print("</table>")
-            print("<p style='display:none;'>product category fetched successfully</p>")
+            print("<p style='display:none;'>product details fetched successfully</p>")
         else:
             # print("no")
             print("no data available")
@@ -544,8 +541,7 @@ elif(d == "deleteprod"):
 elif(d == "fetchForProdUpdate"):
     # print(d)
     try:
-        prod_id = f.getvalue("prod_id")
-        # print(userid + " have gotten")
+        prod_id = f.getvalue("prod_id_f")
         if(prod_id != None):
             fetch_query_prod_one = f"select * from product where product_id='{prod_id}'"
             cur.execute(fetch_query_prod_one)
@@ -556,102 +552,91 @@ elif(d == "fetchForProdUpdate"):
                 print("<div style='display:none;'>data fetching successfully</div>")
                 # print(res)
                 print("<span><i class='fa-solid fa-xmark fa-2xl'></i></span>")
+                print(f"<section class='section'>")
+                print(f"<div class='updcard'>")
+                print(f"<span>Update Product Details</span>")
+                print(f"<form>")
 
-
-
-                # print("<form class='catupform'>")
                 for row in res:
                     # print(row[8].decode())
-                    print(f"<section class='section'>")
-                    print(f"<div class='updcard'>")
-                    print(f"<span>Update Product Details</span>")
-                    print(f"<form>")
                     print(f"<table class='upd_tab'>")
                     print(f"<tr>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_id'>Product Id*</label>")
-                    print(f"<input type='text' value='{row[0]}'  id='prod_id' disable>")
-                    print(f"</td>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_name'>Product Name*</label>")
-                    print(f"<input type='text' id='prod_name' value='{row[1]}'>")
-                    print(f"</td>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_id'>Category Id</label>")
-                    print(f"<select id='prod_cat_id'>")
-                    print(f"<option value='{row[2]}'>{row[2]}</option>")
-                    print(f"</select>")
-                    print(f"</td>")
-                    print(f"</tr>")
-                    print(f"<tr>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_stock'>Stock Quantity*</label>")
-                    print(f"<input type='text' name='' id='prod_stock' value='{row[3]}'>")
-                    print(f"</td>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_ori_price'>Original Price*</label>")
-                    print(f"<input type='text' name='' id='prod_ori_price' value='{row[4]}'>")
-                    print(f"</td>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_dis_price'>Discounted Price</label>")
-                    print(f"<input type='text' name='' id='prod_dis_price' value='{row[5]}'>")
-                    print(f"</td>")
-                    print(f"</tr>")
-                    print(f"<tr>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_width'>produt width</label>")
-                    print(f"<input type='text' name='' class='dimen' id='upd_prod_width' value='{row[6]}'>") 
-                    print(f"</td>")
-                    print(f"<td>")
-                    print(f"<label>Product Size</label>")
-                    print(f"<select name='' id='prod_size'>")
-                    print(f"<option value='{row[7]}'>{row[7]}</option>")
-                    print(f"<option value='s'>S</option>")
-                    print(f"<option value='m'>M</option>")
-                    print(f"<option value='l'>L</option>")
-                    print(f"<option value='xl'>XL</option>")
-                    print(f"<option value='xxl'>XXL</option>")
-                    print(f"<option value='xxxl'>XXXL</option>")
-                    print(f"</select>")
-                    print(f"</td>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_desc'>product description</label>")
-                    print(f"    <input type='text' id='prod_desc' value='{row[11]}'>")
-                    print(f"</td>")
-                   
+                    print(f"    <td>")
+                    print(f"        <label  for='prod_id'>Product Id*</label>")
+                    print(f"        <input type='text' value='{row[0]}'  id='prod_id1' disabled>")
+                    print(f"    </td>")
 
+                    print(f"    <td>")
+                    print(f"        <label  for='prod_name1'>Product Name*</label>")
+                    print(f"        <input type='text' id='prod_name1' value='{row[1]}'>")
+                    print(f"     </td>")
+                    print(f"    <td>")
+                    print(f"        <label  for='prod_cat_id'>Category Id</label>")
+                    print(f"        <select id='prod_cat_id'>")
+                    print(f"            <option value='{row[2]}'>{row[2]}</option>")
+                    print(f"        </select>")
+                    print(f"    </td>")
                     print(f"</tr>")
                     print(f"<tr>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_id'>image 1</label>")
-                    print(f"<div class='img_file_container'>")
-                    print(f"<img src='{row[8].decode()}' height=200, width=200>")
-                    print(f"<input type='file' name='' id='prod_file1' value='{row[8].decode()}'  accept='image/*'>")
-                    print(f"</div>")
-                    print(f"</td>")
-                    print(f"<td>)")
-                    print(f"<label  for='prod_id'>image 2</label>")
-                    print(f"<div class='img_file_container'>")
-                    print(f"<img src='{row[9].decode()}' height=200, width=200>")
-                    print(f"<input type='file' name='' id='prod_file2' accept='image/*'>")
-                    print(f"</div>")
-                    print(f"</td>")
-                    print(f"<td>")
-                    print(f"<label  for='prod_id'>image 3</label>")
-                    print(f"<div class='img_file_container'>")
-                    print(f"<img src='{row[10].decode()}' height=200, width=200>")
-                    print(f"<input type='file' name='' id='prod_file3' value='{row[8].decode()}' accept='image/*'>")
-                    print(f"</div>")
-                    print(f" </td>")
-                    f
+                    print(f"    <td>")
+                    print(f"        <label  for='prod_stock'>Stock Quantity*</label>")
+                    print(f"        <input type='text' id='stock_size' value='{row[3]}'>")
+                    print(f"    </td>")
+                    print(f"    <td>")
+                    print(f"        <label  for='prod_ori_price'>Original Price*</label>")
+                    print(f"        <input type='text' name='' id='prod_ori_price' value='{row[4]}'>")
+                    print(f"    </td>")
+                    print(f"    <td>")
+                    print(f"        <label  for='prod_dis_price'>Discounted Price</label>")
+                    print(f"        <input type='text' name='' id='prod_dis_price' value='{row[5]}'>")
+                    print(f"    </td>")
                     print(f"</tr>")
                     print(f"<tr>")
-                    print(f"<td class='btn_td' colspan='3'><button class='sub_btn' id='save'>Save</button> <button class='res_btn'>reset</button></td>")
+                    print(f"    <td>")
+                    print(f"        <label  for='prod_width'>produt width</label>")
+                    print(f"        <input type='text' name='' class='dimen' id='upd_prod_width' value='{row[6]}'>") 
+                    print(f"    </td>")
+                    print(f"    <td>")
+                    print(f"        <label>Product Size</label>")
+                    print(f"        <select name='' id='prod_size_upd'>")
+                    print(f"        <option value='{row[7]}' selected >{row[7]}</option>")
+                    print(f"        <option value='s'>S</option>")
+                    print(f"        <option value='m'>M</option>")
+                    print(f"        <option value='l'>L</option>")
+                    print(f"        <option value='xl'>XL</option>")
+                    print(f"        <option value='xxl'>XXL</option>")
+                    print(f"        <option value='xxxl'>XXXL</option>")
+                    print(f"        </select>")
+                    print(f"    </td>")
+                    print(f"    <td>")
+                    print(f"        <label  for='prod_desc'>product description</label>")
+                    print(f"        <input type='text' id='prod_desc' value='{row[11]}'>")
+                    print(f"    </td>")
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"    <td>")
+                    # print(f"      <label  for='prod_id'>image 1</label>")
+                    print(f"        <img src='{row[8].decode()}' class='image' id='image1' > ")
+                    print(f"        <input type='file' name='' id='prod_file1' value='{row[8].decode()}'   accept='image/*'>")
+                    print(f"    </td>")
+                    print(f"    <td>)")
+                    # print(f"<label  for='prod_id'>image 2</label>")
+                    print(f"        <img src='{row[9].decode()}' class='image' id='image2'>")
+                    print(f"        <input type='file' name='' id='prod_file2' accept='image/*'>")
+                    print(f"    </td>")
+                    print(f"    <td>")
+                    # print(f"<label  for='prod_id'>image 3</label>")
+                    print(f"        <img src='{row[10].decode()}' class='image' id='image3'>")
+                    print(f"        <input type='file' name='' id='prod_file3' value='{row[8].decode()}' accept='image/*'>")
+                    print(f"    </td>")
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"    <td class='btn_td' colspan='3'><button class='sub_btn' id='save'>Save</button> <button type='reset' class='res_btn'>reset</button></td>")
                     print(f"</tr>")
                     print(f"</table>")
-                    print(f"</form>")
-                     
-                    print(f"</section>")
+                print(f"</form>")
+                print(f"</div>")
+                print(f"</section>")
             else:
                 print("no data available")
     except Exception as e:
@@ -667,8 +652,8 @@ elif(d == "savetheprodupdate"):
         prod_ori_price = f.getvalue("prod_ori_price")
         prod_dis_price = f.getvalue("prod_dis_price")
         upd_prod_width = f.getvalue("upd_prod_width")
-        prod_height = f.getvalue("prod_height")
-        prod_size = f.getvalue("prod_size")
+        # prod_height = f.getvalue("prod_height")
+        prod_size_upd = f.getvalue("prod_size_upd")
         prod_image1 = f.getvalue("prod_file1")
         prod_image2 = f.getvalue("prod_file2")
         prod_image3 = f.getvalue("prod_file3")
@@ -679,12 +664,12 @@ elif(d == "savetheprodupdate"):
         # prod_dimension = f"{prod_width} x {prod_height}"
         # print(prod_dimension)
         
-        if(prod_id != None and prod_name !=None and prod_cat_id != None and prod_stock !=None and prod_ori_price != None and  prod_desc != None):
-            saveProdUpdate_query = f"update product SET product_name = '{prod_name}', category_id = '{prod_cat_id}',stock_quant = '{prod_stock}',original_price = '{prod_ori_price}',discount_price = '{prod_dis_price}',dimension = '{upd_prod_width}',size = '{prod_size}',image_url1 = '{prod_image1}',image_url2 = '{prod_image2}', image_url3 = '{prod_image3}', where product_id = '{prod_id}'"
+        if(prod_id != None and prod_name !=None and prod_cat_id != None  and prod_ori_price != None and  prod_desc != None):
+            saveProdUpdate_query = f"update product SET product_name = '{prod_name}', category_id = '{prod_cat_id}',stock_quant = '{prod_stock}',original_price = '{prod_ori_price}',discount_price = '{prod_dis_price}',dimension = '{upd_prod_width}',size = '{prod_size_upd}',image_url1 = '{prod_image1}',image_url2 = '{prod_image2}', image_url3 = '{prod_image3}', product_desc='{prod_desc}' where product_id = '{prod_id}'"
             print(saveProdUpdate_query)
             cur.execute(saveProdUpdate_query)
             conn.commit()
-            print("successfully saved")
+            print("successfully updated the product data")
         else:
             print("no field should be empty")
     except Exception as e:
@@ -695,3 +680,4 @@ else:
         print(cur.fetchall()[0][0].decode())
     except Exception as e:
         print(str(e))
+

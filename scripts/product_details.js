@@ -151,7 +151,11 @@ $(document).ready(function () {
             icon: "error",
           });
         } else {
-          alert("something erro")
+          swal({
+            title: "Failed!",
+            text: "sonethings error!",
+            icon: "error",
+          });
         }
 
       },
