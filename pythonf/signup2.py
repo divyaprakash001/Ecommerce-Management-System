@@ -25,6 +25,9 @@ f = cgi.FieldStorage()
 
 # getting the value from signup.js to what to do
 d = f.getvalue("what")
+image1=''
+image2=''
+image3=''
 
 items=[]
 
@@ -512,7 +515,17 @@ elif(d=="fetch_prod_details_conditions"):
                 print(f'<td>{row[5]}</td>')
                 print(f'<td>{row[6]}</td>')
                 print(f'<td>{row[7]}</td>')
-                print(f'<td><a href=''>view</a></td>')
+                print(f'''<td><a id="view">View</a>
+                      <div class="img_card">
+            <div class="image_container">
+                <div class="cut"><i class="fa-solid fa-xmark"></i></div>
+                <img src="{row[8].decode()}" alt="product image1" class="items img1">
+                <img src="{row[9].decode()}" alt="product image2" class="items img2">
+                <img src="{row[10].decode()}" alt="product image3" class="items img3">
+            </div>
+            </div>
+                      </td>''')
+                # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
                 print(f"<td><i class='fa-solid fa-pen-to-square fa-xl edit'  id=\"edit\" ></i></td>")
                 print(f"<td><i class='fa-solid fa-trash-can fa-xl del'></i></td>")
                 print("</tr>")
@@ -549,30 +562,27 @@ elif(d == "fetchForProdUpdate"):
 
 
             if res != []:
-                print("<div style='display:none;'>data fetching successfully</div>")
-                # print(res)
-                print("<span><i class='fa-solid fa-xmark fa-2xl'></i></span>")
-                print(f"<section class='section'>")
-                print(f"<div class='updcard'>")
-                print(f"<span>Update Product Details</span>")
-                print(f"<form>")
-
                 for row in res:
-                    # print(row[8].decode())
+                    print("<div style='display:none;'>data fetching successfully</div>")
+                    # print(res)
+                    # print(f'<div class="form_placeholder">')
+                    print(f"<div class='updcard'>")
+                    print("<div class='cut'><i class='fa-solid fa-xmark fa-xl'></i></div>")
+                    print(f"<div>Update Product Details</div>")
+                    print(f"<form>")
                     print(f"<table class='upd_tab'>")
                     print(f"<tr>")
                     print(f"    <td>")
                     print(f"        <label  for='prod_id'>Product Id*</label>")
                     print(f"        <input type='text' value='{row[0]}'  id='prod_id1' disabled>")
                     print(f"    </td>")
-
                     print(f"    <td>")
                     print(f"        <label  for='prod_name1'>Product Name*</label>")
                     print(f"        <input type='text' id='prod_name1' value='{row[1]}'>")
                     print(f"     </td>")
                     print(f"    <td>")
                     print(f"        <label  for='prod_cat_id'>Category Id</label>")
-                    print(f"        <select id='prod_cat_id'>")
+                    print(f"        <select id='prod_cat_id1'>")
                     print(f"            <option value='{row[2]}'>{row[2]}</option>")
                     print(f"        </select>")
                     print(f"    </td>")
@@ -580,25 +590,25 @@ elif(d == "fetchForProdUpdate"):
                     print(f"<tr>")
                     print(f"    <td>")
                     print(f"        <label  for='prod_stock'>Stock Quantity*</label>")
-                    print(f"        <input type='text' id='stock_size' value='{row[3]}'>")
+                    print(f"        <input type='text' id='stock_size1' value='{row[3]}'>")
                     print(f"    </td>")
                     print(f"    <td>")
                     print(f"        <label  for='prod_ori_price'>Original Price*</label>")
-                    print(f"        <input type='text' name='' id='prod_ori_price' value='{row[4]}'>")
+                    print(f"        <input type='text' name='' id='prod_ori_price1' value='{row[4]}'>")
                     print(f"    </td>")
                     print(f"    <td>")
                     print(f"        <label  for='prod_dis_price'>Discounted Price</label>")
-                    print(f"        <input type='text' name='' id='prod_dis_price' value='{row[5]}'>")
+                    print(f"        <input type='text' name='' id='prod_dis_price1' value='{row[5]}'>")
                     print(f"    </td>")
                     print(f"</tr>")
                     print(f"<tr>")
                     print(f"    <td>")
                     print(f"        <label  for='prod_width'>produt width</label>")
-                    print(f"        <input type='text' name='' class='dimen' id='upd_prod_width' value='{row[6]}'>") 
+                    print(f"        <input type='text' name='' class='dimen' id='upd_prod_width1' value='{row[6]}'>") 
                     print(f"    </td>")
                     print(f"    <td>")
                     print(f"        <label>Product Size</label>")
-                    print(f"        <select name='' id='prod_size_upd'>")
+                    print(f"        <select name='' id='prod_size_upd1'>")
                     print(f"        <option value='{row[7]}' selected >{row[7]}</option>")
                     print(f"        <option value='s'>S</option>")
                     print(f"        <option value='m'>M</option>")
@@ -610,33 +620,30 @@ elif(d == "fetchForProdUpdate"):
                     print(f"    </td>")
                     print(f"    <td>")
                     print(f"        <label  for='prod_desc'>product description</label>")
-                    print(f"        <input type='text' id='prod_desc' value='{row[11]}'>")
+                    print(f"        <input type='text' id='prod_desc1' value='{row[11]}'>")
                     print(f"    </td>")
                     print(f"</tr>")
                     print(f"<tr>")
                     print(f"    <td>")
-                    # print(f"      <label  for='prod_id'>image 1</label>")
                     print(f"        <img src='{row[8].decode()}' class='image' id='image1' > ")
                     print(f"        <input type='file' name='' id='prod_file1' value='{row[8].decode()}'   accept='image/*'>")
                     print(f"    </td>")
                     print(f"    <td>)")
-                    # print(f"<label  for='prod_id'>image 2</label>")
                     print(f"        <img src='{row[9].decode()}' class='image' id='image2'>")
-                    print(f"        <input type='file' name='' id='prod_file2' accept='image/*'>")
+                    print(f"        <input type='file' name='' value='{row[9].decode()}' id='prod_file2' accept='image/*'>")
                     print(f"    </td>")
                     print(f"    <td>")
-                    # print(f"<label  for='prod_id'>image 3</label>")
                     print(f"        <img src='{row[10].decode()}' class='image' id='image3'>")
-                    print(f"        <input type='file' name='' id='prod_file3' value='{row[8].decode()}' accept='image/*'>")
+                    print(f"        <input type='file' name='' id='prod_file3' value='{row[8].decode()}'  accept='image/*'>")
                     print(f"    </td>")
                     print(f"</tr>")
                     print(f"<tr>")
                     print(f"    <td class='btn_td' colspan='3'><button class='sub_btn' id='save'>Save</button> <button type='reset' class='res_btn'>reset</button></td>")
                     print(f"</tr>")
                     print(f"</table>")
-                print(f"</form>")
-                print(f"</div>")
-                print(f"</section>")
+                    print(f"</form>")
+                    # print(f"</div>")
+                    print(f"</div>")
             else:
                 print("no data available")
     except Exception as e:
@@ -645,28 +652,25 @@ elif(d == "fetchForProdUpdate"):
 
 elif(d == "savetheprodupdate"):
     try:
-        prod_id = f.getvalue("prod_id")
-        prod_name = f.getvalue("prod_name")
-        prod_cat_id = f.getvalue("prod_cat_id")
-        prod_stock =f.getvalue("prod_stock")
-        prod_ori_price = f.getvalue("prod_ori_price")
-        prod_dis_price = f.getvalue("prod_dis_price")
-        upd_prod_width = f.getvalue("upd_prod_width")
-        # prod_height = f.getvalue("prod_height")
-        prod_size_upd = f.getvalue("prod_size_upd")
-        prod_image1 = f.getvalue("prod_file1")
-        prod_image2 = f.getvalue("prod_file2")
-        prod_image3 = f.getvalue("prod_file3")
-        prod_desc = f.getvalue("prod_desc")
-        
-        
+        prod_id1 = f.getvalue("prod_id1")
+        prod_name1 = f.getvalue("prod_name1")
+        prod_cat_id1 = f.getvalue("prod_cat_id1")
+        prod_stock1 =f.getvalue("prod_stock1")
+        prod_ori_price1 = f.getvalue("prod_ori_price1")
+        prod_dis_price1 = f.getvalue("prod_dis_price1")
+        upd_prod_width1 = f.getvalue("upd_prod_width1")
+        prod_size_upd1 = f.getvalue("prod_size_upd1")
+        prod_image1 = f.getvalue("prod_file11")
+        prod_image2 = f.getvalue("prod_file21")
+        prod_image3 = f.getvalue("prod_file31")
+        prod_desc1 = f.getvalue("prod_desc1")
 
-        # prod_dimension = f"{prod_width} x {prod_height}"
-        # print(prod_dimension)
+      
         
-        if(prod_id != None and prod_name !=None and prod_cat_id != None  and prod_ori_price != None and  prod_desc != None):
-            saveProdUpdate_query = f"update product SET product_name = '{prod_name}', category_id = '{prod_cat_id}',stock_quant = '{prod_stock}',original_price = '{prod_ori_price}',discount_price = '{prod_dis_price}',dimension = '{upd_prod_width}',size = '{prod_size_upd}',image_url1 = '{prod_image1}',image_url2 = '{prod_image2}', image_url3 = '{prod_image3}', product_desc='{prod_desc}' where product_id = '{prod_id}'"
-            print(saveProdUpdate_query)
+        
+        if(prod_id1 != None and prod_name1 !=None and prod_cat_id1 != None  and prod_ori_price1 != None and  prod_desc1 != None and prod_image1 != None and prod_image2 != None and prod_image3 != None):
+            saveProdUpdate_query = f"update product SET product_name = '{prod_name1}', category_id = '{prod_cat_id1}',stock_quant = '{prod_stock1}',original_price = '{prod_ori_price1}',discount_price = '{prod_dis_price1}',dimension = '{upd_prod_width1}',size = '{prod_size_upd1}', image_url1 = '{prod_image1}',image_url2 = '{prod_image2}',image_url3 = '{prod_image3}' ,product_desc='{prod_desc1}' where product_id = '{prod_id1}'"
+            # print(saveProdUpdate_query)
             cur.execute(saveProdUpdate_query)
             conn.commit()
             print("successfully updated the product data")
