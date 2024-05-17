@@ -106,7 +106,7 @@ elif(d=="fetch_by_id_name"):
                     print("<th>user name</th>")
                     print("<th>user email</th>")
                     print("<th>phone</th>")
-                    print("<th colspan='2'>action</th>")
+                    print("<th colspan='2'>Action</th>")
                     print("</tr>")
                     print("<tr>")
                     print(f'<td>{row[0]}</td>')
@@ -309,7 +309,7 @@ elif(d=="fetch_by_catid_catname"):
         if conditions:
             fetch_cat_query += " WHERE " + " AND ".join(conditions)
        
-        print(fetch_cat_query)
+        # print(fetch_cat_query)
 
         # print(fetch_cat_query)
         cur.execute(fetch_cat_query)
@@ -321,7 +321,7 @@ elif(d=="fetch_by_catid_catname"):
             print("<th>Product Category Id</th>")
             print("<th>Product Category Name</th>")
             print("<th>Product Category Desc</th>")
-            print("<th colspan='2' style='text-align:center;'>action</th>")
+            print("<th colspan='2' style='text-align:center;'>Action</th>")
             print("</tr>")
             for row in srr:
                 # print(row)
@@ -366,15 +366,20 @@ elif(d == "fetchForcatUpdate"):
             if res != []:
                 print("<div style='display:none;'>data fetching successfully</div>")
                 # print(res)
-                print("<span><i class='fa-solid fa-xmark fa-2xl'></i></span>")
+                print(f"<div class='updcard'>")
+                print(f"<div class='cut'><i class='fa-solid fa-xmark fa-xl'></i></div>")
+                print(f"<div>Update Product Category</div>")
                 print("<form class='catupform'>")
                 for row in res:
                     print(f"<label for='pcid'>Product Category Id </label><input id='pcid' type='text' value='{row[0]}' disabled><br>")
                     print(f"<label for='pcname'>Product Category Name </label><input id='pcname' type='text' value='{row[1]}'><br>")
                     print(f"<label for='pcdesc'>Product Category Desc </label><input id='pcdesc' type='text' value='{row[2]}'><br>")
-                    print(f"<input id='save' type='button' value='save'><br>")  
+                    print(f"<input class='save' type='button' value='save'><br>")  
               
                 print("</form>")
+                print("</div>")
+                print("</div>")
+
             else:
                 print("no data available")
     except Exception as e:
@@ -515,7 +520,7 @@ elif(d=="fetch_prod_details_conditions"):
                 print(f'<td>{row[5]}</td>')
                 print(f'<td>{row[6]}</td>')
                 print(f'<td>{row[7]}</td>')
-                print(f'''<td><a id="view">View</a>
+                print(f'''<td><a class="view">View</a>
                       <div class="img_card">
             <div class="image_container">
                 <div class="cut"><i class="fa-solid fa-xmark"></i></div>
@@ -526,7 +531,7 @@ elif(d=="fetch_prod_details_conditions"):
             </div>
                       </td>''')
                 # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
-                print(f"<td><i class='fa-solid fa-pen-to-square fa-xl edit'  id=\"edit\" ></i></td>")
+                print(f"<td><i class='fa-solid fa-pen-to-square fa-xl edit'  class=\"edit\" ></i></td>")
                 print(f"<td><i class='fa-solid fa-trash-can fa-xl del'></i></td>")
                 print("</tr>")
             print("</table>")
@@ -609,6 +614,7 @@ elif(d == "fetchForProdUpdate"):
                     print(f"    <td>")
                     print(f"        <label>Product Size</label>")
                     print(f"        <select name='' id='prod_size_upd1'>")
+                    print(f"        <option value=''>---Select size---</option>")
                     print(f"        <option value='{row[7]}' selected >{row[7]}</option>")
                     print(f"        <option value='s'>S</option>")
                     print(f"        <option value='m'>M</option>")
@@ -638,7 +644,7 @@ elif(d == "fetchForProdUpdate"):
                     print(f"    </td>")
                     print(f"</tr>")
                     print(f"<tr>")
-                    print(f"    <td class='btn_td' colspan='3'><button class='sub_btn' id='save'>Save</button> <button type='reset' class='res_btn'>reset</button></td>")
+                    print(f"    <td class='btn_td' colspan='3'><button class='sub_btn save'>Save</button> <button type='reset' class='res_btn'>reset</button></td>")
                     print(f"</tr>")
                     print(f"</table>")
                     print(f"</form>")

@@ -56,8 +56,6 @@ $(document).ready(function () {
         // alert(data)
 
         if (data.includes("please select one field")) {
-          // $(".msg").text("please select atleast one field")
-          // $(".msg").css({ "color": "red" , "display":"block"})
           $('.below_card').css({ "display": "none" })
           swal({
             title: "Failed!",
@@ -69,8 +67,6 @@ $(document).ready(function () {
           $('.below_card').css({ "display": "block" })
           $('.table_container').html(data)
         } else if (data.includes("no data available")) {
-          // $(".msg").text("no data available")
-          // $(".msg").css({ "color": "red", "display":"block" })
           $('.below_card').css({ "display": "none" })
           swal({
             title: "Failed!",
@@ -136,18 +132,18 @@ $(document).ready(function () {
             success: function (data) {
               console.log(data);
               if (data.includes("data fetching successfully")) {
-                $("#table_container").css({ "display": "none" })
-                $("#myform").css({ "display": "none" })
-                $(".form_placeholder").css({ "display": "block" })
+                // $("#table_container").css({ "display": "none" })
+                // $("#myform").css({ "display": "none" })
+                $(".form_placeholder").css({ "scale": "1" })
                 $(".form_placeholder").html(data)
               }
 
               $(".form_placeholder .fa-xmark").on("click",function(){
-                  $(".form_placeholder").css({"display":"none"});
+                $(".form_placeholder").css({ "scale": "0" })
               })
 
               // code for saving the updated the data when use click on update button
-              $("#save").on("click", function () {
+              $(".save").on("click", function () {
                 d = "savethecatupdate"
                 pcid = $("#pcid").val();
                 pcname = $("#pcname").val();
@@ -172,7 +168,7 @@ $(document).ready(function () {
                         text: "Data updated successfully",
                         icon: "success",
                       });
-                      $('.form_placeholder').css({ "display": "none" })
+                      $(".form_placeholder").css({ "scale": "0" })
                     } else {
                       swal({
                         title: "Failed!",

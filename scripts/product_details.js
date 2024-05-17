@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
-  $('input[type="text"]').click(function () {
+  $('input[type="text"]').focus(function () {
     $(this).siblings('.lab').css({ 'top': '-.4rem' })
   });
-  $('textarea').click(function () {
+  $('textarea').focus(function () {
     $(this).siblings('.lab').css({ 'top': '-.5rem' })
   });
 

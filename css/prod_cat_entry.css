@@ -13,34 +13,53 @@ html {
     font-size: 1.5rem;
     /* border: 1px solid red; */
     margin: 5rem auto;
-    padding: 2rem;
+    padding: 2.5rem;
     position: relative;
+    background-color: aliceblue;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .card>span {
     font-size: 2rem;
     font-weight: 600;
-    margin-left: 3.3rem;
     margin-bottom: 3rem;
+    border-radius: .5rem;
+    background-color: #043b8d;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
-.search_btn, .add_btn {
-    
-    background-color: #0D6EFD;
-    width: 8rem;
+.card>span>h2 {
+    display: inline-block;
+    font-size: 2.5rem;
+}
+
+.search_btn,
+.add_btn {
+
+    background-color: #F9EDED;
+    width: 12rem;
     height: 3.5rem;
     float: right;
-    margin-right: 40px;
+    /* margin-right: 40px; */
     /* border: .2rem solid #0D6EFD; */
     border-radius: .8rem;
-    color: #ffffff;
+    color: #043b8d;
     font-weight: 600;
     transition: .2s;
     outline: none;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
-.search_btn:hover{
-    background-color: #043b8d;
+.search_btn:hover {
+    background-color: white;
+    box-shadow: 0px 0px 3px 3px white;
+    color: #043b8d;
 }
 
 .form_container {
@@ -75,7 +94,7 @@ input[type='text']:focus {
     outline: none;
     border: 1px solid #0D6EFD;
     /* box-shadow: rgba(194, 102, 102, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px; */
-    box-shadow: 0px 0px 3px 3px #0D6EFD
+    box-shadow: 0px 0px 3px 3px #043b8d;
 }
 
 
@@ -84,8 +103,9 @@ input[type='text']:focus {
     margin: 3rem auto;
 }
 
-.sub_btn, .res_btn {
-    background-color: #0D6EFD;
+.sub_btn,
+.res_btn {
+    background-color: #043b8d;
     color: white;
     padding: .5rem 1.8rem;
     border-radius: .5rem;
@@ -97,7 +117,8 @@ input[type='text']:focus {
 }
 
 .sub_btn:hover {
-    background-color: #043b8d;
+    /* background-color: #043b8d; */
+    box-shadow: 0px 0px 3px 3px white;
 }
 
 .res_btn:hover {

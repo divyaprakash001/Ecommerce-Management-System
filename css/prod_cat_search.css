@@ -8,76 +8,64 @@ html {
     font-size: 10px;
 }
 
-
-
 .card {
     font-size: 1.5rem;
     margin: 5rem auto;
-    padding: 2rem;
+    padding: 2.5rem;
     position: relative;
     padding-top: 4rem;
-    padding-bottom: 0;
+    padding-bottom: 4rem;
+    /* padding-bottom: 0; */
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    background-color: aliceblue;
 }
 
-.upper_card {
-    background-color: beige;
-}
 
 .card>span {
     font-size: 2rem;
     font-weight: 600;
-    /* margin-bottom: 1rem; */
-    padding: 1rem 0;
-    background-color: #0D6EFD;
+    margin-bottom: 3rem;
+    border-radius: .5rem;
+    background-color: #043b8d;
     color: white;
-    padding-left: 1.8rem;
-    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
-.below_card {
-    font-size: 1.5rem;
-    margin: 5rem auto;
-    padding: 2rem;
-    position: relative;
-    padding-top: 4rem;
-    padding-bottom: 5rem;
-    display: none;
+.card>span>h2 {
+    display: inline-block;
+    /* font-weight: 00; */
+    font-size: 2.5rem;
 }
 
-
-
-.below_card>#below_span {
-    font-size: 2rem;
-    font-weight: 600;
-    /* margin-bottom: 1rem; */
-    width: 100%;
-    padding: 1rem 0;
-    background-color: #0D6EFD;
-    color: white;
-    margin-bottom: 2rem;
-    padding-left: 1.8rem;
-    border-radius: 1rem;
-}
-
-.below_card th,
-.below_card td {
-    padding-left: 1rem;
-}
-
-.search_btn,
 .add_btn {
-    background-color: white;
-    width: 8rem;
+    background-color: #F9EDED;
+    width: 12rem;
     height: 3.5rem;
     float: right;
-    margin-right: 40px;
-    border: .2rem solid #0D6EFD;
     border-radius: .8rem;
-    color: #0D6EFD;
+    color: #043b8d;
     font-weight: 600;
     transition: .2s;
+    outline: none;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
+.add_btn:hover {
+    background-color: white;
+    box-shadow: 0px 0px 3px 3px white;
+    color: #043b8d;
+}
+
+.form_container {
+    width: 90%;
+    margin: -4rem auto;
+    margin-right: .5rem;
+}
 
 
 .search_tab {
@@ -109,10 +97,9 @@ label {
     margin-right: 1rem;
 }
 
-input[type='text'],
-select {
-    /* width: 100%; */
-    height: 4rem;
+.search_tab [type='text'],
+.search_tab select {
+    height: 4.5rem;
     margin: 0 auto;
     border-radius: .5rem;
     border: .01rem solid gray;
@@ -122,41 +109,19 @@ select {
 }
 
 
+
 input[type='text']:focus,
 select:focus {
     outline: none;
-    /* border: 1px solid #0D6EFD; */
-    /* box-shadow: rgba(194, 102, 102, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px; */
-    box-shadow: 0px 0px 3px 3px #0D6EFD
-}
-
-
-
-
-
-label {
-    margin-bottom: .6rem;
-    margin-right: 1rem;
-}
-
-input[type='text'],
-select {
-    /* width: 100%; */
-    height: 3rem;
-    margin: 0 auto;
-    border-radius: .5rem;
-    border: .01rem solid gray;
-    padding-left: 1rem;
-    margin-right: 1.5rem;
+    box-shadow: 0px 0px 3px 3px white;
 }
 
 
 input[type='text']:focus,
 select:focus {
     outline: none;
-    border: 1px solid #0D6EFD;
-    /* box-shadow: rgba(194, 102, 102, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px; */
-    box-shadow: 0px 0px 3px 3px #0D6EFD
+    border: 1px solid #043b8d;
+    box-shadow: 0px 0px 3px 3px #043b8d
 }
 
 
@@ -169,12 +134,13 @@ select:focus {
 }
 
 .sub_btn,
-#save {
-    background-color: #0D6EFD;
+.save {
+    background-color: #043b8d;
     color: white;
-    padding: .5rem 1.8rem;
+    padding: .7rem 2rem;
     border-radius: .5rem;
     border: none;
+    font-size: 2rem;
 }
 
 .res_btn {
@@ -183,45 +149,79 @@ select:focus {
 
 .sub_btn:hover,
 #save:hover {
-    background-color: #043b8d;
+    /* background-color: white; */
+    box-shadow: 0px 0px 3px 3px white;
+    /* color: #043b8d; */
 }
 
 .res_btn:hover {
     background-color: rgb(154, 6, 6);
 }
 
-.tab {
-    width: 90%;
-    margin: 0 auto;
+
+
+/* styling below card */
+
+.below_card {
+    font-size: 1.5rem;
+    margin: 5rem auto;
+    padding: 2rem;
+    position: relative;
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+    display: none;
 }
+
+
+
+.below_card>#below_span {
+    /* font-size: 2rem; */
+    font-weight: 600;
+    /* margin-bottom: 1rem; */
+    width: 100%;
+    padding: .6rem 0;
+    background-color: #043b8d;
+    color: white;
+    margin-bottom: 2rem;
+    padding-left: 1.8rem;
+    border-radius: 1rem;
+}
+
+.card>#below_span>h2 {
+    display: inline-block;
+    /* font-weight: 00; */
+    font-size: 2.5rem;
+}
+
+
+.tab {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 4rem;
+} 
+
+.below_card th,
+.below_card td {
+    padding-left: 1rem;
+}
+
+
 
 .tab,
 .tab th,
 .tab td {
     border: 1px solid black;
-}
-
-
-.msg {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.form_placeholder {
-    width: 30%;
     background-color: white;
-    /* border: 2px solid red; */
-    display: none;
-    position: absolute;
-    top: 20%;
-    left: 30%;
-    z-index: 999;
-    padding: 4rem;
-    border-radius: 1rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+.tab td, .tab th {
+    height: 4rem;
+}
+
+.tab td .fa-pen-to-square {
+    background-color: greenyellow;
+}
+
 
 .catupform {
     font-size: 1.5rem;
@@ -231,12 +231,95 @@ select:focus {
     margin-bottom: 1rem;
 }
 
-#save {
+.save {
     margin-top: 1rem;
 }
 
-.form_placeholder .fa-xmark {
+
+
+.form_placeholder {
+    position: fixed;
+    z-index: 999999999;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    overflow-x: scroll;
+    scale: 0;
+    /* display: none; */
+    transition: 0.45s;
+    background-color: rgba(0, 0, 0, 0.573);
+    font-size: 1.5rem;
+}
+
+.updcard {
+    position: relative;
+    width: 50%;
+    z-index: 99999999;
+    padding-top: 5rem;
+    padding: 5rem;
+    /* background-color: rgb(86, 83, 83); */
+    background-color: aliceblue;
+    box-shadow: rgba(189, 189, 189, 0.09) 0px 2px 1px, rgba(149, 148, 148, 0.09) 0px 4px 2px, rgba(211, 211, 211, 0.09) 0px 8px 4px,
+        rgba(252, 252, 252, 0.09) 0px 16px 8px, rgba(250, 241, 241, 0.09) 0px 32px 16px;
+    /* background-color: red; */
+    /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+    border-radius: .5rem;
+}
+
+.updcard>div {
+    width: 100%;
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    background-color: #043b8d;
+    color: white;
+    padding-left: 1.8rem;
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+}
+
+.form_placeholder .updcard .cut {
     position: absolute;
-    right: 10%;
-    top: 10%;
+    /* border: 2px solid white; */
+    height: 3rem;
+    top: 0;
+    width: 4rem;
+    right: 1.5rem;
+    text-align: center;
+    background-color: blue;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+input[type='text'] {
+    width: 100%;
+    height: 3.5rem;
+    margin: 0 auto;
+    border-radius: .5rem;
+    border: .01rem solid gray;
+    padding-left: 1rem;
+}
+
+
+input[type='text']:focus {
+    outline: none;
+    border: 1px solid #0D6EFD;
+    /* box-shadow: rgba(194, 102, 102, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px; */
+    box-shadow: 0px 0px 3px 3px #043b8d;
+}
+
+
+.btn_group {
+    /* width: 90%; */
+    margin: 3rem auto;
 }

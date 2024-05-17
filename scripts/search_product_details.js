@@ -93,7 +93,7 @@ $(document).ready(function () {
         // ------------------------------
 
           // action perform on clicking of view button
-          $('#view').click(function () {
+          $('.view').click(function () {
             $(this).siblings('.img_card').css({ 'scale': '1' }) 
           })
           $('.cut').click(function () {
@@ -148,10 +148,10 @@ $(document).ready(function () {
             });
         });
 
-        $("#edit").on("click", function () {
+        $(".edit").on("click", function () {
           d = "fetchForProdUpdate"
           let pid = $(this).closest('tr').children('td:first-child').text();
-          
+          // alert(pid)
           $.ajax({
             method: 'post',
             url: 'pythonf/signup2.py',
@@ -163,7 +163,6 @@ $(document).ready(function () {
               // alert("hello")
               console.log(data);
               if (data.includes("data fetching successfully")) {
-                // $(this).siblings('.form_placeholder').css({ 'scale': '1' })
                 $('.form_placeholder').css({ 'scale': '1' })
                 $(".form_placeholder").html(data)
 
@@ -226,7 +225,7 @@ $(document).ready(function () {
 
 
                 // code for saving the updated the data when use click on update button
-                $("#save").on("click", function (e) {
+                $(".save").on("click", function (e) {
                   e.preventDefault();
                   d = "savetheprodupdate"
 
@@ -280,6 +279,7 @@ $(document).ready(function () {
                           icon: "success",
                         });
                         $('.form_placeholder').css({ "scale": "0" })
+                        // $(this).siblings('.updcard').css({ 'scale': '0' })
                       } else if(data.includes("no field should be empty")) {
                         swal({
                           title: "Failed!",

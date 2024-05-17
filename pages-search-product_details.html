@@ -35,8 +35,6 @@
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/prod_details_search.css">
-  <link rel="stylesheet" href="css/prod_details_update.css">
-  <!-- <link rel="stylesheet" href="css/prod_details.css"> -->
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -407,8 +405,9 @@
 
     <section class="section">
       <div class="card upper_card">
-        <span>Search Product Details</span>
-        <input type="button" class="add_btn" value="add">
+        <span><h2>Search Product Details</h2>
+          <input type="button" class="add_btn" value="add">
+        </span>
         <form action="">
           <table class="search_tab">
             <tr>
@@ -461,7 +460,7 @@
               <td colspan="2">
                 <span class="btn_group">
                   <input class="search_sub_btn" id="search_btn" type="button" value="Search">
-                  <input id="refresh" class="search_sub_btn res_btn" type="button" value="Refresh">
+                  <input id="refresh" class="search_sub_btn res_btn" type="reset" value="Refresh">
                 </span>
               </td>
             </tr>
@@ -492,7 +491,9 @@
     </section>
 
  
-<div class="form_placeholder"></div>
+<div class="form_placeholder">
+
+</div>
 
 
   </main><!-- End #main -->

@@ -9,51 +9,63 @@ html {
 }
 
 .card {
+    /* width: 60%; */
     font-size: 1.5rem;
+    /* border: 1px solid red; */
     margin: 5rem auto;
-    padding: 2rem;
+    padding: 2.5rem;
     position: relative;
-    padding-top:4rem;
-    padding-bottom: 0;
+    background-color: aliceblue;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
-.upper_card{
-    background-color: aliceblue;
-}
 
 .card>span {
     font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 1rem;
-    padding: 1rem 0;
-    background-color: #0D6EFD;
+    margin-bottom: 3rem;
+    border-radius: .5rem;
+    background-color: #043b8d;
     color: white;
-    padding-left: 1.8rem;
-    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
+
+
+.card>span>h2 {
+    display: inline-block;
+    font-size: 2.5rem;
+}
+
 
 .search_btn,
 .add_btn {
-    background-color: white;
-    width: 8rem;
+
+    background-color: #F9EDED;
+    width: 12rem;
     height: 3.5rem;
-    position: absolute;
-    top: 11%;
-    right: 5rem;
-    border: .2rem solid #0D6EFD;
+    float: right;
+    /* margin-right: 40px; */
+    /* border: .2rem solid #0D6EFD; */
     border-radius: .8rem;
-    color: #0D6EFD;
+    color: #043b8d;
     font-weight: 600;
     transition: .2s;
+    outline: none;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
-.search_btn:hover{
-    box-shadow: 0px 0px 3px 3px white
+.add_btn:hover {
+    background-color: white;
+    box-shadow: 0px 0px 3px 3px white;
+    color: #043b8d;
 }
 
-.add_btn:hover{
-    box-shadow: 0px 0px 3px 3px white
-}
+
 
 .form_container {
     margin: 0 3.5rem;
@@ -120,10 +132,11 @@ select:focus {
 
 .btn_group>.sub_btn {
     margin-right: .8rem;
+    background-color: #043b8d;
 }
 
 .search_sub_btn {
-    background-color: #0D6EFD;
+    background-color: #043b8d;
     color: white;
     padding: .5rem 1.8rem;
     border-radius: .5rem;
@@ -207,7 +220,7 @@ select:focus {
     margin-bottom: 1rem;
 }
 
-#save {
+.save {
     margin-top: 1rem;
 }
 
@@ -249,6 +262,7 @@ select:focus {
     height: 90%;
     display: flex;
     justify-content: center;
+    /* overflow-x: scroll; */
     align-items: center;
     padding-top:5rem;
     padding: 5rem;
@@ -260,7 +274,7 @@ select:focus {
 
 .items{
     border: 2px solid black;
-    width: 40%;
+    width: 30%;
     height: 400px;
     margin: 0 auto;
     height: 300px;
@@ -270,7 +284,7 @@ select:focus {
     /* margin-bottom: 10px; */
 }
 
-#view{
+.view{
     cursor: pointer;
 }
 
@@ -288,3 +302,210 @@ select:focus {
   
   }
   
+
+
+  /* styling for update page pop page */
+  html {
+    font-size: 10px;
+}
+
+.fa-pen-to-square,
+fa-trash-can {
+    cursor: pointer;
+}
+
+.form_placeholder {
+    position: fixed;
+    z-index: 999999999;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    overflow-x: scroll;
+    scale: 0;
+    /* display: none; */
+    transition: 0.45s;
+    background-color: rgba(0, 0, 0, 0.573);
+    font-size: 1.5rem;
+}
+
+.updcard {
+    position: relative;
+    width: 90%;
+    z-index: 99999999;
+    padding-top: 5rem;
+    padding: 5rem;
+    /* background-color: rgb(86, 83, 83); */
+    background-color: aliceblue;
+    box-shadow: rgba(189, 189, 189, 0.09) 0px 2px 1px, rgba(149, 148, 148, 0.09) 0px 4px 2px, rgba(211, 211, 211, 0.09) 0px 8px 4px,
+        rgba(252, 252, 252, 0.09) 0px 16px 8px, rgba(250, 241, 241, 0.09) 0px 32px 16px;
+    /* background-color: red; */
+
+}
+
+.updcard>div {
+    width: 100%;
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    background-color: #0D6EFD;
+    color: white;
+    padding-left: 1.8rem;
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+}
+
+.form_placeholder .updcard .cut {
+    position: absolute;
+    border: 2px solid white;
+    height: 3rem;
+    top: 0;
+    width: 4rem;
+    right: 1.5rem;
+    text-align: center;
+    background-color: blue;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
+
+
+
+/* styling table coming from python file */
+.upd_tab {
+    width: 100%;
+    height: 40%;
+    margin: 3rem auto;
+    border-collapse: collapse;
+}
+
+.upd_tab td {
+    position: relative;
+    height: 9rem;
+    width: 25%;
+}
+
+.upd_tab td .lab {
+    position: absolute;
+    top: 3.2rem;
+    font-size: 1.5rem;
+    left: 1.1rem;
+    transition: .5s;
+    z-index: 999;
+}
+
+.upd_tab td .upd_prod_height {
+    position: absolute;
+    top: 3.2rem;
+    font-size: 1.5rem;
+    left: 50%;
+    transition: .5s;
+    z-index: 999;
+}
+
+.upd_tab td input[type='text'],
+.upd_tab td select {
+    width: 90%;
+    height: 4rem;
+    padding-left: 1rem;
+    border-radius: 1rem;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.upd_tab td input[type='file'] {
+    top: 15%;
+    width: 90%;
+    height: 4rem;
+    padding-left: 1rem;
+    padding-top: .5rem;
+    border-radius: 1rem;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.upd_tab td textarea {
+    position: absolute;
+    top: 28%;
+    width: 90%;
+    height: 4rem;
+    padding-left: 1rem;
+    padding-top: .5rem;
+    border-radius: 1rem;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.upd_tab td .btn_td {
+    text-align: center;
+}
+
+.upd_tab td .btn_grp {
+    border: 1px solid rebeccapurple;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.upd_tab td .sub_btn {
+    background-color: #0D6EFD;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    margin-left: -1rem;
+}
+
+.upd_tab td .res_btn {
+    background-color: red;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+}
+
+
+.upd_tab td .upd_tab tr:nth-child(4) {
+    height: 25rem;
+}
+
+.upd_tab td .image {
+    width: 90%;
+    height: 20rem;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.upd_tab td input[type='file'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 200px;
+    opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
