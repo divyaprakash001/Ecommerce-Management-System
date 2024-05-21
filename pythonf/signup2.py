@@ -531,8 +531,8 @@ elif(d=="fetch_prod_details_conditions"):
             </div>
                       </td>''')
                 # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
-                print(f"<td><i class='fa-solid fa-pen-to-square fa-xl edit'  class=\"edit\" ></i></td>")
-                print(f"<td><i class='fa-solid fa-trash-can fa-xl del'></i></td>")
+                print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
+                print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")
                 print("</tr>")
             print("</table>")
             print("<p style='display:none;'>product details fetched successfully</p>")
@@ -684,10 +684,407 @@ elif(d == "savetheprodupdate"):
             print("no field should be empty")
     except Exception as e:
         print(e)
-else:
-    try:
-        cur.execute('select image_url1 from product order by product_id limit 1')
-        print(cur.fetchall()[0][0].decode())
-    except Exception as e:
-        print(str(e))
 
+elif(d == "insert_order"):
+    try:
+        order_id = f.getvalue("order_id")
+        user_id = f.getvalue("user_id")
+        order_date = f.getvalue("order_date")
+        shipping_addr = f.getvalue("shipping_addr")
+
+        if( order_id != None and user_id != None and order_date != None
+        and shipping_addr != None):
+            cur.execute(f'select * from order_info where order_id="{order_id}"')
+            if cur.fetchall()==[]:
+                order_insert_query = f"insert into order_info (order_id,user_id,order_date,shipping_addr) values('{order_id}','{user_id}','{order_date}','{shipping_addr}')"
+                print(order_insert_query)
+                cur.execute(order_insert_query)
+                conn.commit()
+                print("order inserted successfully")
+            else:
+                print("order already exists")
+        else:
+            print("one of the field is empty")
+    except Exception as e:
+        print(e)
+
+# code for fetching product cat id into option from database   
+elif (d=="fetchorderid"):
+    try:
+        cur.execute("select distinct order_id from order_info")
+        res = cur.fetchall()
+        # lst = set()
+        if res != []:
+            #  print('<option value="">-- Select Order Id --</option>')
+            for row in res:
+                print(f"<option value='{row[0]}'>{row[0]}</option>")
+        else:
+            print()
+    except Exception as e:
+        print("some error",e)
+
+# fetching data on click of search button or searching data
+elif(d=="fetch_order_details_conditions"):
+    # print(d)
+    try:
+        order_id = f.getvalue("order_id")
+        user_id = f.getvalue("user_id")
+        order_date = f.getvalue("order_date")
+        
+
+        # Construct conditions for the SQL query
+        conditions = []
+        if order_id != None:
+            conditions.append(f"order_id = '{order_id}'")
+        if user_id is not None:
+            conditions.append(f"user_id = '{user_id}'")
+        if order_date is not None:
+            conditions.append(f"order_date = '{order_date}'")
+        
+        # Construct the SQL query
+        fetch_order_query = "SELECT * FROM order_info"
+        if conditions:
+            fetch_order_query += " WHERE " + " AND ".join(conditions)
+       
+        # print(fetch_order_query)
+
+
+        cur.execute(fetch_order_query)
+        srr = cur.fetchall()
+        if srr != []:
+            # print("<br>yes")
+            print("<table class='tab'>")
+            print("<tr>")
+            print("<th>Order Id</th>")
+            print("<th>User Id</th>")
+            print("<th>Order Date</th>")
+            print("<th>Stock</th>")
+            # print("<th>Size</th>")
+            print("<th colspan='2' style='text-align:center;'>action</th>")
+            print("</tr>")
+            for row in srr:
+                # print(row)
+                print("<tr>")
+                print(f'<td>{row[0]}</td>')
+                print(f'<td>{row[1]}</td>')
+                print(f'<td>{row[2]}</td>')
+                print(f'<td>{row[3]}</td>')
+                # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
+                print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
+                print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")
+                print("</tr>")
+            print("</table>")
+            print("<p style='display:none;'>product details fetched successfully</p>")
+        else:
+            # print("no")
+            print("no data available")
+    except Exception as e:
+        print(e)
+
+elif(d == "deleteorder"):
+    try:
+        order_id = f.getvalue("order_id")
+        # print(prod_id + " have gotten")
+        delete_order_query = f"delete from order_info where order_id = '{order_id}'"
+        # print(delete_prod_query)
+        cur.execute(delete_order_query)
+        conn.commit()
+        print("data deleted successfully")
+    except Exception as e:
+        print(e)
+
+elif(d == "fetchForOrderUpdate"):
+    # print(d)
+    try:
+        order_id = f.getvalue("order_id")
+        if(order_id != None):
+            fetch_query_order_one = f"select * from order_info where order_id='{order_id}'"
+            cur.execute(fetch_query_order_one)
+            res = cur.fetchall()
+
+            if res != []:
+                for row in res:
+                    print("<div style='display:none;'>data fetching successfully</div>")
+                    # print(res)
+                    # print(f'<div class="form_placeholder">')
+                    print(f"<div class='updcard'>")
+                    print("<div class='cut'><i class='fa-solid fa-xmark fa-xl'></i></div>")
+                    print(f"<div>Update Product Details</div>")
+                    print(f"<form>")
+                    print(f"<table class='upd_tab'>")
+                    print(f"<tr>")
+                    print(f"    <td>")
+                    print(f"        <label  for='order_id1'>Order Id*</label>")
+                    print(f"        <input type='text' value='{row[0]}'  id='order_id1' disabled>")
+                    print(f"    </td>")
+                    print(f"    <td>")
+                    print(f"        <label  for='user_id1'>User Id*</label>")
+                    print(f"        <input type='text' id='user_id1' value='{row[1]}'>")
+                    print(f"     </td>")
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"     <td>")
+                    print(f"        <label  for='order_date1'>Order Date*</label>")
+                    print(f"        <input type='date' id='order_date1' value='{row[2]}'>")
+                    print(f"    </td>")
+                    print(f"     <td>")
+                    # print(f"        <label class='lab ship_lab'  for='shipping_addr1'>Order Date*</label>")
+                    print(f"        <textarea id='shipping_addr1' value='{row[3]}'>{row[3]}</textarea>")
+                    print(f"    </td>")
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"    <td class='btn_td' colspan='3'><button class='sub_btn save'>Save</button> <button type='reset' class='res_btn'>reset</button></td>")
+                    print(f"</tr>")
+                    print(f"</table>")
+                    print(f"</form>")
+                    # print(f"</div>")
+                    print(f"</div>")
+            else:
+                print("no data available")
+    except Exception as e:
+        print(e)
+
+
+elif(d == "saveorderupdate"):
+    try:
+        order_id1 = f.getvalue("order_id1")
+        user_id1 = f.getvalue("user_id1")
+        order_date1 = f.getvalue("order_date1")
+        shipping_addr1 =f.getvalue("shipping_addr1")
+
+      
+        
+        
+        if(order_id1 != None and user_id1 !=None and order_date1 != None  and shipping_addr1 != None):
+            saveOrderUpdate_query = f"update order_info SET user_id = '{user_id1}', order_date = '{order_date1}',shipping_addr = '{shipping_addr1}' where order_id = '{order_id1}'"
+            # print(saveProdUpdate_query)
+            cur.execute(saveOrderUpdate_query)
+            conn.commit()
+            print("successfully updated the order data")
+        else:
+            print("no field should be empty")
+        
+        # cur.execute(f"select * from order_info where order_id='{order_id1}'")
+    except Exception as e:
+        print(e)
+
+
+elif (d=="fetchproductprice"):
+    try:
+        prod_id= f.getvalue("prod_id")
+        cur.execute(f"select distinct discount_price from product where product_id='{prod_id}'")
+        res = cur.fetchall()
+        # lst = set()
+        if res != []:
+            #  print('<option value="">-- Select Order Id --</option>')
+            for row in res:
+                print(row[0])
+        else:
+            print()
+    except Exception as e:
+        print("some error",e)
+
+
+elif (d=="fetchproductid"):
+    try:
+        prod_id= f.getvalue("prod_id")
+        cur.execute(f"select distinct product_id from product where product_id='{prod_id}'")
+        res = cur.fetchall()
+        # lst = set()
+        if res != []:
+            #  print('<option value="">-- Select Order Id --</option>')
+            for row in res:
+                print(row[0])
+            print("productid exist")
+        else:
+            print("no product id available")
+    except Exception as e:
+        print("some error",e)
+
+# insert order full details
+
+elif(d == "insert_final_order"):
+    try:
+        order_id = f.getvalue("order_id")
+        user_id = f.getvalue("user_id")
+        order_date = f.getvalue("order_date")
+        shipping_addr = f.getvalue("shipping_addr")
+
+        if( order_id != None and user_id != None and order_date != None
+        and shipping_addr != None):
+            cur.execute(f'select * from order_info where order_id="{order_id}"')
+            if cur.fetchall()==[]:
+                order_insert_query = f"insert into order_info (order_id,user_id,order_date,shipping_addr) values('{order_id}','{user_id}','{order_date}','{shipping_addr}')"
+                print(order_insert_query)
+                cur.execute(order_insert_query)
+                conn.commit()
+                print("order inserted successfully")
+            else:
+                print("order already exists")
+        else:
+            print("one of the field is empty")
+    except Exception as e:
+        print(e)
+
+
+# fetching data on click of search button or searching data
+elif(d=="fetch_order_details_conditions"):
+    # print(d)
+    try:
+        order_id = f.getvalue("order_id")
+        user_id = f.getvalue("user_id")
+        order_date = f.getvalue("order_date")
+        
+
+        # Construct conditions for the SQL query
+        conditions = []
+        if order_id != None:
+            conditions.append(f"order_id = '{order_id}'")
+        if user_id is not None:
+            conditions.append(f"user_id = '{user_id}'")
+        if order_date is not None:
+            conditions.append(f"order_date = '{order_date}'")
+        
+        # Construct the SQL query
+        fetch_order_query = "SELECT * FROM order_info"
+        if conditions:
+            fetch_order_query += " WHERE " + " AND ".join(conditions)
+       
+        # print(fetch_order_query)
+
+
+        cur.execute(fetch_order_query)
+        srr = cur.fetchall()
+        if srr != []:
+            # print("<br>yes")
+            print("<table class='tab'>")
+            print("<tr>")
+            print("<th>Order Id</th>")
+            print("<th>User Id</th>")
+            print("<th>Order Date</th>")
+            print("<th>Stock</th>")
+            # print("<th>Size</th>")
+            print("<th colspan='2' style='text-align:center;'>action</th>")
+            print("</tr>")
+            for row in srr:
+                # print(row)
+                print("<tr>")
+                print(f'<td>{row[0]}</td>')
+                print(f'<td>{row[1]}</td>')
+                print(f'<td>{row[2]}</td>')
+                print(f'<td>{row[3]}</td>')
+                # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
+                print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
+                print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")
+                print("</tr>")
+            print("</table>")
+            print("<p style='display:none;'>product details fetched successfully</p>")
+        else:
+            # print("no")
+            print("no data available")
+    except Exception as e:
+        print(e)
+
+elif(d == "deleteorder"):
+    try:
+        order_id = f.getvalue("order_id")
+        # print(prod_id + " have gotten")
+        delete_order_query = f"delete from order_info where order_id = '{order_id}'"
+        # print(delete_prod_query)
+        cur.execute(delete_order_query)
+        conn.commit()
+        print("data deleted successfully")
+    except Exception as e:
+        print(e)
+
+elif(d == "fetchForOrderUpdate"):
+    # print(d)
+    try:
+        order_id = f.getvalue("order_id")
+        if(order_id != None):
+            fetch_query_order_one = f"select * from order_info where order_id='{order_id}'"
+            cur.execute(fetch_query_order_one)
+            res = cur.fetchall()
+
+            if res != []:
+                for row in res:
+                    print("<div style='display:none;'>data fetching successfully</div>")
+                    # print(res)
+                    # print(f'<div class="form_placeholder">')
+                    print(f"<div class='updcard'>")
+                    print("<div class='cut'><i class='fa-solid fa-xmark fa-xl'></i></div>")
+                    print(f"<div>Update Product Details</div>")
+                    print(f"<form>")
+                    print(f"<table class='upd_tab'>")
+                    print(f"<tr>")
+                    print(f"    <td>")
+                    print(f"        <label  for='order_id1'>Order Id*</label>")
+                    print(f"        <input type='text' value='{row[0]}'  id='order_id1' disabled>")
+                    print(f"    </td>")
+                    print(f"    <td>")
+                    print(f"        <label  for='user_id1'>User Id*</label>")
+                    print(f"        <input type='text' id='user_id1' value='{row[1]}'>")
+                    print(f"     </td>")
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"     <td>")
+                    print(f"        <label  for='order_date1'>Order Date*</label>")
+                    print(f"        <input type='date' id='order_date1' value='{row[2]}'>")
+                    print(f"    </td>")
+                    print(f"     <td>")
+                    # print(f"        <label class='lab ship_lab'  for='shipping_addr1'>Order Date*</label>")
+                    print(f"        <textarea id='shipping_addr1' value='{row[3]}'>{row[3]}</textarea>")
+                    print(f"    </td>")
+                    print(f"</tr>")
+                    print(f"<tr>")
+                    print(f"    <td class='btn_td' colspan='3'><button class='sub_btn save'>Save</button> <button type='reset' class='res_btn'>reset</button></td>")
+                    print(f"</tr>")
+                    print(f"</table>")
+                    print(f"</form>")
+                    # print(f"</div>")
+                    print(f"</div>")
+            else:
+                print("no data available")
+    except Exception as e:
+        print(e)
+
+
+elif(d == "saveorderupdate"):
+    try:
+        order_id1 = f.getvalue("order_id1")
+        user_id1 = f.getvalue("user_id1")
+        order_date1 = f.getvalue("order_date1")
+        shipping_addr1 =f.getvalue("shipping_addr1")
+
+      
+        
+        
+        if(order_id1 != None and user_id1 !=None and order_date1 != None  and shipping_addr1 != None):
+            saveOrderUpdate_query = f"update order_info SET user_id = '{user_id1}', order_date = '{order_date1}',shipping_addr = '{shipping_addr1}' where order_id = '{order_id1}'"
+            # print(saveProdUpdate_query)
+            cur.execute(saveOrderUpdate_query)
+            conn.commit()
+            print("successfully updated the order data")
+        else:
+            print("no field should be empty")
+        
+        # cur.execute(f"select * from order_info where order_id='{order_id1}'")
+    except Exception as e:
+        print(e)
+
+
+
+
+
+
+
+
+
+
+
+# else:
+#     try:
+#         cur.execute('select image_url1 from product order by product_id limit 1')
+#         print(cur.fetchall()[0][0].decode())
+#     except Exception as e:
+#         print(str(e))

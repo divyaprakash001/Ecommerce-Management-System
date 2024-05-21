@@ -15,7 +15,7 @@ $(document).ready(function () {
     window.location.href = "pages-search-product_category.html";
   })
   $(".add_btn").on('click', function () {
-    window.location.href = "pages-product_entry_form.html";
+    window.location.href = "pages-order_entry_form.html";
   })
 
 
