@@ -1,5 +1,5 @@
 # creator
-Divya Prakash & Ashish Singh
+Divya Prakash
 
 # description
 This ecommerce web application is to sell home decoration products 
