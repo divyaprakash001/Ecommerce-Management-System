@@ -28,9 +28,11 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/order_entry.css">
+  <link rel="stylesheet" href="css/order_details.css">
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -333,7 +335,7 @@
             </a>
           </li>
           <li>
-            <a href="pages-order_details_entry_form.html">
+            <a href="pages-order_details_form.html">
               <i class="bi bi-circle"></i><span>Order Details</span>
             </a>
           </li>
@@ -414,39 +416,38 @@
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="section up-section">
+      <span>
+        <h2>Order Details Page</h2>
+      </span>
       <div class="card">
-        <span>
-          <h2>Order Details Page</h2> <input type="button" class="search_btn" value="search &#128269;">
-        </span>
-
-
         <form id="myForm" enctype="multipart/form-data">
           <table class="search_tab">
             <tr>
               <td>
-                <!-- <label class="lab" for="order_id">Order Id*</label> -->
-                <!-- <input type="text" name="prod_id" id="order_id"> -->
-                <select name="" id="order_id">
-                  <option value="">---Select Order Id---</option>
+                <label class="lab uplab" for="order_id">Order Id*</label>
+                <input type="text" name="prod_id" id="order_id" class="order_id" disabled>
+
+              </td>
+              <td>
+                <select name="" id="prod_id"  class="prod_id" class="same_change">
+                  <option value="">---Select Product Id---</option>
                 </select>
               </td>
               <td>
-                <label class="lab" for="prod_id">Product Id*</label>
-                <input type="text" name="prod_name" class="samechange" id="prod_id">
-              </td>
-              <td>
                 <label class="lab" for="quantity">Quantity*</label>
-                <input type="number" name="prod_name" class="samechange" id="quantity">
+                <input type="number" name="prod_name" class="quantity same_change" id="quantity">
               </td>
-
-            </tr>
-            <tr>
               <td id="amt_td">
                 <label class="lab amt_lab" for="amount">Amount</label>
-                <input type="text" name="prod_name" id="amount" disabled>
+                <input type="text" name="prod_name" class="amount" id="amount">
               </td>
-              <td class="btn_td" colspan="3">
+              <td>
+                <i class="fa-solid fa-plus fa-xl addRowIcon"></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="btn_td" colspan="4">
                 <span class="btn_grp2">
                   <button class="sub_btn" id="sub_btn">Submit</button>
                   <button class="res_btn">Reset</button>

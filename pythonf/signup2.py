@@ -441,13 +441,13 @@ elif (d=="insert_product"):
 # code for fetching product cat id into option from database   
 elif (d=="fetchprodid"):
     try:
-        cur.execute("select distinct product_id from product")
+        cur.execute("select product_id, product_name from product")
         res = cur.fetchall()
         # lst = set()
         if res != []:
             for row in res:
                 # print(row[0])
-                print(f"<option value='{row[0]}'>{row[0]}</option>")
+                print(f"<option value='{row[0]}'>{row[0]} -- {row[1]}</option>")
         else:
             print()
     except Exception as e:
@@ -869,6 +869,7 @@ elif(d == "saveorderupdate"):
         print(e)
 
 
+# order details page
 elif (d=="fetchproductprice"):
     try:
         prod_id= f.getvalue("prod_id")
@@ -888,7 +889,7 @@ elif (d=="fetchproductprice"):
 elif (d=="fetchproductid"):
     try:
         prod_id= f.getvalue("prod_id")
-        cur.execute(f"select distinct product_id from product where product_id='{prod_id}'")
+        cur.execute(f"select product_id from product where product_id='{prod_id}'")
         res = cur.fetchall()
         # lst = set()
         if res != []:
@@ -906,21 +907,23 @@ elif (d=="fetchproductid"):
 elif(d == "insert_final_order"):
     try:
         order_id = f.getvalue("order_id")
-        user_id = f.getvalue("user_id")
-        order_date = f.getvalue("order_date")
-        shipping_addr = f.getvalue("shipping_addr")
+        product_id = f.getvalue("prod_id")
+        quantity = f.getvalue("quantity")
+        amount = f.getvalue("amount")
 
-        if( order_id != None and user_id != None and order_date != None
-        and shipping_addr != None):
-            cur.execute(f'select * from order_info where order_id="{order_id}"')
-            if cur.fetchall()==[]:
-                order_insert_query = f"insert into order_info (order_id,user_id,order_date,shipping_addr) values('{order_id}','{user_id}','{order_date}','{shipping_addr}')"
-                print(order_insert_query)
-                cur.execute(order_insert_query)
-                conn.commit()
-                print("order inserted successfully")
-            else:
-                print("order already exists")
+        print(amount)
+
+        if( order_id != None and product_id != None and quantity != None
+        and amount != None):
+            # cur.execute(f'select * from order_details where order_id="{order_id}"')
+            # if cur.fetchall()==[]:
+            order_insert_details_query = f"insert into order_details (order_id,product_id,quantity,amount) values('{order_id}','{product_id}','{quantity}','{amount}')"
+            print(order_insert_details_query)
+            cur.execute(order_insert_details_query)
+            conn.commit()
+            print("order details inserted successfully")
+            # else:
+            #     print("order already exists")
         else:
             print("one of the field is empty")
     except Exception as e:
@@ -928,7 +931,7 @@ elif(d == "insert_final_order"):
 
 
 # fetching data on click of search button or searching data
-elif(d=="fetch_order_details_conditions"):
+elif(d=="fetch_final_order_conditions"):
     # print(d)
     try:
         order_id = f.getvalue("order_id")
@@ -946,14 +949,22 @@ elif(d=="fetch_order_details_conditions"):
             conditions.append(f"order_date = '{order_date}'")
         
         # Construct the SQL query
-        fetch_order_query = "SELECT * FROM order_info"
+        fetch_final_order_query = '''SELECT distinct * FROM order_info
+        join order_details on order_info.order_id = order_details.order_id
+        '''
         if conditions:
-            fetch_order_query += " WHERE " + " AND ".join(conditions)
+            fetch_final_order_query += " WHERE " + " AND ".join(conditions)
        
-        # print(fetch_order_query)
+        print(fetch_final_order_query)
+        '''SELECT *
+        FROM table1 t1
+        JOIN table2 t2 ON t1.user_id = t2.user_id
+        WHERE t1.user_id = 'your_user_id'
+        OR t1.order_id = 'your_order_id'
+        OR t1.order_date = 'your_order_date';'''
 
 
-        cur.execute(fetch_order_query)
+        cur.execute(fetch_final_order_query)
         srr = cur.fetchall()
         if srr != []:
             # print("<br>yes")
@@ -962,7 +973,10 @@ elif(d=="fetch_order_details_conditions"):
             print("<th>Order Id</th>")
             print("<th>User Id</th>")
             print("<th>Order Date</th>")
-            print("<th>Stock</th>")
+            print("<th>Shipping Address</th>")
+            print("<th>Product Id</th>")
+            print("<th>Quantity</th>")
+            print("<th>Amount</th>")
             # print("<th>Size</th>")
             print("<th colspan='2' style='text-align:center;'>action</th>")
             print("</tr>")
@@ -973,6 +987,10 @@ elif(d=="fetch_order_details_conditions"):
                 print(f'<td>{row[1]}</td>')
                 print(f'<td>{row[2]}</td>')
                 print(f'<td>{row[3]}</td>')
+                print(f'<td>{row[4]}</td>')
+                print(f'<td>{row[6]}</td>')
+                print(f'<td>{row[7]}</td>')
+                # print(f'<td>{row[8]}</td>')
                 # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
                 print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
                 print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")

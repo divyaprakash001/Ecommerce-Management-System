@@ -20,17 +20,18 @@ $(document).ready(function () {
 })
 
 
+let order_id = '';
 
 // doing insertion when click on submit button on product entry page
 $("#sub_btn").on("click", function (e) {
   e.preventDefault();
-
+  order_id = $("#order_id").val();
   $.ajax({
     method: 'post',
     url: 'pythonf/signup2.py',
     data: {
       what: "insert_order",
-      order_id: $("#order_id").val(),
+      order_id: order_id,
       user_id: $("#user_id").val(),
       order_date: $("#order_date").val(),
       shipping_addr: $("#shipping_addr").val(),
@@ -43,7 +44,25 @@ $("#sub_btn").on("click", function (e) {
           text: "Data Inserted Successfully!",
           icon: "success",
         }).then((value) => {
-          location.reload();
+          // location.reload();
+          swal({
+            title: "Do you want to buy product now?",
+            text: "On clicking we are going on buy product page!",
+            icon: "warning",
+            buttons: true,
+            // dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              localStorage.setItem("order_id",order_id);
+              window.location.href = "pages-order_details_form.html"
+            } else {
+              swal("Buy amazing products at price!", { icon: "success" });
+            }
+          });
+
+
+
         })
       } else if (response.includes("Error !!! One of the field is empty")) {
         // alert("Error !!! One of the field is empty")
@@ -198,6 +217,7 @@ $('#search_btn').on('click', function () {
             }
           });
       });
+
 
 
 
