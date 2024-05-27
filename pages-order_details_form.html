@@ -28,7 +28,9 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -422,28 +424,28 @@
       </span>
       <div class="card">
         <form id="myForm" enctype="multipart/form-data">
-          <table class="search_tab">
+          <table class="search_tab" id="dynamic_table">
             <tr>
               <td>
                 <label class="lab uplab" for="order_id">Order Id*</label>
-                <input type="text" name="prod_id" id="order_id" class="order_id" disabled>
+                <input type="text" name="prod_id" class="order_id" disabled>
 
               </td>
               <td>
-                <select name="" id="prod_id"  class="prod_id" class="same_change">
+                <select name="" class="prod_id">
                   <option value="">---Select Product Id---</option>
                 </select>
               </td>
               <td>
                 <label class="lab" for="quantity">Quantity*</label>
-                <input type="number" name="prod_name" class="quantity same_change" id="quantity">
+                <input type="number" name="prod_name" class="quantity ">
               </td>
-              <td id="amt_td">
+              <td class="amt_td">
                 <label class="lab amt_lab" for="amount">Amount</label>
-                <input type="text" name="prod_name" class="amount" id="amount">
+                <input type="text" name="prod_name" class="amount">
               </td>
               <td>
-                <i class="fa-solid fa-plus fa-xl addRowIcon"></i>
+                <span class="addRow" style="font-size: 5rem; cursor: pointer;">+</span>
               </td>
             </tr>
             <tr>
@@ -502,6 +504,20 @@
     //   $('.imgload').attr('src', response)
     //   console.log(response)
     // })
+
+    $(document).ready(function(){
+        
+        $(".addRow").click(function(){
+            var newRow = $(this).closest('tr').clone();
+            newRow.find('input[type="text"]').val('')
+            newRow.find('.addRow').text('-').css({'color':'red'}).removeClass('addRow').addClass('removeRow'); 
+            $(this).closest('tr').after(newRow);
+        });
+        $(document).on('click', '.removeRow', function(){
+            $(this).closest('tr').remove(); 
+        });
+      });
+
   </script>
 </body>
 

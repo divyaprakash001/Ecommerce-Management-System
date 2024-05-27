@@ -6,7 +6,9 @@ import cgitb
 import mysql.connector as connector
 from DBHelper import *
 from datetime import datetime
-# import json
+import json
+import random
+import string
 # import os
 # from io import BytesIO
 
@@ -24,12 +26,17 @@ cur = conn.cursor()
 f = cgi.FieldStorage()
 
 # getting the value from signup.js to what to do
+
 d = f.getvalue("what")
+
 image1=''
 image2=''
 image3=''
 
 items=[]
+
+# print(d)
+
 
 # code for signup page into database
 if(d=="insert"):
@@ -275,13 +282,13 @@ elif (d=="insert_pro_cat"):
 # code for fetching product cat id into option from database   
 elif (d=="fetchcatid"):
     try:
-        cur.execute("select distinct prodcat_id from product_category")
+        cur.execute("select distinct prodcat_id, prodcat_name from product_category")
         res = cur.fetchall()
         # lst = set()
         if res != []:
             for row in res:
                 # print(row[0])
-                print(f"<option value='{row[0]}'>{row[0]}</option>")
+                print(f"<option value='{row[0]}'>{row[1].capitalize()}</option>")
         else:
             print()
     except Exception as e:
@@ -441,15 +448,19 @@ elif (d=="insert_product"):
 # code for fetching product cat id into option from database   
 elif (d=="fetchprodid"):
     try:
-        cur.execute("select product_id, product_name from product")
+        prod_cat_id = f.getvalue("prod_cat_id")
+        # print(prod_cat_id)
+        cur.execute(f"select product_id, product_name from product where category_id = '{prod_cat_id}'")
         res = cur.fetchall()
         # lst = set()
         if res != []:
+            print(f"<option value="">---Select Product---</option>")
             for row in res:
                 # print(row[0])
                 print(f"<option value='{row[0]}'>{row[0]} -- {row[1]}</option>")
         else:
-            print()
+            # print("no data available")
+            print(f"<option value="">---Select Product---</option>")
     except Exception as e:
         print("some error",e)
 
@@ -685,188 +696,167 @@ elif(d == "savetheprodupdate"):
     except Exception as e:
         print(e)
 
-elif(d == "insert_order"):
-    try:
-        order_id = f.getvalue("order_id")
-        user_id = f.getvalue("user_id")
-        order_date = f.getvalue("order_date")
-        shipping_addr = f.getvalue("shipping_addr")
+# elif(d == "insert_order"):
 
-        if( order_id != None and user_id != None and order_date != None
-        and shipping_addr != None):
-            cur.execute(f'select * from order_info where order_id="{order_id}"')
-            if cur.fetchall()==[]:
-                order_insert_query = f"insert into order_info (order_id,user_id,order_date,shipping_addr) values('{order_id}','{user_id}','{order_date}','{shipping_addr}')"
-                print(order_insert_query)
-                cur.execute(order_insert_query)
-                conn.commit()
-                print("order inserted successfully")
-            else:
-                print("order already exists")
-        else:
-            print("one of the field is empty")
-    except Exception as e:
-        print(e)
+#     def generate_order_id():
+#         length = 8
+#         chars = string.ascii_uppercase + string.digits
+#         return ''.join(random.choice(chars) for _ in range(length))
+
+#     try:
+#         # Function to generate a random order ID
+ 
+
+#         # Get form data
+#         form = cgi.FieldStorage()
+#         user_id = form.getvalue('user_id')
+#         order_id = generate_order_id()
+#         order_date = form.getvalue('order_date')
+#         country = form.getvalue('country')
+#         state = form.getvalue('state')
+#         district = form.getvalue('district')
+#         city = form.getvalue('city')
+#         pincode = form.getvalue('pincode')
+#         landmark = form.getvalue('landmark')
+
+#         # Parse product data
+#         products_json = form.getvalue('products')
+#         products = json.loads(products_json)
+
+#         total_amount = 0
+#         product_details = []
+#         for product in products:
+#             prod_id = product['prod_id']
+#             quantity = product['quantity']
+
+#         # Fetch product details from database
+#             cur.execute("SELECT category_id, discount_price FROM product WHERE product_id = %s", (prod_id,))
+#             product_data = cur.fetchone()
+
+#             # Calculate amount for current product
+#             if product_data is not None:
+#             # Calculate amount for current product
+#                 price = product_data[1]
+#                 product_amount = price * quantity
+#                 total_amount += product_amount
+
+#                 # Construct product details including amount
+#                 product_detail = {
+#                     "prod_cat": product_data[0],
+#                     "prod_id": prod_id,
+#                     "quantity": quantity,
+#                     "amount": product_amount
+#                 }
+#                 product_details.append(product_detail)
+
+#         if(user_id != None and order_id != None and order_date != None and country != None
+#         and state != None  and district != None  and city != None and pincode != None and landmark != None):
+#             cur.execute(f'select * from order_info where order_id="{order_id}"')
+#             if cur.fetchall()==[]:
+#                 insert_order_query = "INSERT INTO order_info (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, product_details) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+#                 order_data = (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, json.dumps(product_details))
+#                 cur.execute(insert_order_query, order_data)
+#                 conn.commit()
+#                 print("Content-Type: application/json")
+#                 print()
+#                 print(json.dumps({"success": True, "order_id": order_id}))
+#             else:
+#                 print("order already exists")
+#         else:
+#             print("one of the field is empty")
+#     except Exception as e:
+#         # Rollback changes if an error occurs
+#         conn.rollback()
+#         print(e)
+
+
 
 # code for fetching product cat id into option from database   
-elif (d=="fetchorderid"):
-    try:
-        cur.execute("select distinct order_id from order_info")
-        res = cur.fetchall()
-        # lst = set()
-        if res != []:
-            #  print('<option value="">-- Select Order Id --</option>')
-            for row in res:
-                print(f"<option value='{row[0]}'>{row[0]}</option>")
-        else:
-            print()
-    except Exception as e:
-        print("some error",e)
+# elif (d=="fetchorderid"):
+#     try:
+#         cur.execute("select distinct order_id from order_info")
+#         res = cur.fetchall()
+#         # lst = set()
+#         if res != []:
+#             #  print('<option value="">-- Select Order Id --</option>')
+#             for row in res:
+#                 print(f"<option value='{row[0]}'>{row[0]}</option>")
+#         else:
+#             print()
+#     except Exception as e:
+#         print("some error",e)
 
 # fetching data on click of search button or searching data
-elif(d=="fetch_order_details_conditions"):
-    # print(d)
-    try:
-        order_id = f.getvalue("order_id")
-        user_id = f.getvalue("user_id")
-        order_date = f.getvalue("order_date")
+# elif(d=="fetch_order_details_conditions"):
+#     # print(d)
+#     try:
+#         order_id = f.getvalue("order_id")
+#         user_id = f.getvalue("user_id")
+#         order_date = f.getvalue("order_date")
         
 
-        # Construct conditions for the SQL query
-        conditions = []
-        if order_id != None:
-            conditions.append(f"order_id = '{order_id}'")
-        if user_id is not None:
-            conditions.append(f"user_id = '{user_id}'")
-        if order_date is not None:
-            conditions.append(f"order_date = '{order_date}'")
+#         # Construct conditions for the SQL query
+#         conditions = []
+#         if order_id != None:
+#             conditions.append(f"order_id = '{order_id}'")
+#         if user_id is not None:
+#             conditions.append(f"user_id = '{user_id}'")
+#         if order_date is not None:
+#             conditions.append(f"order_date = '{order_date}'")
         
-        # Construct the SQL query
-        fetch_order_query = "SELECT * FROM order_info"
-        if conditions:
-            fetch_order_query += " WHERE " + " AND ".join(conditions)
+#         # Construct the SQL query
+#         fetch_order_query = "SELECT * FROM order_info"
+#         if conditions:
+#             fetch_order_query += " WHERE " + " AND ".join(conditions)
        
-        # print(fetch_order_query)
+#         # print(fetch_order_query)
 
 
-        cur.execute(fetch_order_query)
-        srr = cur.fetchall()
-        if srr != []:
-            # print("<br>yes")
-            print("<table class='tab'>")
-            print("<tr>")
-            print("<th>Order Id</th>")
-            print("<th>User Id</th>")
-            print("<th>Order Date</th>")
-            print("<th>Stock</th>")
-            # print("<th>Size</th>")
-            print("<th colspan='2' style='text-align:center;'>action</th>")
-            print("</tr>")
-            for row in srr:
-                # print(row)
-                print("<tr>")
-                print(f'<td>{row[0]}</td>')
-                print(f'<td>{row[1]}</td>')
-                print(f'<td>{row[2]}</td>')
-                print(f'<td>{row[3]}</td>')
-                # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
-                print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
-                print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")
-                print("</tr>")
-            print("</table>")
-            print("<p style='display:none;'>product details fetched successfully</p>")
-        else:
-            # print("no")
-            print("no data available")
-    except Exception as e:
-        print(e)
+#         cur.execute(fetch_order_query)
+#         srr = cur.fetchall()
+#         if srr != []:
+#             # print("<br>yes")
+#             print("<table class='tab'>")
+#             print("<tr>")
+#             print("<th>Order Id</th>")
+#             print("<th>User Id</th>")
+#             print("<th>Order Date</th>")
+#             print("<th>Stock</th>")
+#             # print("<th>Size</th>")
+#             print("<th colspan='2' style='text-align:center;'>action</th>")
+#             print("</tr>")
+#             for row in srr:
+#                 # print(row)
+#                 print("<tr>")
+#                 print(f'<td>{row[0]}</td>')
+#                 print(f'<td>{row[1]}</td>')
+#                 print(f'<td>{row[2]}</td>')
+#                 print(f'<td>{row[3]}</td>')
+#                 # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
+#                 print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
+#                 print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")
+#                 print("</tr>")
+#             print("</table>")
+#             print("<p style='display:none;'>product details fetched successfully</p>")
+#         else:
+#             # print("no")
+#             print("no data available")
+#     except Exception as e:
+#         print(e)
 
-elif(d == "deleteorder"):
-    try:
-        order_id = f.getvalue("order_id")
-        # print(prod_id + " have gotten")
-        delete_order_query = f"delete from order_info where order_id = '{order_id}'"
-        # print(delete_prod_query)
-        cur.execute(delete_order_query)
-        conn.commit()
-        print("data deleted successfully")
-    except Exception as e:
-        print(e)
-
-elif(d == "fetchForOrderUpdate"):
-    # print(d)
-    try:
-        order_id = f.getvalue("order_id")
-        if(order_id != None):
-            fetch_query_order_one = f"select * from order_info where order_id='{order_id}'"
-            cur.execute(fetch_query_order_one)
-            res = cur.fetchall()
-
-            if res != []:
-                for row in res:
-                    print("<div style='display:none;'>data fetching successfully</div>")
-                    # print(res)
-                    # print(f'<div class="form_placeholder">')
-                    print(f"<div class='updcard'>")
-                    print("<div class='cut'><i class='fa-solid fa-xmark fa-xl'></i></div>")
-                    print(f"<div>Update Product Details</div>")
-                    print(f"<form>")
-                    print(f"<table class='upd_tab'>")
-                    print(f"<tr>")
-                    print(f"    <td>")
-                    print(f"        <label  for='order_id1'>Order Id*</label>")
-                    print(f"        <input type='text' value='{row[0]}'  id='order_id1' disabled>")
-                    print(f"    </td>")
-                    print(f"    <td>")
-                    print(f"        <label  for='user_id1'>User Id*</label>")
-                    print(f"        <input type='text' id='user_id1' value='{row[1]}'>")
-                    print(f"     </td>")
-                    print(f"</tr>")
-                    print(f"<tr>")
-                    print(f"     <td>")
-                    print(f"        <label  for='order_date1'>Order Date*</label>")
-                    print(f"        <input type='date' id='order_date1' value='{row[2]}'>")
-                    print(f"    </td>")
-                    print(f"     <td>")
-                    # print(f"        <label class='lab ship_lab'  for='shipping_addr1'>Order Date*</label>")
-                    print(f"        <textarea id='shipping_addr1' value='{row[3]}'>{row[3]}</textarea>")
-                    print(f"    </td>")
-                    print(f"</tr>")
-                    print(f"<tr>")
-                    print(f"    <td class='btn_td' colspan='3'><button class='sub_btn save'>Save</button> <button type='reset' class='res_btn'>reset</button></td>")
-                    print(f"</tr>")
-                    print(f"</table>")
-                    print(f"</form>")
-                    # print(f"</div>")
-                    print(f"</div>")
-            else:
-                print("no data available")
-    except Exception as e:
-        print(e)
+# elif(d == "deleteorder"):
+#     try:
+#         order_id = f.getvalue("order_id")
+#         # print(prod_id + " have gotten")
+#         delete_order_query = f"delete from order_info where order_id = '{order_id}'"
+#         # print(delete_prod_query)
+#         cur.execute(delete_order_query)
+#         conn.commit()
+#         print("data deleted successfully")
+#     except Exception as e:
+#         print(e)
 
 
-elif(d == "saveorderupdate"):
-    try:
-        order_id1 = f.getvalue("order_id1")
-        user_id1 = f.getvalue("user_id1")
-        order_date1 = f.getvalue("order_date1")
-        shipping_addr1 =f.getvalue("shipping_addr1")
-
-      
-        
-        
-        if(order_id1 != None and user_id1 !=None and order_date1 != None  and shipping_addr1 != None):
-            saveOrderUpdate_query = f"update order_info SET user_id = '{user_id1}', order_date = '{order_date1}',shipping_addr = '{shipping_addr1}' where order_id = '{order_id1}'"
-            # print(saveProdUpdate_query)
-            cur.execute(saveOrderUpdate_query)
-            conn.commit()
-            print("successfully updated the order data")
-        else:
-            print("no field should be empty")
-        
-        # cur.execute(f"select * from order_info where order_id='{order_id1}'")
-    except Exception as e:
-        print(e)
 
 
 # order details page
@@ -903,31 +893,6 @@ elif (d=="fetchproductid"):
         print("some error",e)
 
 # insert order full details
-
-elif(d == "insert_final_order"):
-    try:
-        order_id = f.getvalue("order_id")
-        product_id = f.getvalue("prod_id")
-        quantity = f.getvalue("quantity")
-        amount = f.getvalue("amount")
-
-        print(amount)
-
-        if( order_id != None and product_id != None and quantity != None
-        and amount != None):
-            # cur.execute(f'select * from order_details where order_id="{order_id}"')
-            # if cur.fetchall()==[]:
-            order_insert_details_query = f"insert into order_details (order_id,product_id,quantity,amount) values('{order_id}','{product_id}','{quantity}','{amount}')"
-            print(order_insert_details_query)
-            cur.execute(order_insert_details_query)
-            conn.commit()
-            print("order details inserted successfully")
-            # else:
-            #     print("order already exists")
-        else:
-            print("one of the field is empty")
-    except Exception as e:
-        print(e)
 
 
 # fetching data on click of search button or searching data
@@ -1003,96 +968,135 @@ elif(d=="fetch_final_order_conditions"):
     except Exception as e:
         print(e)
 
-elif(d == "deleteorder"):
+
+
+
+
+elif (d=="fetchDistrict"):
     try:
-        order_id = f.getvalue("order_id")
-        # print(prod_id + " have gotten")
-        delete_order_query = f"delete from order_info where order_id = '{order_id}'"
-        # print(delete_prod_query)
-        cur.execute(delete_order_query)
-        conn.commit()
-        print("data deleted successfully")
-    except Exception as e:
-        print(e)
+        state_name = f.getvalue("state_name")
+        # print(prod_cat_id)
+        cur.execute(f"select district from state where state = '{state_name}'")
+        res = cur.fetchall()
+        # lst = set()
+        if res != []:
+            print(f"<option value="">----- Select Any District -----</option>")
+            for row in res:
+                # print(row[0])
+                # print(f"<option value='{row[0]}'>{row[0]}</option>")
+                dist =  row[0].split(',')
+                print(dist)
+                for index, d in enumerate(dist):
+                    print(f"<option value='{d}'>{d}</option>")
 
-elif(d == "fetchForOrderUpdate"):
-    # print(d)
-    try:
-        order_id = f.getvalue("order_id")
-        if(order_id != None):
-            fetch_query_order_one = f"select * from order_info where order_id='{order_id}'"
-            cur.execute(fetch_query_order_one)
-            res = cur.fetchall()
-
-            if res != []:
-                for row in res:
-                    print("<div style='display:none;'>data fetching successfully</div>")
-                    # print(res)
-                    # print(f'<div class="form_placeholder">')
-                    print(f"<div class='updcard'>")
-                    print("<div class='cut'><i class='fa-solid fa-xmark fa-xl'></i></div>")
-                    print(f"<div>Update Product Details</div>")
-                    print(f"<form>")
-                    print(f"<table class='upd_tab'>")
-                    print(f"<tr>")
-                    print(f"    <td>")
-                    print(f"        <label  for='order_id1'>Order Id*</label>")
-                    print(f"        <input type='text' value='{row[0]}'  id='order_id1' disabled>")
-                    print(f"    </td>")
-                    print(f"    <td>")
-                    print(f"        <label  for='user_id1'>User Id*</label>")
-                    print(f"        <input type='text' id='user_id1' value='{row[1]}'>")
-                    print(f"     </td>")
-                    print(f"</tr>")
-                    print(f"<tr>")
-                    print(f"     <td>")
-                    print(f"        <label  for='order_date1'>Order Date*</label>")
-                    print(f"        <input type='date' id='order_date1' value='{row[2]}'>")
-                    print(f"    </td>")
-                    print(f"     <td>")
-                    # print(f"        <label class='lab ship_lab'  for='shipping_addr1'>Order Date*</label>")
-                    print(f"        <textarea id='shipping_addr1' value='{row[3]}'>{row[3]}</textarea>")
-                    print(f"    </td>")
-                    print(f"</tr>")
-                    print(f"<tr>")
-                    print(f"    <td class='btn_td' colspan='3'><button class='sub_btn save'>Save</button> <button type='reset' class='res_btn'>reset</button></td>")
-                    print(f"</tr>")
-                    print(f"</table>")
-                    print(f"</form>")
-                    # print(f"</div>")
-                    print(f"</div>")
-            else:
-                print("no data available")
-    except Exception as e:
-        print(e)
-
-
-elif(d == "saveorderupdate"):
-    try:
-        order_id1 = f.getvalue("order_id1")
-        user_id1 = f.getvalue("user_id1")
-        order_date1 = f.getvalue("order_date1")
-        shipping_addr1 =f.getvalue("shipping_addr1")
-
-      
-        
-        
-        if(order_id1 != None and user_id1 !=None and order_date1 != None  and shipping_addr1 != None):
-            saveOrderUpdate_query = f"update order_info SET user_id = '{user_id1}', order_date = '{order_date1}',shipping_addr = '{shipping_addr1}' where order_id = '{order_id1}'"
-            # print(saveProdUpdate_query)
-            cur.execute(saveOrderUpdate_query)
-            conn.commit()
-            print("successfully updated the order data")
         else:
-            print("no field should be empty")
-        
-        # cur.execute(f"select * from order_info where order_id='{order_id1}'")
+            # print("no data available")
+            print(f"<option value="">---Select Product---</option>")
     except Exception as e:
+        print("some error",e)
+
+elif(d=="generateOrderId"):
+    def generate_order_id():
+        length = 8
+        chars = string.ascii_uppercase + string.digits
+        return ''.join(random.choice(chars) for _ in range(length))
+
+    print(generate_order_id())
+
+
+elif(d == "insert_order2"):
+    # print("yaha")
+
+    # print("hello")
+    try:
+        # Function to generate a random order ID
+
+        # Get form data
+        data = f.getvalue('formData')
+        # print(data)
+        # print(type(data))
+        jsdta = json.loads(data)
+        # print(type(jsdta))
+        what=jsdta.get("what")
+        user_id=jsdta.get("user_id")
+        order_id=jsdta.get("order_id")
+        order_date=jsdta.get("order_date")
+        country=jsdta.get("country")
+        state=jsdta.get("state")
+        district=jsdta.get("district")
+        city=jsdta.get("city")
+        pincode=jsdta.get("pincode")
+        landmark=jsdta.get("landmark")
+        productss=jsdta.get("products")
+        # product=jsdta.get("products")[0]
+        # print("**************")
+        # jspro = json.dumps(products)
+        # jsdata = json.loads(jspro)
+        # print(productss)
+        # print(products)
+        # print(type(productss))
+
+        # Parse product data
+        # products_json = f.getvalue('productData')
+        # products = json.loads(productData)
+
+        total_amount = 0
+        product_details = []
+        for item in productss:
+            # print(item)
+            # print(type(item))
+            prod_id = item.get("prod_id")
+            # prod_id = product[1]
+            quantity = item.get("prod_quantity")
+            # quantity = product[2]
+            # print('prod_id',prod_id)
+            # print('quantity',quantity)
+
+        # # Fetch product details from database
+            cur.execute("SELECT category_id, discount_price FROM product WHERE product_id = %s", (prod_id,))
+            product_data = cur.fetchone()
+            print(product_data)
+        #     # Calculate amount for current product
+            if product_data is not None:
+        #     # Calculate amount for current product
+                price = product_data[1]
+                product_amount = int(price) * int(quantity)
+                total_amount += product_amount
+
+                # print(total_amount)
+
+        #         # Construct product details including amount
+                product_detail = {
+                    "prod_cat": product_data[0],
+                    "prod_id": prod_id,
+                    "quantity": quantity,
+                    "amount": product_amount
+                }
+                product_details.append(product_detail)
+                # print(product_details)
+
+        if(user_id != None and order_id != None and order_date != None and country != None
+        and state != None  and district != None  and city != None and pincode != None and landmark != None and total_amount and product_details != None):
+            cur.execute(f'select * from order_info where order_id="{order_id}"')
+            if cur.fetchall()==[]:
+                insert_order_query = "INSERT INTO order_info (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, product_details) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                order_data = (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, json.dumps(product_details))
+                cur.execute(insert_order_query, order_data)
+                conn.commit()
+                print("Order inserted successfully")
+            else:
+                print("order already exists")
+        else:
+            print("one of the field is empty")
+            # print("one of the field is empty")
+    except Exception as e:
+        conn.rollback()
+        print("data error!!!")
+        # print("Content-Type: application/json")
         print(e)
-
-
-
-
+        # print(json.dumps({"success": False, "error": str(e)}))
+        # Rollback changes if an error occurs
+        # print(e)
 
 
 

@@ -425,24 +425,83 @@
           <table class="search_tab">
             <tr>
               <td>
-                <label class="lab" for="order_id">Order Id*</label>
-                <input type="text" name="prod_id" id="order_id">
+                <!-- <label class="lab" for="user_id">User Id*</label> -->
+                <!-- <input type="text" id="user_id"> -->
+                <select name="" id="user_id">
+                  <option value="">----Select User Id----</option>
+                </select>
               </td>
               <td>
-                <label class="lab" for="user_id">User Id*</label>
-                <input type="text" name="prod_name" id="user_id">
+
+                <label class="lab amt_lab" for="order_id">Order Id*</label>
+                <input type="text" id="order_id">
               </td>
               <td>
                 <!-- <label class="lab" for="order_date">Order Date*</label> -->
-                <input type="date" name="prod_name" id="order_date">
+                <input type="datetime-local" id="order_date" readonly>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <select id="country">
+                  <!-- <option value="">---Select Country Name</option> -->
+                  <option value="" selected disabled>----- Select Country -----</option>
+                  <option value="India">India</option>
+                </select>
+              </td>
+              <td>
+                <select id="state">
+                  <option value="" selected disabled>----- Select Any State -----</option>
+                 
+                </select>
+              </td>
+              <td>
+                <select name="" id="district">
+                  <option value="">----- Select Any District -----</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <label class="lab" for="city">City*</label>
+                <input type="text" id="city">
+              </td>
+              <td>
+
+                <label class="lab" for="pincode">PinCode No*</label>
+                <input type="text" id="pincode">
+              </td>
+              <td>
+                <label class="lab" for="landmark">Lankmark</label>
+                <input type="text" id="landmark">
+              </td>
+            </tr>
+
+            <tr class="prod_row">
+              <td>
+                <select class="prod_cat_0">
+                  <option value="">---Select Product Category---</option>
+                </select>
+              </td>
+              <td>
+                <select class="prod_id_0">
+                  <option value="">---Select Product---</option>
+                </select>
+              </td>
+              <td>
+                <label class="lab" for="quantity">Quantity*</label>
+                <input type="number" class="quantity ">
               </td>
 
-            </tr>
-            <tr>
-              <td id="ship_td" colspan="2">
-                <label class="lab ship_lab" for="shipping_addr">Shipping Address</label>
-                <textarea name="" id="shipping_addr"></textarea>
+              <td class="plus_td">
+                <span class="addRow" style="font-size: 5rem; cursor: pointer;">+</span>
               </td>
+            </tr>
+
+
+            <tr>
               <td class="btn_td" colspan="3">
                 <span class="btn_grp">
                   <button class="sub_btn" id="sub_btn">Submit</button>
@@ -498,7 +557,56 @@
     //   $('.imgload').attr('src', response)
     //   console.log(response)
     // })
+    $(document).ready(function () {
+      let i = 0;
+      $(".addRow").click(function () {
+        i++;
+        let prod_cat = $(`.prod_cat_0`).val();
+        let prod_id = $(`.prod_id_0`).val();
+        var newRow = $(this).closest('tr').clone();
+        newRow.find(`.prod_id_0`).removeClass(`prod_id_0`).addClass(`prod_id_${i}`)
+        newRow.find(`.prod_cat_0`).removeClass(`prod_cat_0`).addClass(`prod_cat_${i}`)
+        newRow.find(`.prod_cat_${i}`).val(prod_cat);
+        newRow.find(`.prod_id_${i}`).val(prod_id);
+
+        newRow.find(`.prod_cat_${i}`).prop("disabled", true);
+        newRow.find(`.prod_id_${i}`).prop("disabled", true);
+
+        $(".prod_cat_0").val("")
+        $(".prod_id_0").val("")
+        newRow.find('.addRow').text('-').css({ 'color': 'red' }).removeClass('addRow').addClass(`removeRow ${i}`);
+        $(this).closest('tr').after(newRow);
+      });
+      $(document).on('click', '.removeRow', function () {
+        $(this).closest('tr').remove();
+      });
+    });
+  
+  
   </script>
+
+  <!-- <script>
+    $(document).ready(function () {
+      $('#add').click(function (e) {
+        let category = $('#category').val();
+        let product_name = $('#product_name').val();
+        let clonediv = $('.box').closest('tr').clone();
+        clonediv.find('#category').val(category);
+        clonediv.find('#product_name').val(product_name);
+        clonediv.children('td').children('div').attr('class', 'clonebox')
+        // clonediv.children('td').children('div').children('button').text('-')
+        // clonediv.children('td').children('div').children('button').attr('class', 'btn btn-block bg-danger text-white subtract')
+        // $(this).closest('tr').after(clonediv);
+        $('#product_name').val('');
+        $('#qty').val('');
+      });
+
+      $('#tbody').on('click', '.subtract', function (e) {
+        $(this).closest('tr').remove();
+      });
+
+    });
+  </script> -->
 </body>
 
 </html>
