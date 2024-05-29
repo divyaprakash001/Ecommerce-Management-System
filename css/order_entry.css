@@ -137,7 +137,7 @@ td {
 
 
 input[type='text'],
-select, input[type="datetime-local"], input[type='number'] {
+select, input[type="datetime-local"],input[type="date"], input[type='number'] {
     /* position: absolute; */
     /* top: 15%; */
     width: 90%;
@@ -248,7 +248,7 @@ textarea {
 
 .below_card .tab {
     position: relative;
-    width: 95%;
+    /* width: 95%; */
     margin: 0rem auto;
     border-collapse: collapse;
     margin-bottom: .7rem;
@@ -260,18 +260,19 @@ textarea {
 
 
 
-.tab td{
+.below_card .table_container .tab td,
+.below_card .table_container .tab th{
    
     margin-left: .5rem;
     position: relative;
-    height: 4rem;
-    width: 15%;
-    margin-left: .5rem;
+    /* height: 4rem; */
+    min-width: 15rem !important;
+    height: 3rem;
 }
 
-.tab th:nth-child((5)){
+/* .tab th:nth-child((5)){
     text-align: center;
-}
+} */
 
 .tab,
 .tab th,
@@ -306,6 +307,8 @@ fa-trash-can {
 .del{
     background-color: #FF0000;
 }
+
+
 
 
 
@@ -509,11 +512,26 @@ padding-bottom: 3rem;
 }
 
 
+.ship_addr{
+    overflow-y: scroll;
+    max-height: 4rem;
+}
 
 
 
-
-
+.stats{
+    background-color: yellow;
+    /* width: 8rem; */
+    background-color: tomato;
+    padding: .5rem .6rem;
+    /* padding-left: 5rem; */
+    vertical-align: middle;
+    margin-right: 10px;
+    cursor: pointer;
+    color: white;
+    border: 1px solid black;
+    text-transform: capitalize;
+}
 
 
 

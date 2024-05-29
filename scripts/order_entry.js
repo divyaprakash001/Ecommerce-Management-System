@@ -49,7 +49,6 @@ $.ajax({
   success: function (data) {
     // console.log(data);
     $('#order_id').val(data)
-    // i++;
   },
 });
 
@@ -57,13 +56,19 @@ $.ajax({
 // Get the current date and time
 var currentDate = new Date();
 
+// Get the time zone offset in minutes
+var timezoneOffsetInMinutes = currentDate.getTimezoneOffset();
+
+// Adjust the current date by adding the offset
+currentDate.setMinutes(currentDate.getMinutes() - timezoneOffsetInMinutes);
+
 // Format the date and time in the required format (YYYY-MM-DDTHH:MM)
 var formattedDate = currentDate.toISOString().slice(0, 16);
-// alert(formattedDate)
+
 // Set the value of the datetime-local input element using jQuery
 $("#order_date").val(formattedDate);
 
-
+// state select option data
 let stateData = `
 <option value="" selected disabled>----- Select Any State -----</option>
 <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -103,7 +108,7 @@ let stateData = `
 <option value="Pondicherry">Pondicherry</option>
 <option value="Nagaland"> Nagaland</option>
 `
-
+// state data display on change of country 
 $("#country").on("change", function () {
   // alert($("#country").val())
   if ($("#country").val() == "India") {
@@ -111,6 +116,7 @@ $("#country").on("change", function () {
   }
 })
 
+// district data display on change of state
 $("#state").on("change", function () {
   // alert($(this).val())
   $.ajax({
@@ -131,8 +137,7 @@ $("#state").on("change", function () {
 
 
 
-// let i = 0;
-
+// fetching category id
 $.ajax({
   method: 'post',
   url: 'pythonf/signup2.py',
@@ -146,11 +151,9 @@ $.ajax({
   },
 });
 
-// let j=0;
 
 // on change of prod_cat fetch product id for product name
 $(document).on('change', `.prod_cat_0`, function () {
-
   $.ajax({
     method: 'post',
     url: 'pythonf/signup2.py',
@@ -162,7 +165,6 @@ $(document).on('change', `.prod_cat_0`, function () {
       // console.log(data);
       // $(".prod_id").empty()
       $(`.prod_id_0`).html(data)
-      // j++;
     },
   });
 });
@@ -188,7 +190,7 @@ $(document).on("click", "#sub_btn", function (e) {
     products: []  //keeping the dict data of product in array
   };
 
-// iterating the no. of each rows start with class prod_row
+  // iterating the no. of each rows start with class prod_row
   $("[class^='prod_row']").each(function () {
     // keeping the data in dictionary form
     var prod = {
@@ -202,7 +204,7 @@ $(document).on("click", "#sub_btn", function (e) {
   // console.log(formData); // Output the array of input values
 
 
-// doing ajax call for data manipulation and insertion
+  // doing ajax call for data manipulation and insertion
   $.ajax({
     method: 'post',
     url: 'pythonf/signup2.py',
@@ -246,10 +248,6 @@ $(document).on("click", "#sub_btn", function (e) {
       console.log('eeror is ', errorData);
     }
   })
-
-
-
-
 });
 
 
@@ -264,15 +262,27 @@ $(document).on("click", "#sub_btn", function (e) {
 
 
 
+// all operations for searching
 
-
-
+// fetching category id
+$.ajax({
+  method: 'post',
+  url: 'pythonf/signup2.py',
+  data: {
+    what: "fetchorderid"
+  },
+  success: function (data) {
+    console.log(data);
+    $('#order_id').append(data)
+    // i++;
+  },
+});
 
 
 
 
 // code for display incoming data after executing query
-$('#search_btn').on('click', function () {
+$(document).on('click', '#search_btn', function () {
 
   $.ajax({
     method: 'post',
@@ -294,7 +304,7 @@ $('#search_btn').on('click', function () {
           text: "please select atleast one field",
           icon: "error",
         });
-      } else if (data.includes("product details fetched successfully")) {
+      } else if (data.includes("order details fetched successfully")) {
         $('.below_card').css({ "display": "block" })
         $('.table_container').html(data)
 
@@ -367,10 +377,10 @@ $('#search_btn').on('click', function () {
 
 
 
+      // edit button
       $(".edit").on("click", function () {
         d = "fetchForOrderUpdate"
-
-
+        // alert(d)
 
         let oid = $(this).closest('tr').children('td:first-child').text();
         // alert(pid)
@@ -384,9 +394,32 @@ $('#search_btn').on('click', function () {
           success: function (data) {
             // alert("hello")
             console.log(data);
-            if (data.includes("data fetching successfully")) {
-              $('.form_placeholder').css({ 'scale': '1' })
-              $(".form_placeholder").html(data)
+
+
+            if (data.includes("order status is success")) {
+              swal({
+                title: "Failed!",
+                text: "Can't Update Because Order Status Is Success!!!",
+                icon: "error",
+              });
+            }
+            else if (data.includes("data fetching successfully")) {
+              // $('.form_placeholder').css({ 'scale': '1' })
+              // $(".form_placeholder").html(data)
+              var originalString = data;
+
+              // Remove the last '&&'
+              if (originalString.endsWith("&&")) {
+                originalString = originalString.slice(0, -2);
+              }
+
+              // Split the string into a list using the separator '&&'
+              var splitArray = originalString.split("&&");
+
+              console.log(splitArray);
+              localStorage.setItem("order_data", JSON.stringify(splitArray))
+              window.location.href = "pages-order_update.html";
+
 
 
               // code for saving the updated the data when use click on update button

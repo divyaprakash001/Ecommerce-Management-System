@@ -84,6 +84,7 @@ elif (d=="fetchuserid"):
         res = cur.fetchall()
         # lst = set()
         if res != []:
+            # print('<option value="" selected disabled>-----Select User Id-----</option>')
             for row in res:
                 # print(row[0])
                 print(f"<option value='{row[0]}'>{row[0]}</option>")
@@ -696,168 +697,21 @@ elif(d == "savetheprodupdate"):
     except Exception as e:
         print(e)
 
-# elif(d == "insert_order"):
 
-#     def generate_order_id():
-#         length = 8
-#         chars = string.ascii_uppercase + string.digits
-#         return ''.join(random.choice(chars) for _ in range(length))
-
-#     try:
-#         # Function to generate a random order ID
- 
-
-#         # Get form data
-#         form = cgi.FieldStorage()
-#         user_id = form.getvalue('user_id')
-#         order_id = generate_order_id()
-#         order_date = form.getvalue('order_date')
-#         country = form.getvalue('country')
-#         state = form.getvalue('state')
-#         district = form.getvalue('district')
-#         city = form.getvalue('city')
-#         pincode = form.getvalue('pincode')
-#         landmark = form.getvalue('landmark')
-
-#         # Parse product data
-#         products_json = form.getvalue('products')
-#         products = json.loads(products_json)
-
-#         total_amount = 0
-#         product_details = []
-#         for product in products:
-#             prod_id = product['prod_id']
-#             quantity = product['quantity']
-
-#         # Fetch product details from database
-#             cur.execute("SELECT category_id, discount_price FROM product WHERE product_id = %s", (prod_id,))
-#             product_data = cur.fetchone()
-
-#             # Calculate amount for current product
-#             if product_data is not None:
-#             # Calculate amount for current product
-#                 price = product_data[1]
-#                 product_amount = price * quantity
-#                 total_amount += product_amount
-
-#                 # Construct product details including amount
-#                 product_detail = {
-#                     "prod_cat": product_data[0],
-#                     "prod_id": prod_id,
-#                     "quantity": quantity,
-#                     "amount": product_amount
-#                 }
-#                 product_details.append(product_detail)
-
-#         if(user_id != None and order_id != None and order_date != None and country != None
-#         and state != None  and district != None  and city != None and pincode != None and landmark != None):
-#             cur.execute(f'select * from order_info where order_id="{order_id}"')
-#             if cur.fetchall()==[]:
-#                 insert_order_query = "INSERT INTO order_info (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, product_details) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-#                 order_data = (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, json.dumps(product_details))
-#                 cur.execute(insert_order_query, order_data)
-#                 conn.commit()
-#                 print("Content-Type: application/json")
-#                 print()
-#                 print(json.dumps({"success": True, "order_id": order_id}))
-#             else:
-#                 print("order already exists")
-#         else:
-#             print("one of the field is empty")
-#     except Exception as e:
-#         # Rollback changes if an error occurs
-#         conn.rollback()
-#         print(e)
-
-
-
-# code for fetching product cat id into option from database   
-# elif (d=="fetchorderid"):
-#     try:
-#         cur.execute("select distinct order_id from order_info")
-#         res = cur.fetchall()
-#         # lst = set()
-#         if res != []:
-#             #  print('<option value="">-- Select Order Id --</option>')
-#             for row in res:
-#                 print(f"<option value='{row[0]}'>{row[0]}</option>")
-#         else:
-#             print()
-#     except Exception as e:
-#         print("some error",e)
-
-# fetching data on click of search button or searching data
-# elif(d=="fetch_order_details_conditions"):
-#     # print(d)
-#     try:
-#         order_id = f.getvalue("order_id")
-#         user_id = f.getvalue("user_id")
-#         order_date = f.getvalue("order_date")
-        
-
-#         # Construct conditions for the SQL query
-#         conditions = []
-#         if order_id != None:
-#             conditions.append(f"order_id = '{order_id}'")
-#         if user_id is not None:
-#             conditions.append(f"user_id = '{user_id}'")
-#         if order_date is not None:
-#             conditions.append(f"order_date = '{order_date}'")
-        
-#         # Construct the SQL query
-#         fetch_order_query = "SELECT * FROM order_info"
-#         if conditions:
-#             fetch_order_query += " WHERE " + " AND ".join(conditions)
-       
-#         # print(fetch_order_query)
-
-
-#         cur.execute(fetch_order_query)
-#         srr = cur.fetchall()
-#         if srr != []:
-#             # print("<br>yes")
-#             print("<table class='tab'>")
-#             print("<tr>")
-#             print("<th>Order Id</th>")
-#             print("<th>User Id</th>")
-#             print("<th>Order Date</th>")
-#             print("<th>Stock</th>")
-#             # print("<th>Size</th>")
-#             print("<th colspan='2' style='text-align:center;'>action</th>")
-#             print("</tr>")
-#             for row in srr:
-#                 # print(row)
-#                 print("<tr>")
-#                 print(f'<td>{row[0]}</td>')
-#                 print(f'<td>{row[1]}</td>')
-#                 print(f'<td>{row[2]}</td>')
-#                 print(f'<td>{row[3]}</td>')
-#                 # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
-#                 print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
-#                 print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")
-#                 print("</tr>")
-#             print("</table>")
-#             print("<p style='display:none;'>product details fetched successfully</p>")
-#         else:
-#             # print("no")
-#             print("no data available")
-#     except Exception as e:
-#         print(e)
-
-# elif(d == "deleteorder"):
-#     try:
-#         order_id = f.getvalue("order_id")
-#         # print(prod_id + " have gotten")
-#         delete_order_query = f"delete from order_info where order_id = '{order_id}'"
-#         # print(delete_prod_query)
-#         cur.execute(delete_order_query)
-#         conn.commit()
-#         print("data deleted successfully")
-#     except Exception as e:
-#         print(e)
-
-
-
+# code for fetching order id into option from database   
+elif (d=="fetchorderid"):
+    try:
+        cur.execute("select distinct order_id from order_info")
+        res = cur.fetchall()
+        # lst = set()
+        if res != []:
+            # print('<option value="" disabled selected>-----Select Order Id-----</option>')
+            for row in res:
+                print(f"<option value='{row[0]}'>{row[0]}</option>")
+        else:
+            print()
+    except Exception as e:
+        print("some error",e)
 
 # order details page
 elif (d=="fetchproductprice"):
@@ -893,83 +747,6 @@ elif (d=="fetchproductid"):
         print("some error",e)
 
 # insert order full details
-
-
-# fetching data on click of search button or searching data
-elif(d=="fetch_final_order_conditions"):
-    # print(d)
-    try:
-        order_id = f.getvalue("order_id")
-        user_id = f.getvalue("user_id")
-        order_date = f.getvalue("order_date")
-        
-
-        # Construct conditions for the SQL query
-        conditions = []
-        if order_id != None:
-            conditions.append(f"order_id = '{order_id}'")
-        if user_id is not None:
-            conditions.append(f"user_id = '{user_id}'")
-        if order_date is not None:
-            conditions.append(f"order_date = '{order_date}'")
-        
-        # Construct the SQL query
-        fetch_final_order_query = '''SELECT distinct * FROM order_info
-        join order_details on order_info.order_id = order_details.order_id
-        '''
-        if conditions:
-            fetch_final_order_query += " WHERE " + " AND ".join(conditions)
-       
-        print(fetch_final_order_query)
-        '''SELECT *
-        FROM table1 t1
-        JOIN table2 t2 ON t1.user_id = t2.user_id
-        WHERE t1.user_id = 'your_user_id'
-        OR t1.order_id = 'your_order_id'
-        OR t1.order_date = 'your_order_date';'''
-
-
-        cur.execute(fetch_final_order_query)
-        srr = cur.fetchall()
-        if srr != []:
-            # print("<br>yes")
-            print("<table class='tab'>")
-            print("<tr>")
-            print("<th>Order Id</th>")
-            print("<th>User Id</th>")
-            print("<th>Order Date</th>")
-            print("<th>Shipping Address</th>")
-            print("<th>Product Id</th>")
-            print("<th>Quantity</th>")
-            print("<th>Amount</th>")
-            # print("<th>Size</th>")
-            print("<th colspan='2' style='text-align:center;'>action</th>")
-            print("</tr>")
-            for row in srr:
-                # print(row)
-                print("<tr>")
-                print(f'<td>{row[0]}</td>')
-                print(f'<td>{row[1]}</td>')
-                print(f'<td>{row[2]}</td>')
-                print(f'<td>{row[3]}</td>')
-                print(f'<td>{row[4]}</td>')
-                print(f'<td>{row[6]}</td>')
-                print(f'<td>{row[7]}</td>')
-                # print(f'<td>{row[8]}</td>')
-                # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
-                print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
-                print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")
-                print("</tr>")
-            print("</table>")
-            print("<p style='display:none;'>product details fetched successfully</p>")
-        else:
-            # print("no")
-            print("no data available")
-    except Exception as e:
-        print(e)
-
-
-
 
 
 elif (d=="fetchDistrict"):
@@ -1079,8 +856,8 @@ elif(d == "insert_order2"):
         and state != None  and district != None  and city != None and pincode != None and landmark != None and total_amount and product_details != None):
             cur.execute(f'select * from order_info where order_id="{order_id}"')
             if cur.fetchall()==[]:
-                insert_order_query = "INSERT INTO order_info (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, product_details) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                order_data = (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, json.dumps(product_details))
+                insert_order_query = "INSERT INTO order_info (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, product_details,order_status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                order_data = (order_id, user_id, order_date, country, state, district, city, pincode, landmark, total_amount, json.dumps(product_details), "pending")
                 cur.execute(insert_order_query, order_data)
                 conn.commit()
                 print("Order inserted successfully")
@@ -1088,15 +865,244 @@ elif(d == "insert_order2"):
                 print("order already exists")
         else:
             print("one of the field is empty")
-            # print("one of the field is empty")
     except Exception as e:
         conn.rollback()
         print("data error!!!")
-        # print("Content-Type: application/json")
         print(e)
-        # print(json.dumps({"success": False, "error": str(e)}))
-        # Rollback changes if an error occurs
-        # print(e)
+
+# fetching data on click of search button or searching data
+elif(d=="fetch_order_details_conditions"):
+    # print(d)
+    try:
+        order_id = f.getvalue("order_id")
+        user_id = f.getvalue("user_id")
+        order_date = f.getvalue("order_date")
+        
+        # Construct conditions for the SQL query
+        conditions = []
+        if order_id != None:
+            conditions.append(f"order_id = '{order_id}'")
+        if user_id is not None:
+            conditions.append(f"user_id = '{user_id}'")
+        if order_date is not None:
+            conditions.append(f"order_date = '{order_date}'")
+        
+        # Construct the SQL query
+        fetch_order_query = "SELECT * FROM order_info"
+        if conditions:
+            fetch_order_query += " WHERE " + " AND ".join(conditions)
+       
+        # print(fetch_order_query)
+
+
+        cur.execute(fetch_order_query)
+        srr = cur.fetchall()
+        if srr != []:
+            # print("<br>yes")
+            print("<table class='tab'>")
+            print("<tr>")
+            print("<th>Order Id</th>")
+            print("<th>User Id</th>")
+            print("<th>Order Date</th>")
+            print("<th>City</th>")
+            print("<th>Landmark</th>")
+            print("<th>Pincode</th>")
+            print("<th>District</th>")
+            print("<th>State</th>")
+            print("<th>Country</th>")
+            print("<th>Product Details</th>")
+            print("<th>Total Amount</th>")
+            print("<th>Status</th>")
+            # print("<th>Size</th>")
+            print("<th colspan='2' style='text-align:center;'>action</th>")
+            print("</tr>")
+            for row in srr:
+                country = row[3]
+                state = row[4]
+                district = row[5]
+                city = row[6]
+                pincode = row[7]
+                landmark = row[8]
+
+                shipp_addr = f'''City :- {city}\nLandmark :- {landmark}\nDistrict :- {district}\nState :- {state}, Country :- {country}\nPincode :- {pincode}  '''
+
+                # print(row)
+                print("<tr>")
+                print(f'<td>{row[0]}</td>')
+                print(f'<td>{row[1]}</td>')
+                print(f'<td>{row[2]}</td>')
+                print(f'''<td>{row[6]}</td>''')
+                print(f'''<td>{row[8]}</td>''')
+                print(f'''<td>{row[7]}</td>''')
+                print(f'''<td>{row[5]}</td>''')
+                print(f'''<td>{row[4]}</td>''')
+                print(f'''<td>{row[3]}</td>''')
+                print(f'<td><a>View</a></td>')
+                print(f'<td>{row[9]}</td>')
+                print(f'''<td><span class='stats' >{row[11]}</span></td>''')
+                # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
+                print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
+                print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")
+                print("</tr>")
+            print("</table>")
+            print("<p style='display:none;'>order details fetched successfully</p>")
+        else:
+            # print("no")
+            print("no data available")
+    except Exception as e:
+        print(e)
+
+
+elif(d == "deleteorder"):
+    try:
+        order_id = f.getvalue("order_id")
+        # print(prod_id + " have gotten")
+        delete_order_query = f"delete from order_info where order_id = '{order_id}'"
+        # print(delete_prod_query)
+        cur.execute(delete_order_query)
+        conn.commit()
+        print("data deleted successfully")
+    except Exception as e:
+        print(e)
+
+elif(d == "fetchForOrderUpdate"):
+    # print(d)
+    try:
+        order_id = f.getvalue("order_id")
+        if(order_id != None):
+            fetch_query_order_one = f"select * from order_info where order_id='{order_id}'"
+            cur.execute(fetch_query_order_one)
+            res = cur.fetchall()
+
+            if res != []:
+                for  row in res:
+                    # print(type(row[10]))
+                    # prod_data3 = json.loads(row[10])
+                    # print(type(prod_data3))
+                    # print(prod_data3)
+
+                    # print(row[11])
+                    if(row[11] == "pending"):
+                        print("<div style='display:none;'>data fetching successfully</div>",end="&&")
+                        print(row[0], end="&&")
+                        print(row[1], end="&&")
+                        print(row[2], end="&&")
+                        print(row[3], end="&&")
+                        print(row[4], end="&&")
+                        print(row[5], end="&&")
+                        print(row[6], end="&&")
+                        print(row[7], end="&&")
+                        print(row[8], end="&&")
+                        print(row[9], end="&&")
+                        print(row[10], end="&&")
+                        # print(row[11], end="&&")
+                        
+                        # print(res)
+                        # print(f'<div class="form_placeholder">')
+                        # print(f"<div class='updcard'>")
+                        # print("<div class='cut'><i class='fa-solid fa-xmark fa-xl'></i></div>")
+                        # print(f"<div>Update Product Details</div>")
+                        # print(f"<form>")
+                        # print(f''' <table class="upd_tab">
+                        #          <tr>
+                        #            <td>
+                        #              <!-- <label class="lab" for="user_id">User Id*</label> -->
+                        #              <!-- <input type="text" id="user_id"> -->
+                        #              <select name="" id="user_id">
+                        #                <option value="{row[1]}" readonly>{row[1]}</option>
+                        #              </select>
+                        #            </td>
+                        #            <td>
+
+                        #              <label class="lab amt_lab" for="order_id">Order Id*</label>
+                        #              <input type="text" id="order_id" value="{row[0]}" readonly>
+                        #            </td>
+                        #            <td>
+                        #              <!-- <label class="lab" for="order_date">Order Date*</label> -->
+                        #              <input type="datetime-local" id="order_date" value="{row[2]}" readonly>
+                        #            </td>
+                        #          </tr>
+
+                        #          <tr>
+                        #            <td>
+                        #          <select id="country">
+                        #            <!-- <option value="">---Select Country Name</option> -->
+                        #            <option value="" selected disabled>----- Select Country -----</option>
+                        #            <option value="{row[3]}" selected>{row[3]}</option>
+                        #          </select>
+                        #        </td>
+                        #        <td>
+                        #          <select id="state">
+                        #            <option value="" selected disabled>----- Select Any State -----</option>
+                        #            <option value="{row[4]}" selected>{row[4]}</option>
+
+                        #          </select>
+                        #        </td>
+                        #        <td>
+                        #          <select name="" id="district">
+                        #            <option value="">----- Select Any District -----</option>
+                        #            <option value="{row[5]}" selected>{row[5]}</option>
+                        #          </select>
+                        #        </td>
+                        #      </tr>
+
+                        #      <tr>
+                        #        <td>
+                        #          <label class="lab" for="city">City*</label>
+                        #          <input type="text" id="city" value="{row[6]}">
+                        #        </td>
+                        #        <td>
+
+                        #          <label class="lab" for="pincode">PinCode No*</label>
+                        #          <input type="number" id="pincode" value="{row[7]}">
+                        #        </td>
+                        #        <td>
+                        #          <label class="lab" for="landmark">Lankmark</label>
+                        #          <input type="text" id="landmark" value="{row[7]}">
+                        #        </td>
+                        #      </tr>''')
+                        # for data in prod_data3:
+                        #     print(f'''<tr class="prod_row">
+                        #       <td>
+                        #         <select class="prod_cat_0">
+                        #           <option value="">---Select Product Category---</option>
+                        #         </select>
+                        #       </td>
+                        #       <td>
+                        #         <select class="prod_id_0">
+                        #           <option value="">---Select Product---</option>
+                        #         </select>
+                        #       </td>
+                        #       <td>
+                        #         <label class="lab" for="quantity">Quantity*</label>
+                        #         <input type="number" class="quantity ">
+                        #       </td>
+
+                        #       <td class="plus_td">
+                        #         <span class="addRow" style="font-size: 5rem; cursor: pointer;">+</span>
+                        #       </td>
+                        #     </tr>''')
+
+
+                        # print(f'''<tr>
+                        #      <td class="btn_td" colspan="3">
+                        #        <span class="btn_grp">
+                        #          <button class="sub_btn save" id="sub_btn">Submit</button>
+                        #          <button class="res_btn">Reset</button>
+                        #        </span>
+                        #      </td>
+                        #    </tr>
+                        #  </table> ''')
+                        # print(f"</form>")
+                        # # print(f"</div>")
+                        # print(f"</div>")
+                    else:
+                        print("order status is success")
+            else:
+                print("no data available")
+    except Exception as e:
+        print(e)
+
 
 
 
@@ -1110,3 +1116,53 @@ elif(d == "insert_order2"):
 #         print(cur.fetchall()[0][0].decode())
 #     except Exception as e:
 #         print(str(e))
+
+elif(d=="generatePaymentId"):
+    def generate_payment_id():
+        length = 15
+        chars = string.ascii_uppercase + string.digits
+        return ''.join(random.choice(chars) for _ in range(length))
+    print(generate_payment_id())
+
+elif (d=="fetchTotalAmount"):
+    try:
+        order_id= f.getvalue("order_id")
+        cur.execute(f"select total_amount from order_info where order_id='{order_id}'")
+        res = cur.fetchall()
+        # lst = set()
+        if res != []:
+            #  print('<option value="">-- Select Order Id --</option>')
+            for row in res:
+                print(row[0])
+            
+        else:
+            print("no order id available")
+    except Exception as e:
+        print("some error",e)
+
+
+elif (d=="insert_payment"):
+    print(d)
+    try:
+        payment_id = f.getvalue("payment_id")
+        order_id = f.getvalue("order_id")
+        order_date = f.getvalue("order_date")
+        payment_mode =f.getvalue("payment_mode")
+        total_amount = f.getvalue("total_amount")
+
+        if(payment_id != None and order_id !=None and order_date != None and payment_mode !=None and total_amount != None):
+            cur.execute(f"select * from payment where order_id='{order_id}'")
+            if cur.fetchall() == []:
+
+                insert_payment_query = f"insert into payment(payment_id, order_id, payment_mode, total_amount , order_date) values('{payment_id}','{order_id}','{payment_mode}','{total_amount}','{order_date}')"
+                print(insert_payment_query)
+                cur.execute(insert_payment_query)
+                conn.commit()
+                print("payment success")
+            else:
+                print("payment allready done")
+        else:
+            raise Exception("one of the field is empty")
+
+    except Exception as e:
+        print(e)
