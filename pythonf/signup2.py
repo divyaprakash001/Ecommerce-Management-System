@@ -1153,7 +1153,6 @@ elif (d=="insert_payment"):
         if(payment_id != None and order_id !=None and order_date != None and payment_mode !=None and total_amount != None):
             cur.execute(f"select * from payment where order_id='{order_id}'")
             if cur.fetchall() == []:
-
                 insert_payment_query = f"insert into payment(payment_id, order_id, payment_mode, total_amount , order_date) values('{payment_id}','{order_id}','{payment_mode}','{total_amount}','{order_date}')"
                 print(insert_payment_query)
                 cur.execute(insert_payment_query)
@@ -1164,5 +1163,101 @@ elif (d=="insert_payment"):
         else:
             raise Exception("one of the field is empty")
 
+    except Exception as e:
+        print(e)
+
+
+# code for fetching product cat id into option from database   
+elif (d=="fetchPaymentId"):
+    try:
+        # prod_cat_id = f.getvalue("prod_cat_id")
+        # print(prod_cat_id)
+        cur.execute(f"select distinct payment_id from payment")
+        res = cur.fetchall()
+        # lst = set()
+        if res != []:
+            # print(f"<option value="">---Select Payment Id---</option>")
+            for row in res:
+                # print(row[0])
+                print(f"<option value='{row[0]}'>{row[0]}</option>")
+        else:
+            print("no data available")
+            # print(f"<option value="">---Select Product---</option>")
+    except Exception as e:
+        print("some error",e)
+
+# fetching data on click of search button or searching data
+elif(d=="fetch_payment_details_conditions"):
+    # print(d)
+    try:
+        payment_id = f.getvalue("payment_id")
+        order_id = f.getvalue("order_id")
+        payment_date = f.getvalue("payment_date")
+        payment_mode = f.getvalue("payment_mode")
+        
+
+        # Construct conditions for the SQL query
+        conditions = []
+        if payment_id != None:
+            conditions.append(f"payment_id = '{payment_id}'")
+        if order_id is not None:
+            conditions.append(f"order_id = '{order_id}'")
+        if payment_date is not None:
+            conditions.append(f"payment_date = '{order_date}'")
+        if payment_mode is not None:
+            conditions.append(f"payment_mode = '{payment_mode}'")
+        
+        # Construct the SQL query
+        fetch_payment_query = "SELECT * FROM payment"
+        if conditions:
+            fetch_payment_query += " WHERE " + " AND ".join(conditions)
+       
+        print(fetch_payment_query)
+
+
+        cur.execute(fetch_payment_query)
+        srr = cur.fetchall()
+        if srr != []:
+            # print("<br>yes")
+            print("<table class='tab'>")
+            print("<tr>")
+            print("<th>Payment Id</th>")
+            print("<th>Order Id</th>")
+            print("<th>Payment Mode</th>")
+            print("<th>Total Amount</th>")
+            print("<th>Payment Date</th>")
+            # print("<th>Size</th>")
+            print("<th colspan='2' style='text-align:center;'>action</th>")
+            print("</tr>")
+            for row in srr:
+                # print(row)
+                print("<tr>")
+                print(f'<td>{row[0]}</td>')
+                print(f'<td>{row[1]}</td>')
+                print(f'<td>{row[2]}</td>')
+                print(f'<td>{row[3]}</td>')
+                print(f'<td>{row[4]}</td>')
+                # print(f'<td><div id="img_container"><img src="{row[8].decode()}"><img src="{row[9].decode()}"><img src="{row[10].decode()}"></div></td>')
+                print(f"<td><div class='icon_div edit'><i class='fa-solid fa-pen-to-square fa-xl edit'  ></i></div></td>")
+                print(f"<td><div class='icon_div del'><i class='fa-solid fa-trash-can fa-xl del'></i></div></td>")
+                print("</tr>")
+            print("</table>")
+            print("<p style='display:none;'>payment details fetched successfully</p>")
+        else:
+            # print("no")
+            print("no data available")
+    except Exception as e:
+        print(e)
+
+elif(d == "deletepayment"):
+    # print(d)
+    try:
+        payment_id = f.getvalue("payment_id")
+        # print(userid + " have gotten")
+        delete_query = f"delete from payment where payment_id = '{payment_id}'"
+        # print(delete_query)
+        cur.execute(delete_query)
+        conn.commit()
+        print("data deleted successfully")
     except Exception as e:
         print(e)

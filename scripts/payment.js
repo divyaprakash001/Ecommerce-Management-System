@@ -13,11 +13,11 @@ $(document).ready(function () {
   });
 
   $(".search_btn").on("click", function () {
-    window.location.href = "pages-search-order.html"
+    window.location.href = "pages-search_payment.html"
   })
 
   $(".add_btn").on('click', function () {
-    window.location.href = "pages-order_entry_form.html";
+    window.location.href = "pages-payment_entry_form.html";
   })
   $("#refresh").on('click', function () {
     window.location.reload()
@@ -52,21 +52,6 @@ $.ajax({
   },
 });
 
-$(document).on("change","#order_id",function(){
-  $.ajax({
-    method: 'post',
-  url: 'pythonf/signup2.py',
-  data: {
-    what: "fetchTotalAmount",
-    order_id:$("#order_id").val()
-  },
-  success: function (data) {
-    console.log(data);
-    $('#total_amount').val(data)
-  },
-});
-})
-
 
 // Get the current date and time
 var currentDate = new Date();
@@ -85,14 +70,9 @@ $("#order_date").val(formattedDate);
 
 
 
-
-
-
 // doing insertion when click on submit button on product entry page
 $(document).on("click", "#sub_btn", function (e) {
   e.preventDefault();
-
-  
 
   // console.log(formData); // Output the array of input values
 
@@ -192,18 +172,20 @@ $.ajax({
 
 
 // code for display incoming data after executing query
-$(document).on('click', '#search_btn', function () {
-
+$("#search_btnn").on('click', function (e) {
+  e.preventDefault()
   $.ajax({
     method: 'post',
     url: 'pythonf/signup2.py',
     data: {
-      what: "fetch_order_details_conditions",
+      what: "fetch_payment_details_conditions",
+      payment_id: $('#payment_id').val(),
       order_id: $('#order_id').val(),
-      user_id: $('#user_id').val(),
-      order_date: $('#order_date').val(),
+      order_date: $('#order_date1').val(),
+      payment_mode: $('#payment_mode').val(),
     },
     success: function (data) {
+      // alert("hello")
       console.log(data);
       // alert(data)
 
@@ -214,7 +196,7 @@ $(document).on('click', '#search_btn', function () {
           text: "please select atleast one field",
           icon: "error",
         });
-      } else if (data.includes("order details fetched successfully")) {
+      } else if (data.includes("payment details fetched successfully")) {
         $('.below_card').css({ "display": "block" })
         $('.table_container').html(data)
 
@@ -223,6 +205,14 @@ $(document).on('click', '#search_btn', function () {
         swal({
           title: "Failed!",
           text: "no data available",
+          icon: "error",
+        });
+      }
+      else {
+        // $('.below_card').css({ "display": "none" })
+        swal({
+          title: "Failed!",
+          text: "Something went wrong!!!",
           icon: "error",
         });
       }
@@ -239,9 +229,9 @@ $(document).on('click', '#search_btn', function () {
 
       // if user click on delete button
       $(".del").on("click", function () {
-        d = "deleteorder"
-        let oid = $(this).closest('tr').children('td:first-child').text();
-        console.log(oid);
+        d = "deletepayment"
+        let pid = $(this).closest('tr').children('td:first-child').text();
+        console.log(pid);
 
         swal({
           title: "Are you sure?",
@@ -257,7 +247,7 @@ $(document).on('click', '#search_btn', function () {
                 url: 'pythonf/signup2.py',
                 data: {
                   what: d,
-                  order_id: oid
+                  payment_id: pid
                 },
                 success: function (data) {
                   console.log(data);
